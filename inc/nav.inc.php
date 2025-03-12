@@ -2,8 +2,9 @@
     <div class="container-fluid">
         <!-- Logo on the left -->
         <a class="navbar-brand" href="index.php">
-            <img class="img-thumbnail" src="images/logo.png" alt="logo" width="60" height="60"/>
-        </a>
+    <img src="images/logo.png" alt="logo" width="80" height="70"/>
+</a>
+
 
         <!-- Toggler button for mobile -->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

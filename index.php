@@ -1,8 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Header -->
-<?php include "inc/head.inc.php"; ?>
+<head>
+    <!-- Header -->
+    <?php include "inc/head.inc.php" ?>
+    <title>[PAGE NAME] | PEAK</title>
+
+    <style>
+     /*Style goes here */
+   </style>
+</head>
+
 
 <body>
 

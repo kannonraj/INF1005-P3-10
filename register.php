@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <!-- Page title displayed in the browser tab -->
-        <title>Register Member</title>
 
-        <!-- head php -->
-        <?php
-            include "inc/head.inc.php";
-        ?>
-    </head>
+<head>
+    <!-- Header -->
+    <?php include "inc/head.inc.php" ?>
+    <title>Member Registration | PEAK</title>
+
+    <style>
+     /*Style goes here */
+   </style>
+</head>
+
+
     <body>
         <!-- Navigation bar -->
         <?php

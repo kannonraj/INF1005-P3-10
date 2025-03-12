@@ -4,7 +4,11 @@
 <head>
     <!-- Header -->
     <?php include "inc/head.inc.php" ?>
-    <title>About Us | YOUR COMPANY NAME</title>
+    <title>About Us | PEAK</title>
+
+    <style>
+     /*Style goes here */
+   </style>
 </head>
 
 <body>

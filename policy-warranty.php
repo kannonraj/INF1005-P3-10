@@ -6,9 +6,16 @@ $title = "Warranty Policy";  // Set the title of the page
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Header -->
-<?php include "inc/head.inc.php"; ?>
 
+<head>
+    <!-- Header -->
+    <?php include "inc/head.inc.php" ?>
+    <title>Warranty Policy | PEAK</title>
+
+    <style>
+     /*Style goes here */
+   </style>
+</head>
 <body>
 
 <!-- Navigation -->

@@ -6,8 +6,15 @@ $title = "Terms of Service";  // Set the title of the page
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Header -->
-<?php include "inc/head.inc.php"; ?>
+<head>
+    <!-- Header -->
+    <?php include "inc/head.inc.php" ?>
+    <title>Terms of Service Policy | PEAK</title>
+
+    <style>
+     /*Style goes here */
+   </style>
+</head>
 
 <body>
 

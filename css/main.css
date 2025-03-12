@@ -18,6 +18,12 @@ html, body {
   background-color: #3c4a59;
 }
 
+.navbar .img-thumbnail {
+  border: none; /* Remove border */
+  padding: 0;   /* Remove padding */
+}
+
+
 .navbar-nav {
   display: flex;
   justify-content: flex-start; /* Align items to the left */
