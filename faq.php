@@ -4,6 +4,34 @@
 <!-- Header -->
 <?php include "inc/head.inc.php"; ?>
 
+<style>
+  .faq-container {
+  margin-top: 20px;
+}
+
+.faq-item {
+  margin-bottom: 10px;
+}
+
+.faq-question {
+  background-color: #f1f1f1;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.faq-answer {
+  display: none;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+}
+
+  </style>
+
 <body>
 
   <!-- Navigation -->
