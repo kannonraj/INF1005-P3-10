@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <!-- Header -->
-    <?php include "inc/head.inc.php" ?>
+    <?php include "inc/head.inc.php"; ?>
     <title>Member Login | PEAK</title>
 
     <style>
      /*Style goes here */
    </style>
 </head>
-    <body>
-        <!-- Navigation bar -->
-        <?php
-        include "inc/nav.inc.php";
-        ?>
 
+<body>
+    <!-- Navigation bar -->
+    <?php
+    include "inc/nav.inc.php";
+    ?>
+
+    <div class="main-content">
         <main class="container">
             <h1>Member Login</h1>
             <p>
@@ -39,9 +42,10 @@
             </div>
             </form>
         </main>
+    </div>
 
-        <?php
-        include "inc/footer.inc.php";
-        ?>
-    </body>
+    <?php
+    include "inc/footer.inc.php";
+    ?>
+</body>
 </html>

@@ -3,7 +3,7 @@
 
 <head>
     <!-- Header -->
-    <?php include "inc/head.inc.php" ?>
+    <?php include "inc/head.inc.php"; ?>
     <title>Member Registration | PEAK</title>
 
     <style>
@@ -11,18 +11,18 @@
    </style>
 </head>
 
+<body>
+    <!-- Navigation bar -->
+    <?php
+    include "inc/nav.inc.php";
+    ?>
 
-    <body>
-        <!-- Navigation bar -->
-        <?php
-        include "inc/nav.inc.php";
-        ?>
-
+    <div class="main-content">
         <main class="container">
             <h1>Member Registration</h1>
             <p>
                 For existing members, please go to the
-                <a href="login.php">Sign In page</a>.
+                <a href="login.php">Member Login page</a>.
             </p>
 
             <!-- Registration form -->
@@ -63,9 +63,10 @@
             </div>
             </form>
         </main>
+    </div>
 
-        <?php
-        include "inc/footer.inc.php";
-        ?>
-    </body>
+    <?php
+    include "inc/footer.inc.php";
+    ?>
+</body>
 </html>
