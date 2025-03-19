@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <!-- Header -->
-    <?php include "inc/head.inc.php" ?>
-    <title>Login Process | PEAK</title>
+    <?php include "inc/head.inc.php"; ?>
+    <title>Login Result | PEAK</title>
 
     <style>
      /*Style goes here */
    </style>
 </head>
 
-    <body>
-        <!-- Navigation bar -->
-        <?php
-        include "inc/nav.inc.php";
-        ?>
+<body>
+    <!-- Navigation bar -->
+    <?php
+    include "inc/nav.inc.php";
+    ?>
 
+    <div class="main-content">
         <main class="container">
         <?php
         // Initialize variables
@@ -162,9 +162,10 @@
         }
         ?>
         </main>
+    </div>
 
-        <?php
-        include "inc/footer.inc.php";
-        ?>
-    </body>
+    <?php
+    include "inc/footer.inc.php";
+    ?>
+</body>
 </html>
