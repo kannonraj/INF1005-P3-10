@@ -101,7 +101,7 @@
 
       <!-- Contact Us Form -->
       <div id="ContactForm">
-        <form action="submit_form.php" method="POST">
+        <form action="submit_form.php" method="POST" onsubmit="return validateForm()">
             <!-- Row 1: Name and Email -->
             <div class="row">
                 <div style="width: 48%; float: left; margin-right: 4%;">
@@ -135,6 +135,35 @@
 
   <!-- Footer -->
   <?php include "inc/footer.inc.php"; ?>
+
+  <!-- JavaScript for Form Validation -->
+  <script>
+    function validateForm() {
+        // Get the phone number input value
+        var phone = document.getElementById("ContactForm-phone").value;
+
+        // Check if phone contains only numbers and has a max length of 8
+        var phonePattern = /^[0-9]{8}$/;
+        if (!phonePattern.test(phone)) {
+            alert("Please enter a valid phone number (only 8 digits allowed).");
+            return false; // Prevent form submission
+        }
+
+        // Get the email value
+        var email = document.getElementById("ContactForm-email").value;
+
+        // Regex pattern to validate email, ensuring it ends with a valid domain like .com, .org, etc.
+        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|org|net|edu|gov|io)$/;
+        
+        // Check if the email matches the pattern
+        if (!emailPattern.test(email)) {
+            alert("Please enter a valid email address (e.g., user@domain.com).");
+            return false; // Prevent form submission
+        }
+
+        return true; // Allow form submission
+    }
+  </script>
 
 </body>
 </html>
