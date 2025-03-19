@@ -20,26 +20,27 @@
                 <li class="nav-item">
                     <a class="nav-link" href="about.php">About Us</a>
                 </li>
-                <!-- Rent A Car dropdown -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                        Rent A Car
-                    </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Sedan</a></li>
-                        <li><a class="dropdown-item" href="#">SUV</a></li>
-                        <li><a class="dropdown-item" href="#">Hatchback</a></li>
-                        <li><a class="dropdown-item" href="#">Convertible</a></li>
-                        <li><a class="dropdown-item" href="#">Coupe</a></li>
-                        <li><a class="dropdown-item" href="#">Truck</a></li>
-                        <li><a class="dropdown-item" href="#">Minivan</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact</a>
-                </li>
-            </ul>
-        </div>
+        '<!-- Rent A Car dropdown -->
+<li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+        Rent A Car
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="car-listings.php?category=Sedan">Sedan</a></li>
+        <li><a class="dropdown-item" href="car-listings.php?category=SUV">SUV</a></li>
+        <li><a class="dropdown-item" href="car-listings.php?category=Hatchback">Hatchback</a></li>
+        <li><a class="dropdown-item" href="car-listings.php?category=Convertible">Convertible</a></li>
+        <li><a class="dropdown-item" href="car-listings.php?category=Coupe">Coupe</a></li>
+        <li><a class="dropdown-item" href="car-listings.php?category=Truck">Truck</a></li>
+        <li><a class="dropdown-item" href="car-listings.php?category=Minivan">Minivan</a></li>
+    </ul>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="contact.php">Contact</a>
+</li>
+</ul>
+</div>';
+?>
 
         <!-- Right-side Account and Cart Icons -->
         <div class="d-flex ms-auto">
