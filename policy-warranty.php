@@ -19,8 +19,8 @@ $title = "Warranty Policy";  // Set the title of the page
 <?php include "inc/nav.inc.php"; ?>
 
 <!-- Main Content Area -->
-<div class="main-content">
-    <div class="container">
+<div class="policy-main-content">
+    <div class="policy-container">
         <h1 class="h1custom bold-text"><?php echo $title; ?></h1>
         <p>At [Your Company Name], we are committed to providing high-quality vehicles to our customers. We offer a limited warranty on all vehicles rented from us, ensuring that they are in good working condition.</p>
         <h5 class="h5custom bold-text">Our warranty covers the following:</h5>

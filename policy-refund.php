@@ -21,11 +21,11 @@ $title = "Refund Policy";  // Set the title of the page
 
 
   <!-- Main Content Area -->
-  <div class="main-content">
+  <div class="policy-main-content">
     <!-- Content of the page goes here -->
     <!-- For example, you can add a section, a hero image, etc. -->
      
-<div class="container">
+<div class="policy-container">
     <h1 class="h1custom bold-text"><?php echo $title; ?></h1>
     <p>We strive to provide the best experience for our customers. However, in the event that you need to cancel your reservation, the following refund policy applies:</p>
 

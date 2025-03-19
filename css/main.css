@@ -10,19 +10,10 @@ html, body {
   line-height: 1.6; /* Ensure line height is applied */
 }
 
-/* Main content area */
-.main-content {
-  flex: 1; /* This will take up all available space */
-  padding: 20px; /* Added from individual pages */
-}
-
-/* Container for centered content */
-.container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 40px; /* Added from individual pages */
-}
-
+     /* Main content area */
+     .main-content {
+      flex: 1; /* This will take up all available space */
+  }
 /* Headings */
 .h1custom {
   text-align: center; /* Center the h1 main header */
@@ -172,4 +163,20 @@ footer .text-center {
   margin-top: 20px;
   font-size: 0.9rem;
   color: #ffffff;
+}
+
+
+/* POLICY STYLES */
+
+/* Main content area */
+.policy-main-content {
+  flex: 1; /* This will take up all available space */
+  padding: 20px; /* Added from individual pages */
+}
+
+/* Container for centered content */
+.policy-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px; /* Added from individual pages */
 }

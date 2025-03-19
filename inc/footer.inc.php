@@ -1,4 +1,4 @@
-<footer class="container-fluid mt-5 py-4">
+<footer class="container-fluid mt-2 py-4">
   <div class="row justify-content-center"> <!-- Center all footer columns -->
     <!-- Company Column -->
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
@@ -36,6 +36,8 @@
       </ul>
     </div>
   </div>
+
+  <hr>
   
   <!-- Copyright Notice -->
   <div class="text-center mt-4">

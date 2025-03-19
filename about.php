@@ -147,7 +147,7 @@
             </div>
         </div>
     </section>
-    <hr>
+
     <!-- Footer -->
     <?php include "inc/footer.inc.php" ?>
 

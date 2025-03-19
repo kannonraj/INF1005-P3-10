@@ -21,11 +21,11 @@ $title = "Terms of Service";  // Set the title of the page
 
 
   <!-- Main Content Area -->
-  <div class="main-content">
+  <div class="policy-main-content">
     <!-- Content of the page goes here -->
     <!-- For example, you can add a section, a hero image, etc. -->
 <!-- Index Content -->
-<div class="container">
+<div class="policy-container">
     <h1 class="h1custom bold-text"><?php echo $title; ?></h1>
     <p>By using [Your Company Name]'s rental services, you agree to the following terms and conditions:</p>
 

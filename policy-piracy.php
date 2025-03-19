@@ -19,8 +19,8 @@ $title = "Privacy Policy";  // Set the title of the page
 <?php include "inc/nav.inc.php"; ?>
 
 <!-- Main Content Area -->
-<div class="main-content">
-    <div class="container">
+<div class="policy-main-content">
+    <div class="policy-container">
         <h1 class="h1custom bold-text"><?php echo $title; ?></h1>
         <p>Your privacy is important to us. This privacy policy outlines the types of personal information we collect and how it is used.</p>
 

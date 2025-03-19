@@ -6,6 +6,7 @@
     <title>Contact Us | PEAK</title>
     
     <style>
+
         body {
             background: url('images/background.jpg') no-repeat;
             -webkit-background-size: cover;
@@ -83,9 +84,6 @@
 </head>
 
 <body>
-
-  <!-- Header -->
-  <?php include "inc/head.inc.php"; ?>
 
   <!-- Navigation -->
   <?php include "inc/nav.inc.php"; ?>
