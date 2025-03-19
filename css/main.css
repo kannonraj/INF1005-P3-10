@@ -4,17 +4,75 @@ html, body {
   margin: 0;
   display: flex;
   flex-direction: column;
+  background-color: #3C4A59; /* Ensure background color is applied */
+  color: white; /* Ensure text color is applied */
+  font-family: Arial, sans-serif; /* Ensure font is applied */
+  line-height: 1.6; /* Ensure line height is applied */
 }
 
 /* Main content area */
 .main-content {
   flex: 1; /* This will take up all available space */
+  padding: 20px; /* Added from individual pages */
+}
+
+/* Container for centered content */
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px; /* Added from individual pages */
+}
+
+/* Headings */
+.h1custom {
+  text-align: center; /* Center the h1 main header */
+  font-size: 2.1rem; /* Font size for h1 main section headers */
+  margin-bottom: 40px;
+}
+
+.h2custom {
+  font-size: 1.8rem;/* Font size for h2 sub-section headers */
+  margin-bottom: 20px;
+}
+
+.h3custom {
+  font-size: 1.5rem;/* Font size for h3 sub-sub section headings */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.h4custom {
+  font-size: 1.2rem;/*Font size for h4 sub-sub-sub section headings */
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+.h5custom {
+  font-size: 1.03rem;/* Font size for h5 smallest section headings */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Body text */
+p, ul li {
+  font-size: 0.8rem;/* Font size of body text */
+  margin-bottom: 15px;
+}
+
+/* Lists */
+ul {
+  list-style-type: disc; /* Use bullet points */
+  padding-left: 20px; /* Add left padding for bullet points */
+}
+
+/* Bold Text Utility Class */
+.bold-text {
+  font-weight: bold; /* Enables dynamic bolding of text */
 }
 
 /* Navigation */
 .navbar {
   padding: 0 30px; /* Align the navbar with the body content */
-  
   background-color: #3c4a59;
 }
 
@@ -22,7 +80,6 @@ html, body {
   border: none; /* Remove border */
   padding: 0;   /* Remove padding */
 }
-
 
 .navbar-nav {
   display: flex;

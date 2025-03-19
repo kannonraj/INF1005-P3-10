@@ -20,7 +20,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="about.php">About Us</a>
                 </li>
-        '<!-- Rent A Car dropdown -->
+        <!-- Rent A Car dropdown -->
 <li class="nav-item dropdown">
     <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
         Rent A Car
@@ -39,8 +39,7 @@
     <a class="nav-link" href="contact.php">Contact</a>
 </li>
 </ul>
-</div>';
-?>
+</div>
 
         <!-- Right-side Account and Cart Icons -->
         <div class="d-flex ms-auto">

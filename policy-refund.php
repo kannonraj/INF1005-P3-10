@@ -11,9 +11,6 @@ $title = "Refund Policy";  // Set the title of the page
     <?php include "inc/head.inc.php" ?>
     <title>Refund Policy | PEAK</title>
 
-    <style>
-     /*Style goes here */
-   </style>
 </head>
 
 <body>
@@ -29,7 +26,7 @@ $title = "Refund Policy";  // Set the title of the page
     <!-- For example, you can add a section, a hero image, etc. -->
      
 <div class="container">
-    <h1><?php echo $title; ?></h1>
+    <h1 class="h1custom bold-text"><?php echo $title; ?></h1>
     <p>We strive to provide the best experience for our customers. However, in the event that you need to cancel your reservation, the following refund policy applies:</p>
 
     <ul>
