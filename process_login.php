@@ -78,11 +78,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </style>
 </head>
 <body>
+    <?php
+    include "inc/nav.inc.php";
+    ?>
     <div class="main-content container">
         <h2>Login Failed</h2>
         <p><?= htmlspecialchars($errorMsg) ?></p>
         <a href="login.php" class="btn-danger">Return to Login</a>
     </div>
+    <?php
+    include "inc/footer.inc.php";
+    ?>
 </body>
 </html>
 
