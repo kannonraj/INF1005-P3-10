@@ -1,171 +1,80 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+session_start();
 
-<head>
-    <!-- Header -->
-    <?php include "inc/head.inc.php"; ?>
-    <title>Login Result | PEAK</title>
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $email = sanitize_input($_POST["email"]);
+    $password = $_POST["pwd"];
+    $errorMsg = "";
+    $success = true;
 
-    <style>
-     /*Style goes here */
-   </style>
-</head>
+    $config_path = '/var/www/private/db-config.ini';
+    if (!file_exists($config_path) || !is_readable($config_path)) {
+        $errorMsg = "Internal server error: Unable to read config file.";
+        $success = false;
+    } else {
+        $config = parse_ini_file($config_path);
+        $conn = new mysqli(
+            $config['servername'],
+            $config['username'],
+            $config['password'],
+            $config['dbname']
+        );
 
-<body>
-    <!-- Navigation bar -->
-    <?php
-    include "inc/nav.inc.php";
-    ?>
-
-    <div class="main-content">
-        <main class="container">
-        <?php
-        // Initialize variables
-        $email = $password = $fname = $lname = "";
-        $errorMsg = "";
-        $success = true;
-
-        // Validate Email
-        if (empty($_POST["email"]))
-        {
-            $errorMsg .= "Email is required.<br>";
+        if ($conn->connect_error) {
+            $errorMsg = "Connection failed: " . $conn->connect_error;
             $success = false;
-        }
-        else
-        {
-            $email = sanitize_input($_POST["email"]);
+        } else {
+            $stmt = $conn->prepare("SELECT fname, lname, email, password FROM car_rental WHERE email=?");
+            $stmt->bind_param("s", $email);
+            $stmt->execute();
+            $result = $stmt->get_result();
 
-            // Additional check to make sure e-mail address is well-formed.
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL))
-            {
-                $errorMsg .= "Invalid email format.<br>";
-                $success = false;
-            }
-        }
+            if ($result->num_rows == 1) {
+                $row = $result->fetch_assoc();
+                if (password_verify($password, $row["password"])) {
+                    // ✅ Success — store session
+                    $_SESSION["loggedin"] = true;
+                    $_SESSION["user_email"] = $row["email"];
+                    $_SESSION["user_name"] = $row["fname"] . " " . $row["lname"];
 
-        // Validate Password
-        if (empty($_POST["pwd"]))
-        {
-            $errorMsg .= "Password is required.<br>";
-            $success = false;
-        }
-        else
-        {
-            $password = $_POST["pwd"];
-        }
-
-        // If validation is successful, attempt authentication
-        if ($success)
-        {
-            authenticateUser();
-        }
-
-        // Display appropriate messages
-        if ($success)
-        {
-            echo '<div style="text-align: left; padding: 20px;">';
-            echo "<h3>Login successful!</h3>";
-            echo "<h4>Welcome back, " . trim("$fname $lname") . ".</h4>";
-            echo '<a href="index.php" style="display: inline-block; padding: 10px 20px; background-color: green;
-                    color: white; text-decoration: none; border-radius: 5px;">Return to Home</a>';  // Return to Home button
-            echo '</div>';
-        }
-        else
-        {
-            // Display errors
-            echo '<div style="text-align: left; padding: 20px;">';
-            echo "<h3>Oops!</h3>";
-            echo "<h4>The following errors were detected:</h4>";
-
-            /*
-            * Display multiple error messages on separate lines instead of single line
-            * by converting newline characters (\n) in a string into HTML <br> tags
-            */
-            echo "<p>" . nl2br($errorMsg) . "</p>"; 
-
-            echo '<a href="login.php" style="display: inline-block; padding: 10px 20px; background-color: orange;
-                    color: black; text-decoration: none; border-radius: 5px;">Return to Login</a>'; // Return to Login button
-            echo '</div>';
-        }
-
-        /*
-        * Helper function that checks input for malicious or unwanted content.
-        */
-        function sanitize_input($data)
-        {
-            $data = trim($data);                // Remove unnecessary spaces
-            $data = stripslashes($data);        // Remove backslashes
-            $data = htmlspecialchars($data);    // Convert special characters to HTML entities
-            return $data;
-        }
-
-        function authenticateUser()
-        {
-            global $fname, $lname, $email, $hashed_password, $errorMsg, $success;
-
-            // Create database connection.
-            $config = parse_ini_file('/var/www/private/db-config.ini');
-            if (!$config)
-            {
-                $errorMsg = "Failed to read database config file.";
-                $success = false;
-            }
-            else
-            {
-                $conn = new mysqli(
-                    $config['servername'],
-                    $config['username'],
-                    $config['password'],
-                    $config['dbname']
-                );
-
-                // Check connection
-                if ($conn->connect_error)
-                {
-                    $errorMsg = "Connection failed: " . $conn->connect_error;
+                    header("Location: account.php");
+                    exit();
+                } else {
+                    $errorMsg = "Incorrect email or password.";
                     $success = false;
                 }
-                else
-                {
-                    // Prepare the statement:
-                    $stmt = $conn->prepare("SELECT * FROM world_of_pets_members WHERE email=?");
-
-                    // Bind & execute the query statement:
-                    $stmt->bind_param("s", $email);
-                    $stmt->execute();
-                    $result = $stmt->get_result();
-                    if ($result->num_rows > 0)
-                    {
-                        // Note that email field is unique, so should only have one row.
-                        $row = $result->fetch_assoc();
-                        $fname = $row["fname"];
-                        $lname = $row["lname"];
-                        $hashed_password = $row["password"];
-
-                        // Check if the password matches:
-                        if (!password_verify($_POST["pwd"], $hashed_password))
-                        {
-                            // Don’t tell hackers which one was wrong, keep them guessing…
-                            $errorMsg = "Email not found or password doesn't match...";
-                            $success = false;
-                        }
-                    }
-                    else
-                    {
-                        $errorMsg = "Email not found or password doesn't match...";
-                        $success = false;
-                    }
-                    $stmt->close();
-                }
-                $conn->close();
+            } else {
+                $errorMsg = "Account not found.";
+                $success = false;
             }
-        }
-        ?>
-        </main>
-    </div>
 
-    <?php
-    include "inc/footer.inc.php";
-    ?>
+            $stmt->close();
+            $conn->close();
+        }
+    }
+} else {
+    // Redirect if someone tries to access directly
+    header("Location: login.php");
+    exit();
+}
+
+// If login failed, show error and link back
+echo '<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login Failed | PEAK</title>
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div class="main-content container" style="padding: 30px;">
+        <h2>Login Failed</h2>
+        <p>' . $errorMsg . '</p>
+        <a href="login.php" class="btn btn-danger">Return to Login</a>
+    </div>
 </body>
-</html>
+</html>';
+
+function sanitize_input($data) {
+    return htmlspecialchars(stripslashes(trim($data)));
+}
+?>

@@ -176,7 +176,7 @@
                 else
                 {
                     // Prepare the statement:
-                    $stmt = $conn->prepare("INSERT INTO world_of_pets_members
+                    $stmt = $conn->prepare("INSERT INTO car_rental
                         (fname, lname, email, password) VALUES (?, ?, ?, ?)");
 
                     // Bind & execute the query statement:
