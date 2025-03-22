@@ -1,79 +1,92 @@
 <?php
 session_start();
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
+require_once "db/db.php"; 
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = sanitize_input($_POST["email"]);
     $password = $_POST["pwd"];
     $errorMsg = "";
     $success = true;
 
-    $config_path = '/var/www/private/db-config.ini';
-    if (!file_exists($config_path) || !is_readable($config_path)) {
-        $errorMsg = "Internal server error: Unable to read config file.";
-        $success = false;
-    } else {
-        $config = parse_ini_file($config_path);
-        $conn = new mysqli(
-            $config['servername'],
-            $config['username'],
-            $config['password'],
-            $config['dbname']
-        );
+    $conn = connectToDatabase(); 
 
-        if ($conn->connect_error) {
-            $errorMsg = "Connection failed: " . $conn->connect_error;
-            $success = false;
-        } else {
-            $stmt = $conn->prepare("SELECT fname, lname, email, password FROM car_rental WHERE email=?");
-            $stmt->bind_param("s", $email);
-            $stmt->execute();
-            $result = $stmt->get_result();
+    $stmt = $conn->prepare("SELECT fname, lname, email, password FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $stmt->store_result();
 
-            if ($result->num_rows == 1) {
-                $row = $result->fetch_assoc();
-                if (password_verify($password, $row["password"])) {
-                    // ✅ Success — store session
-                    $_SESSION["loggedin"] = true;
-                    $_SESSION["user_email"] = $row["email"];
-                    $_SESSION["user_name"] = $row["fname"] . " " . $row["lname"];
+    if ($stmt->num_rows === 1) {
+        $stmt->bind_result($fname, $lname, $db_email, $db_hashed_password);
+        $stmt->fetch();
 
-                    header("Location: account.php");
-                    exit();
-                } else {
-                    $errorMsg = "Incorrect email or password.";
-                    $success = false;
-                }
-            } else {
-                $errorMsg = "Account not found.";
-                $success = false;
-            }
+        if (password_verify($password, $db_hashed_password)) {
+            $_SESSION["loggedin"] = true;
+            $_SESSION["user_email"] = $db_email;
+            $_SESSION["user_name"] = $fname . " " . $lname;
 
             $stmt->close();
             $conn->close();
+            header("Location: account.php");
+            exit();
+        } else {
+            $errorMsg = "Incorrect email or password.";
+            $success = false;
         }
+    } else {
+        $errorMsg = "Account not found.";
+        $success = false;
     }
+
+    $stmt->close();
+    $conn->close();
 } else {
-    // Redirect if someone tries to access directly
     header("Location: login.php");
     exit();
 }
 
-// If login failed, show error and link back
-echo '<!DOCTYPE html>
+// Show error if login fails
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <title>Login Failed | PEAK</title>
     <link rel="stylesheet" href="css/main.css">
+    <style>
+        body {
+            background-color: #2c3e50;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            padding: 30px;
+            max-width: 600px;
+            margin: auto;
+            text-align: center;
+        }
+        .btn-danger {
+            background-color: red;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <div class="main-content container" style="padding: 30px;">
+    <div class="main-content container">
         <h2>Login Failed</h2>
-        <p>' . $errorMsg . '</p>
-        <a href="login.php" class="btn btn-danger">Return to Login</a>
+        <p><?= htmlspecialchars($errorMsg) ?></p>
+        <a href="login.php" class="btn-danger">Return to Login</a>
     </div>
 </body>
-</html>';
+</html>
 
+<?php
 function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }

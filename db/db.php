@@ -1,19 +1,28 @@
 <?php
-$config = parse_ini_file('/var/www/private/db-config.ini');
+function connectToDatabase() {
+    $config_path = '/var/www/private/db-config.ini';
 
-$conn = new mysqli(
-    $config['servername'],
-    $config['username'],
-    $config['password'],
-    $config['dbname']
-);
+    if (!file_exists($config_path) || !is_readable($config_path)) {
+        die("Database config file missing or unreadable.");
+    }
 
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
+    $config = parse_ini_file($config_path);
 
-if (!$conn->set_charset("utf8")) {
-    printf("Error loading character set utf8: %s\n", $conn->error);
-    throw new Exception("Error loading character set utf8");
+    $conn = new mysqli(
+        $config['servername'],
+        $config['username'],
+        $config['password'],
+        $config['dbname']
+    );
+
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    if (!$conn->set_charset("utf8")) {
+        die("Error loading character set utf8: " . $conn->error);
+    }
+
+    return $conn;
 }
 ?>

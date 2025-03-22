@@ -13,7 +13,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     <?php include "inc/head.inc.php"; ?>
     <title>Account | PEAK</title>
 
-    <!-- Google Material Icons & Roboto Font -->
+    <!-- Google Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -67,6 +67,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
     <div class="main-content">
         <h1>Welcome back, <?= htmlspecialchars($_SESSION["user_name"]); ?>!</h1>
+
         <div class="user-details">
             <p>Email: <?= htmlspecialchars($_SESSION["user_email"]); ?></p>
         </div>
@@ -78,7 +79,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
         </div>
 
         <div class="container">
-            <!-- Future features: Booking history, Profile settings, etc. -->
+            <!-- Future feature sections like booking history -->
         </div>
     </div>
 
