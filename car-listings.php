@@ -44,7 +44,7 @@ if ($category) {
                 echo "<img src='images/{$image}' alt='{$brand} {$model}' class='car-img'>";
                 echo "<h3>{$brand} {$model} ({$year})</h3>";
                 echo "<p>Price: \${$price} / day</p>";
-                echo "<a href='book_car.php?car_id={$car_id}' class='btn'>Book Now</a>";
+                echo "<a href='car-details.php?car_id={$car_id}' class='btn'>View Details</a>";
                 echo "</div>";
             }
         } else {
