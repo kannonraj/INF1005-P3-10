@@ -27,8 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["car_id"], $_POST["rat
     $insert->bind_param("iiis", $user_id, $car_id, $rating, $review);
     $insert->execute();
     $insert->close();
-
     $conn->close();
+    
+    $_SESSION['message'] = "Thank you for your review!";
     header("Location: car-details.php?car_id=$car_id");
     exit();
 } else {
