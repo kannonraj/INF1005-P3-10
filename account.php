@@ -25,7 +25,7 @@ $stmt->close();
 
 // Get bookings and payment info
 $stmt = $conn->prepare("
-    SELECT b.id, b.start_date, b.end_date, b.status, c.brand, c.model, c.year, p.amount, p.status AS payment_status
+    SELECT b.id, b.start_date, b.end_date, b.status, c.brand, c.model, c.year, p.id AS payment_id, p.amount, p.status AS payment_status
     FROM bookings b
     JOIN cars c ON b.car_id = c.id
     LEFT JOIN payments p ON b.id = p.booking_id
@@ -39,6 +39,7 @@ $result = $stmt->get_result();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php include "inc/head.inc.php"; ?>
     <title>Account | PEAK</title>
@@ -92,9 +93,25 @@ $result = $stmt->get_result();
             padding: 15px;
             margin: 15px auto;
             max-width: 600px;
-            background: #f9f9f9;
+            background: white;
             text-align: left;
             border-radius: 10px;
+            color: black;
+        }
+
+        .payment-status.completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .payment-status.failed {
+            color: red;
+            font-weight: bold;
+        }
+
+        .payment-status.pending {
+            color: orange;
+            font-weight: bold;
         }
 
         .cancel-btn {
@@ -117,6 +134,13 @@ $result = $stmt->get_result();
     <div class="main-content">
         <h1>Welcome back, <?= htmlspecialchars($_SESSION["user_name"]); ?>!</h1>
 
+        <?php if (isset($_SESSION["message"])): ?>
+            <div style="background-color: #e0f7fa; color: #006064; padding: 12px; margin-bottom: 20px; border-radius: 5px;">
+                <?= htmlspecialchars($_SESSION["message"]); ?>
+            </div>
+            <?php unset($_SESSION["message"]); ?>
+        <?php endif; ?>
+
         <div class="user-details">
             <p>Email: <?= htmlspecialchars($_SESSION["user_email"]); ?></p>
         </div>
@@ -137,7 +161,23 @@ $result = $stmt->get_result();
                     echo "<strong>Car:</strong> " . htmlspecialchars($row['brand']) . " " . htmlspecialchars($row['model']) . " (" . $row['year'] . ")<br>";
                     echo "<strong>From:</strong> " . $row['start_date'] . " to " . $row['end_date'] . "<br>";
                     echo "<strong>Status:</strong> " . ucfirst($row['status']) . "<br>";
-                    echo "<strong>Payment:</strong> $" . number_format($row['amount'], 2) . " (" . $row['payment_status'] . ")<br>";
+
+                    $statusClass = strtolower($row['payment_status']);
+                    $formattedAmount = number_format($row['amount'], 2);
+                    echo "<strong>Payment:</strong> $$formattedAmount <span class='payment-status $statusClass'>(" . ucfirst($row['payment_status']) . ")</span><br>";
+
+                    if ($row['payment_status'] === 'pending') {
+                        echo "<form action='process_payment.php' method='post' style='margin-top: 10px;'>
+                                <input type='hidden' name='payment_id' value='{$row['payment_id']}'>
+                                <label for='method'>Choose Method:</label>
+                                <select name='method' required>
+                                    <option value='credit'>Credit Card</option>
+                                    <option value='paypal'>PayPal</option>
+                                    <option value='bank'>Bank Transfer</option>
+                                </select>
+                                <button type='submit' style='margin-left: 10px;'>Pay Now</button>
+                              </form>";
+                    }
 
                     if ($row['status'] === 'active') {
                         echo "<form action='cancel_booking.php' method='post' style='margin-top:10px;'>
@@ -160,4 +200,5 @@ $result = $stmt->get_result();
 
     <?php include "inc/footer.inc.php"; ?>
 </body>
+
 </html>

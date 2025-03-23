@@ -6,9 +6,18 @@ require_once "db/db.php";
 
 $conn = connectToDatabase();
 
-// Optional: Filter by category/brand/type if you implement it
-$query = "SELECT * FROM cars WHERE status = 'available' ORDER BY brand, model";
-$result = $conn->query($query);
+$category = isset($_GET['category']) ? $_GET['category'] : null;
+
+if ($category) {
+    $query = "SELECT * FROM cars WHERE status = 'available' AND category = ? ORDER BY brand, model";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("s", $category);
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    $query = "SELECT * FROM cars WHERE status = 'available' ORDER BY brand, model";
+    $result = $conn->query($query);
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,10 +38,13 @@ $result = $conn->query($query);
                 $model = htmlspecialchars($car['model']);
                 $year = $car['year'];
                 $price = number_format($car['price_per_day'], 2);
+                $image = $car['image'] ?? 'default-car.jpg'; // fallback image if missing
+
                 echo "<div class='car-item'>";
-                echo "<h3>$brand $model ($year)</h3>";
-                echo "<p>Price: \$$price / day</p>";
-                echo "<a href='book_car.php?car_id=$car_id' class='btn'>Book Now</a>";
+                echo "<img src='images/{$image}' alt='{$brand} {$model}' class='car-img'>";
+                echo "<h3>{$brand} {$model} ({$year})</h3>";
+                echo "<p>Price: \${$price} / day</p>";
+                echo "<a href='book_car.php?car_id={$car_id}' class='btn'>Book Now</a>";
                 echo "</div>";
             }
         } else {
