@@ -10,8 +10,10 @@ html, body {
   line-height: 1.6; /* Ensure line height is applied */
 }
 
-
-
+     /* Main content area */
+     .main-content {
+      flex: 1; /* This will take up all available space */
+  }
 /* Headings */
 .h1custom {
   text-align: center; /* Center the h1 main header */
@@ -45,7 +47,6 @@ html, body {
 /* Body text */
 p, ul li {
   font-size: 0.8rem;/* Font size of body text */
-  margin-bottom: 15px;
 }
 
 /* Lists */
@@ -59,11 +60,6 @@ ul {
   font-weight: bold; /* Enables dynamic bolding of text */
 }
 
-/* Navigation */
-.navbar {
-  padding: 0 30px; /* Align the navbar with the body content */
-  background-color: #3c4a59;
-}
 
 .navbar .img-thumbnail {
   border: none; /* Remove border */

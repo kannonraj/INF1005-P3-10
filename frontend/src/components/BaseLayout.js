@@ -1,13 +1,14 @@
 import React from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import '../styles/main.css';
 
 function BaseLayout({ children }) {
   return (
-    <div className="d-flex flex-column min-vh-100">
+    <div>
       <Navbar />
-      <main className="flex-fill">
-        <div className="container py-4">
+      <main>
+        <div>
           {children}
         </div>
       </main>
