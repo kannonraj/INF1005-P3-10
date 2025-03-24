@@ -24,10 +24,10 @@ function Footer() {
         <div className="col-md-3 text-center">
           <h5>POLICY</h5>
           <ul className="list-unstyled">
-            <li><a href="policy-warranty.php" className="text-white">Warranty Policy</a></li>
-            <li><a href="policy-refund.php" className="text-white">Refund Policy</a></li>
-            <li><a href="policy-piracy.php" className="text-white">Privacy Policy</a></li>
-            <li><a href="policy-tos.php" className="text-white">Terms of Service</a></li>
+            <li><a href="/warranty" className="text-white">Warranty Policy</a></li>
+            <li><a href="/refund" className="text-white">Refund Policy</a></li>
+            <li><a href="/privacy" className="text-white">Privacy Policy</a></li>
+            <li><a href="/tos" className="text-white">Terms of Service</a></li>
           </ul>
         </div>
 
@@ -36,7 +36,7 @@ function Footer() {
           <h5>SUPPORT</h5>
           <ul className="list-unstyled">
             <li><a href="/contact" className="text-white">Contact Us</a></li>
-            <li><a href="faq.php" className="text-white">FAQs</a></li>
+            <li><a href="/faq" className="text-white">FAQs</a></li>
           </ul>
         </div>
       </div>

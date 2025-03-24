@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import BaseLayout from '../components/BaseLayout';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/main.css';
 import '../styles/HomePage.css';
 import BaseLayout from '../components/BaseLayout';
 
