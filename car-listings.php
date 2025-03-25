@@ -58,7 +58,7 @@ $cars = [
                     echo "<img src='" . $car['image'] . "' alt='" . $car['name'] . "'>";
                     echo "<h3>" . $car['name'] . "</h3>";
                     echo "<p>Price: " . $car['price'] . "</p>";
-                    echo "<button>Rent Now</button>";
+                    echo "<a href='booking.php?car=" . urlencode($car['name']) . "&price=" . urlencode($car['price']) . "' class='btn btn-primary rent-now-btn'>Rent Now</a>";
                     echo "</div>";
                 }
             } else {
