@@ -1,63 +1,67 @@
 <?php
-$title = "Booking";
-include 'inc/head.inc.php'; // Include header
-include 'inc/nav.inc.php'; // Include navigation
+session_start();
+require_once "db/db.php";
 
-// Retrieve car name and price from URL parameters
-$carName = isset($_GET['car']) ? htmlspecialchars($_GET['car']) : 'Unknown Car';
-$carPrice = isset($_GET['price']) ? htmlspecialchars($_GET['price']) : '$0/day';
+// ✅ Redirect if not logged in
+if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
+    header("Location: login.php");
+    exit();
+}
+
+// ✅ Check if car_id is passed
+if (!isset($_GET["car_id"])) {
+    echo "No car selected.";
+    exit();
+}
+
+$car_id = intval($_GET["car_id"]);
+
+// ✅ Fetch car from database
+$conn = connectToDatabase();
+$stmt = $conn->prepare("SELECT * FROM cars WHERE id = ? AND status = 'available'");
+$stmt->bind_param("i", $car_id);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows === 0) {
+    echo "Car not available or does not exist.";
+    exit();
+}
+
+$car = $result->fetch_assoc();
+$stmt->close();
+$conn->close();
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Book <?php echo $carName; ?> | PEAK Rentals</title>
-    <link rel="stylesheet" href="styles/booking.css"> <!-- Separate styling for booking page -->
-    <script>
-function calculateTotal() {
-    const pricePerDay = parseFloat(document.getElementById("price").value.replace(/[^0-9.]/g, ''));
-    const startDate = new Date(document.getElementById("start-date").value);
-    const endDate = new Date(document.getElementById("end-date").value);
-
-    if (!isNaN(startDate) && !isNaN(endDate) && startDate < endDate) {
-        const diffTime = Math.abs(endDate - startDate);
-        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-        const totalPrice = (pricePerDay * diffDays).toFixed(2);
-
-        document.getElementById("total-price").innerText = "$" + totalPrice;
-        document.getElementById("total-price-input").value = totalPrice; // Store in hidden field
-    } else {
-        document.getElementById("total-price").innerText = "Select valid dates";
-        document.getElementById("total-price-input").value = ""; // Clear hidden field
-    }
-}
-
-            if (!isNaN(startDate) && !isNaN(endDate) && startDate < endDate) {
-                const diffTime = Math.abs(endDate - startDate);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                document.getElementById("total-price").innerText = "$" + (pricePerDay * diffDays).toFixed(2);
-            } else {
-                document.getElementById("total-price").innerText = "Select valid dates";
-            }    
-    </script>
+    <title>Book Car | PEAK</title>
+    <?php include "inc/head.inc.php"; ?>
 </head>
 <body>
-    <div class="container">
-        <h1>Book <?php echo $carName; ?></h1>
-        <form action="confirm-booking.php" method="POST">
-            <input type="hidden" name="car" value="<?php echo $carName; ?>">
-            <input type="hidden" name="price" id="price" value="<?php echo $carPrice; ?>">
+<?php include "inc/nav.inc.php"; ?>
 
-            <label for="start-date">Start Date:</label>
-            <input type="date" id="start-date" name="start-date" required onchange="calculateTotal()">
+<div class="container" style="max-width: 600px; margin: 50px auto;">
+    <h2>Book <?= htmlspecialchars($car["brand"]) . " " . htmlspecialchars($car["model"]) ?> (<?= $car["year"] ?>)</h2>
 
-            <label for="end-date">End Date:</label>
-            <input type="date" id="end-date" name="end-date" required onchange="calculateTotal()">
+    <form action="process_booking.php" method="post">
+        <input type="hidden" name="car_id" value="<?= $car_id ?>">
 
-            <h3>Total Price: <span id="total-price">$0.00</span></h3>
+        <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input type="date" name="start_date" id="start_date" required class="form-control">
+        </div>
 
-            <button type="submit" class="confirm-btn">Confirm Booking</button>
-        </form>
-    </div>
+        <div class="form-group" style="margin-top: 15px;">
+            <label for="end_date">End Date:</label>
+            <input type="date" name="end_date" id="end_date" required class="form-control">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Confirm Booking</button>
+    </form>
+</div>
+
+<?php include "inc/footer.inc.php"; ?>
 </body>
 </html>
