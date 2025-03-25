@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $conn->close();
 } else {
     // If not POST, redirect
-    header("Location: contact.php");
-    exit;
+    header("Location: contact.php?status=success");
+    exit;    
 }
 ?>
