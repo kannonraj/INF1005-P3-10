@@ -22,6 +22,19 @@ const FaqPage = () => {
 
   return (
     <div>
+
+      <style>
+        {`
+.main-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1; /* Takes up all available space */
+  justify-content: flex-start; /* Align content from top */
+  margin-top:30px;
+  margin-bottom: 20px;
+}
+        `}
+      </style>
       {/* Main Content Area */}
       <div className="main-content">
         <div className="container">
