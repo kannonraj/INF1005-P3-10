@@ -26,6 +26,7 @@
         Rent A Car
     </a>
     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <li><a class="dropdown-item" href="car-listings.php">All Cars</a></li>
         <li><a class="dropdown-item" href="car-listings.php?category=Sedan">Sedan</a></li>
         <li><a class="dropdown-item" href="car-listings.php?category=SUV">SUV</a></li>
         <li><a class="dropdown-item" href="car-listings.php?category=Hatchback">Hatchback</a></li>
