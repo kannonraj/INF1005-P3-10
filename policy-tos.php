@@ -1,62 +1,50 @@
 <?php
-// terms_of_service.php
-$title = "Terms of Service";  // Set the title of the page
+$title = "Terms of Service";
+include 'inc/head.inc.php';
+include 'inc/nav.inc.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<main class="container my-5 text-white">
+    <h1 class="mb-4">Terms of Service</h1>
 
-<head>
-    <!-- Header -->
-    <?php include "inc/head.inc.php" ?>
-    <title>Terms of Service Policy | PEAK</title>
+    <section class="mb-4">
+        <h4>1. Agreement to Terms</h4>
+        <p>By accessing or using PEAK Car Rentals' services, you agree to be bound by these Terms of Service. If you do not agree, please do not use our services.</p>
+    </section>
 
-</head>
+    <section class="mb-4">
+        <h4>2. Rental Requirements</h4>
+        <ul>
+            <li>You must be at least 21 years old (or as required by local laws).</li>
+            <li>A valid driver’s license and ID must be presented at the time of rental.</li>
+            <li>Additional drivers must meet all rental requirements and be listed in the rental agreement.</li>
+        </ul>
+    </section>
 
-<body>
+    <section class="mb-4">
+        <h4>3. Payment and Deposits</h4>
+        <p>All rentals require a valid credit or debit card. A security deposit may be held during the rental period and will be refunded upon the vehicle’s return, subject to the terms of the agreement.</p>
+    </section>
 
-<!-- Navigation -->
-<?php include "inc/nav.inc.php"; ?>
+    <section class="mb-4">
+        <h4>4. Usage Restrictions</h4>
+        <p>Vehicles must not be used for racing, towing, off-roading, or any illegal activity. Smoking in rental vehicles is strictly prohibited and may incur additional cleaning fees.</p>
+    </section>
 
+    <section class="mb-4">
+        <h4>5. Insurance and Liability</h4>
+        <p>We offer optional coverage plans. Customers are responsible for all damages not covered by insurance. Please drive safely and responsibly.</p>
+    </section>
 
+    <section class="mb-4">
+        <h4>6. Modifications and Termination</h4>
+        <p>PEAK Car Rentals reserves the right to modify these terms at any time. We may suspend or terminate services for violations of these terms.</p>
+    </section>
 
-  <!-- Main Content Area -->
-  <div class="policy-main-content">
-    <!-- Content of the page goes here -->
-    <!-- For example, you can add a section, a hero image, etc. -->
-<!-- Index Content -->
-<div class="policy-container">
-    <h1 class="h1custom bold-text"><?php echo $title; ?></h1>
-    <p>By using [Your Company Name]'s rental services, you agree to the following terms and conditions:</p>
+    <section class="mb-4">
+        <h4>7. Contact Information</h4>
+        <p>If you have any questions regarding these Terms of Service, please contact us through the information provided on our <a href="contact.php" class="text-decoration-underline text-white">Contact page</a>.</p>
+    </section>
+</main>
 
-    <h4 class="h4custom bold-text">1. Reservation and Payment</h4>
-    <p>Reservations must be made with a valid credit card. Payments for the rental will be processed at the time of booking. All rental fees are non-refundable unless otherwise specified in our refund policy.</p>
-
-    <h4 class="h4custom bold-text">2. Rental Period</h4>
-    <p>The rental period begins at the scheduled pickup time and ends when the vehicle is returned to the designated location. Late returns will be subject to additional fees.</p>
-
-    <h4 class="h4custom bold-text">3. Driver Requirements</h4>
-    <p>All drivers must be at least 25 years of age and possess a valid driver's license. Additional documentation may be required for international customers.</p>
-
-    <h4 class="h4custom bold-text">4. Vehicle Use</h4>
-    <p>The rental vehicle must be used in accordance with local laws and regulations. Any damage caused by misuse or negligent driving will be the responsibility of the renter.</p>
-
-    <h4 class="h4custom bold-text">5. Insurance</h4>
-    <p>We provide basic insurance coverage with the rental. However, renters may opt for additional insurance options for extra coverage.</p>
-
-    <h4 class="h4custom bold-text">6. Liability</h4>
-    <p>[Your Company Name] is not responsible for any injuries or damages that occur during the rental period unless caused by our negligence. Renters are fully responsible for the vehicle and its contents while it is in their possession.</p>
-
-    <h4 class="h4custom bold-text">7. Cancellations and Modifications</h4>
-    <p>Customers may cancel or modify their reservations according to our refund policy. Failure to cancel a reservation in time will result in charges as outlined in the refund policy.</p>
-
-    <h4 class="h4custom bold-text">8. Governing Law</h4>
-    <p>These terms are governed by the laws of [Your State/Country], and any disputes arising from the use of our services will be resolved in accordance with these laws.</p>
-</div>
-  </div>
-
-<!-- Footer -->
-<?php include "inc/footer.inc.php"; ?>
-
-</body>
-</html>
+<?php include 'inc/footer.inc.php'; ?>
