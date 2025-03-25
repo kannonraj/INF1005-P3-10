@@ -1,77 +1,43 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import 'bootstrap/dist/css/bootstrap.min.css';  // Ensure Bootstrap is included
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 
-function Navbar() {
+function NavbarComponent() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div className="container-fluid">
-        {/* Logo */}
-        <Link className="navbar-brand" to="/">
-          <img src="images/logo.png" alt="logo" width="80" height="70" />
-        </Link>
+    <Navbar expand="lg" bg="dark" variant="dark">
+      <Navbar.Brand href="#home">
+        <img src="images/logo.png" alt="logo" width="80" height="70" />
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <Nav.Link href="/">Home</Nav.Link>
+          <Nav.Link href="/about">About Us</Nav.Link>
 
-        {/* Toggler button for mobile */}
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav" 
-          aria-controls="navbarNav" 
-          aria-expanded="false" 
-          aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon"></span>
-        </button>
+          {/* Rent A Car Dropdown */}
+          <NavDropdown title="Rent A Car" id="basic-nav-dropdown">
+            <NavDropdown.Item href="/cars?category=all">All Cars</NavDropdown.Item>
+            <NavDropdown.Item href="/cars?category=sedan">Sedan</NavDropdown.Item>
+            <NavDropdown.Item href="/cars?category=suv">SUV</NavDropdown.Item>
+            <NavDropdown.Item href="/cars?category=hatchback">Hatchback</NavDropdown.Item>
+            <NavDropdown.Item href="/cars?category=convertible">Convertible</NavDropdown.Item>
+            <NavDropdown.Item href="/cars?category=coupe">Coupe</NavDropdown.Item>
+            <NavDropdown.Item href="/cars?category=truck">Truck</NavDropdown.Item>
+            <NavDropdown.Item href="/cars?category=minivan">Minivan</NavDropdown.Item>
+          </NavDropdown>
 
-        {/* Collapsible Navbar Links */}
-        <div className="collapse navbar-collapse justify-content-center" id="navbarNav">
-          <ul className="navbar-nav">
-            <li className="nav-item">
-              <Link className="nav-link" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/about">About Us</Link>
-            </li>
+          <Nav.Link href="/contact">Contact</Nav.Link>
+        </Nav>
 
-            {/* Rent A Car Dropdown */}
-            <li className="nav-item dropdown">
-              <Link 
-                className="nav-link dropdown-toggle" 
-                to="#" 
-                id="navbarDropdown" 
-                role="button" 
-                data-bs-toggle="dropdown" 
-                aria-expanded="false">
-                Rent A Car
-              </Link>
-              <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
-                <li><Link className="dropdown-item" to="/cars?category=all">All Cars</Link></li>
-                <li><Link className="dropdown-item" to="/cars?category=sedan">Sedan</Link></li>
-                <li><Link className="dropdown-item" to="/cars?category=suv">SUV</Link></li>
-                <li><Link className="dropdown-item" to="/cars?category=hatchback">Hatchback</Link></li>
-                <li><Link className="dropdown-item" to="/cars?category=convertible">Convertible</Link></li>
-                <li><Link className="dropdown-item" to="/cars?category=coupe">Coupe</Link></li>
-                <li><Link className="dropdown-item" to="/cars?category=truck">Truck</Link></li>
-                <li><Link className="dropdown-item" to="/cars?category=minivan">Minivan</Link></li>
-              </ul>
-            </li>
-
-            <li className="nav-item">
-              <Link className="nav-link" to="/contact">Contact</Link>
-            </li>
-          </ul>
-        </div>
-
-        {/* Account and Cart Icons */}
+        {/* Right-side Account Icon */}
         <div className="d-flex ms-auto">
           {/* Account Icon with Google Material Icon */}
-          <Link to="/account" className="btn btn-outline-light me-2">
+          <a href="/account" className="btn btn-outline-light me-2">
             <span className="material-icons">account_circle</span> Account
-          </Link> 
+          </a>
         </div>
-      </div>
-    </nav>
+      </Navbar.Collapse>
+    </Navbar>
   );
 }
 
-export default Navbar;
+export default NavbarComponent;

@@ -10,69 +10,28 @@
   line-height: 1.6; /* Ensure line height is applied */
 }
 
-     /* Main content area */
-     .main-content {
-      flex: 1; /* This will take up all available space */
-  }
-/* Headings */
-.h1custom {
-  text-align: center; /* Center the h1 main header */
-  font-size: 2.1rem; /* Font size for h1 main section headers */
-  margin-bottom: 40px;
+/* Main content area */
+.main-content {
+  flex: 1; /* This will take up all available space */
 }
 
-.h2custom {
-  font-size: 1.8rem;/* Font size for h2 sub-section headers */
-  margin-bottom: 20px;
+/* Navbar Styling */
+.navbar {
+  background-color: #343a40; /* Dark background for navbar */
+  padding: 0.5rem 1rem; /* Ensure padding for the navbar */
+  display: flex; /* Use flexbox for positioning */
+  justify-content: center; /* Center the content horizontally */
+  align-items: center; /* Align items vertically */
 }
 
-.h3custom {
-  font-size: 1.5rem;/* Font size for h3 sub-sub section headings */
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-.h4custom {
-  font-size: 1.2rem;/*Font size for h4 sub-sub-sub section headings */
-  margin-top: 15px;
-  margin-bottom: 5px;
-}
-
-.h5custom {
-  font-size: 1.03rem;/* Font size for h5 smallest section headings */
-  margin-top: 20px;
-  margin-bottom: 10px;
-}
-
-/* Body text */
-p, ul li {
-  font-size: 0.8rem;/* Font size of body text */
-}
-
-/* Lists */
-ul {
-  list-style-type: disc; /* Use bullet points */
-  padding-left: 20px; /* Add left padding for bullet points */
-}
-
-/* Bold Text Utility Class */
-.bold-text {
-  font-weight: bold; /* Enables dynamic bolding of text */
-}
-
-
-.navbar .img-thumbnail {
-  border: none; /* Remove border */
-  padding: 0;   /* Remove padding */
-}
-
-.navbar-nav {
+.navbar .navbar-nav {
   display: flex;
-  justify-content: flex-start; /* Align items to the left */
-  margin-left: 0; /* Remove extra spacing */
+  justify-content: space-evenly; /* Distribute the nav items evenly across the navbar */
+  margin-left: 0;
+  width: 100%; /* Ensure navbar items stretch across */
 }
 
-/* Navigation Links */
+/* Navbar Links */
 .navbar-nav .nav-link {
   color: #fff; /* Default link color */
   padding: 15px 30px; /* Add more space around the text */
@@ -84,29 +43,67 @@ ul {
   font-weight: bold; /* Make the text bold */
 }
 
-/* Add spacing between the links */
-.navbar-nav .nav-item {
-  margin-right: 20px; /* Add space between the items */
-}
-
-.navbar-nav .nav-link::before {
-  content: ''; /* Creates an empty line */
-  position: absolute;
-  left: 50%; /* Start from the middle */
-  bottom: 0; /* Place it at the bottom of the link */
-  width: 0%; /* Start with a width of 0 */
-  height: 2px; /* Height of the line */
-  background-color: #ffffff; /* Color of the line */
-  transition: width 0.3s ease, left 0.3s ease; /* Smooth transition for line expansion */
-}
-
+/* Navbar link hover effect */
 .navbar-nav .nav-link:hover {
   color: #ffffff; /* Change text color on hover */
+}
+
+/* Navbar link hover underline effect */
+.navbar-nav .nav-link::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 2px;
+  background-color: #ffffff; /* Color of the line */
+  transition: width 0.3s ease, left 0.3s ease;
 }
 
 .navbar-nav .nav-link:hover::before {
   width: 100%; /* Stretch the line to full width */
   left: 0; /* Ensure the line starts from the left */
+}
+
+/* Dropdown Styles */
+.navbar-nav .nav-item.dropdown {
+  position: relative;
+}
+
+.navbar-nav .nav-item.dropdown .dropdown-toggle {
+  color: #fff; /* Ensure text color for dropdown toggle */
+  padding-right: 25px; /* Add space for the dropdown icon */
+}
+
+.navbar-nav .nav-item.dropdown .dropdown-toggle::after {
+  font-family: "Font Awesome 5 Free"; /* Use Font Awesome for the dropdown icon */
+  font-weight: 900; /* Make the arrow bold */
+  margin-left: 5px;
+  font-size: 1rem;
+}
+
+/* Dropdown Menu Styling */
+.navbar-nav .dropdown-menu {
+  background-color: #343a40; /* Same dark background */
+  border: none; /* Remove default border */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Add a subtle shadow to the dropdown */
+  margin-top: 0;
+  display: none; /* Hide dropdown by default */
+}
+
+.navbar-nav .dropdown-item {
+  color: #fff; /* Dropdown item text color */
+  padding: 10px 20px;
+  font-size: 1rem; /* Slightly smaller font for dropdown items */
+}
+
+.navbar-nav .dropdown-item:hover {
+  background-color: #495057; /* Darker background on hover */
+}
+
+/* Show dropdown on hover */
+.navbar-nav .nav-item.dropdown:hover .dropdown-menu {
+  display: block; /* Show dropdown on hover */
 }
 
 /* Footer Styles */
@@ -158,7 +155,6 @@ footer .text-center {
   font-size: 0.9rem;
   color: #ffffff;
 }
-
 
 /* POLICY STYLES */
 
