@@ -99,7 +99,7 @@
 
       <!-- Contact Us Form -->
       <div id="ContactForm">
-        <form action="submit_form.php" method="POST" onsubmit="return validateForm()">
+      <form action="process_contact.php" method="POST" onsubmit="return validateForm()">
             <!-- Row 1: Name and Email -->
             <div class="row">
                 <div style="width: 48%; float: left; margin-right: 4%;">
