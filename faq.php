@@ -1,137 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+$title = "FAQs";
+include 'inc/head.inc.php';
+include 'inc/nav.inc.php';
+?>
 
-<head>
-    <!-- Header -->
-    <?php include "inc/head.inc.php" ?>
-    <title>FAQs | PEAK</title>
-    
-<style>
-  .faq-container {
-  margin-top: 20px;
-}
+<main class="container my-5 text-white">
+    <h1 class="mb-4">Frequently Asked Questions</h1>
 
-.faq-item {
-  margin-bottom: 10px;
-}
-
-.faq-question {
-  background-color: #f1f1f1;
-  border: none;
-  padding: 10px;
-  width: 100%;
-  text-align: left;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.faq-answer {
-  display: none;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border: 1px solid #ddd;
-}
-
-  </style>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <?php include "inc/nav.inc.php"; ?>
-
-  <!-- Main Content Area -->
-  <div class="main-content">
-    <!-- Content of the page goes here -->
-    <div class="container">
-      <h2>Frequently Asked Questions</h2>
-
-      <div class="faq-container">
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(0)">
-            What types of cars do you offer for rent?
-          </button>
-          <div class="faq-answer" id="faq-answer-0">
-            <p>We offer a wide variety of cars, including economy, luxury, SUVs, and family vehicles. You can view all available options when booking.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(1)">
-            What documents do I need to rent a car?
-          </button>
-          <div class="faq-answer" id="faq-answer-1">
-            <p>You will need a valid driver's license, a credit card, and proof of insurance. International renters may also need a passport and an international driver's permit.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(2)">
-            How old do I need to be to rent a car?
-          </button>
-          <div class="faq-answer" id="faq-answer-2">
-            <p>The minimum age to rent a car is typically 21, though this may vary by location. Drivers under 25 may incur an additional surcharge.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(3)">
-            Can I rent a car without a credit card?
-          </button>
-          <div class="faq-answer" id="faq-answer-3">
-            <p>A credit card is typically required to rent a car. However, some locations may allow payment by debit card or cash with additional requirements.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(4)">
-            Can I extend my rental period?
-          </button>
-          <div class="faq-answer" id="faq-answer-4">
-            <p>Yes, you can extend your rental period. Please contact our customer service as early as possible to ensure availability and adjust the pricing accordingly.</p>
-          </div>
-        </div>
-
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(5)">
-            What happens if I return the car late?
-          </button>
-          <div class="faq-answer" id="faq-answer-5">
-            <p>If you return the car late, you may be charged additional fees based on the rental agreement. Please notify us if you anticipate being late to avoid extra charges.</p>
-          </div>
-        </div>
-      </div>
+    <button class="faq-question">- What types of cars do you offer for rent?</button>
+    <div class="faq-answer">
+        We offer a wide variety of cars, including economy, luxury, SUVs, and family vehicles. You can view all available options when booking.
     </div>
-  </div>
 
-  <!-- Footer -->
-  <?php include "inc/footer.inc.php"; ?>
+    <button class="faq-question">+ What documents do I need to rent a car?</button>
+    <div class="faq-answer">
+        A valid driver’s license, an ID card or passport, and a valid credit or debit card are typically required.
+    </div>
 
-  <!-- JavaScript to handle the dropdown behavior -->
-  <script>
-    function toggleFaq(index) {
-      var answer = document.getElementById("faq-answer-" + index);
-      var allAnswers = document.querySelectorAll(".faq-answer");
-      var allQuestions = document.querySelectorAll(".faq-question");
+    <button class="faq-question">+ How old do I need to be to rent a car?</button>
+    <div class="faq-answer">
+        Most rental companies require renters to be at least 21 years old. Some vehicles may require the driver to be 25 or older.
+    </div>
 
-      // Close all answers
-      allAnswers.forEach(function (ans) {
-        ans.style.display = "none";
-      });
+    <button class="faq-question">+ Can I rent a car without a credit card?</button>
+    <div class="faq-answer">
+        Some locations allow debit cards, but having a credit card is generally preferred and sometimes required.
+    </div>
 
-      // Close all questions (collapse signs)
-      allQuestions.forEach(function (question) {
-        question.innerHTML = "+ " + question.innerHTML.substring(2);
-      });
+    <button class="faq-question">+ Can I extend my rental period?</button>
+    <div class="faq-answer">
+        Yes, you can extend your rental period by contacting us before your original return date.
+    </div>
 
-      // Open the selected answer if it wasn't open already
-      if (answer.style.display === "none" || answer.style.display === "") {
-        answer.style.display = "block";
-        allQuestions[index].innerHTML = "- " + allQuestions[index].innerHTML.substring(2);
-      }
+    <button class="faq-question">+ What happens if I return the car late?</button>
+    <div class="faq-answer">
+        Late returns may result in additional fees. It’s best to inform us ahead of time if you anticipate delays.
+    </div>
+</main>
+
+<!-- Minimal toggle logic without design changes -->
+<script>
+    const questions = document.querySelectorAll(".faq-question");
+
+    questions.forEach((btn) => {
+        btn.addEventListener("click", function () {
+            const answer = this.nextElementSibling;
+            const isVisible = answer.style.display === "block";
+
+            // Hide all answers
+            document.querySelectorAll(".faq-answer").forEach((ans) => ans.style.display = "none");
+
+            // Show or hide clicked one
+            answer.style.display = isVisible ? "none" : "block";
+        });
+    });
+</script>
+
+<!-- Optional: Add this CSS to your main stylesheet if not already there -->
+<style>
+    .faq-answer {
+        display: none;
+        background-color: #f5f5f5;
+        color: black;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-left: 5px solid #007bff;
     }
-  </script>
-
-</body>
-
-</html>
-    
+    .faq-question {
+        width: 100%;
+        text-align: left;
+        font-weight: bold;
+        padding: 15px;
+        margin-bottom: 5px;
+        border: none;
+        background-color: #eee;
+        cursor: pointer;
+    }
+</style>
