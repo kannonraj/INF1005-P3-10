@@ -1,60 +1,41 @@
 <?php
-// privacy_policy.php
-$title = "Privacy Policy";  // Set the title of the page
+$title = "Anti-Piracy Policy";
+include 'inc/head.inc.php';
+include 'inc/nav.inc.php';
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
+<main class="container my-5 text-white">
+    <h1 class="mb-4">Anti-Piracy Policy</h1>
 
-<head>
-    <!-- Header -->
-    <?php include "inc/head.inc.php" ?>
-    <title>Privacy Policy | PEAK</title>
+    <section class="mb-4">
+        <h4>1. Policy Statement</h4>
+        <p>PEAK Car Rentals maintains a zero-tolerance stance against any form of software, content, or service piracy. We are committed to protecting our intellectual property and respecting the rights of others in the digital ecosystem.</p>
+    </section>
 
-</head>
+    <section class="mb-4">
+        <h4>2. What is Piracy?</h4>
+        <p>Piracy includes the unauthorized copying, distribution, use, or modification of software, trademarks, content, or services offered by PEAK Car Rentals or any other third party. This also includes using our services or systems in ways that infringe on copyrights or violate licensing agreements.</p>
+    </section>
 
-<body>
+    <section class="mb-4">
+        <h4>3. Reporting Violations</h4>
+        <p>If you suspect any unauthorized use or distribution of PEAK Car Rentals’ services, code, content, or brand materials, please notify us immediately through our <a href="contact.php" class="text-decoration-underline text-white">Contact page</a>. All reports are kept confidential and will be investigated thoroughly.</p>
+    </section>
 
-<!-- Navigation -->
-<?php include "inc/nav.inc.php"; ?>
+    <section class="mb-4">
+        <h4>4. Legal Action</h4>
+        <p>We reserve the right to take legal action against individuals or organizations involved in piracy or copyright infringement. This may include suspension of services, financial penalties, or criminal prosecution depending on the severity of the offense.</p>
+    </section>
 
-<!-- Main Content Area -->
-<div class="policy-main-content">
-    <div class="policy-container">
-        <h1 class="h1custom bold-text"><?php echo $title; ?></h1>
-        <p>Your privacy is important to us. This privacy policy outlines the types of personal information we collect and how it is used.</p>
+    <section class="mb-4">
+        <h4>5. Commitment to Ethical Conduct</h4>
+        <p>PEAK Car Rentals encourages all users and team members to uphold the highest standards of ethical conduct. We expect our partners and users to comply with all licensing terms, copyright laws, and intellectual property regulations.</p>
+    </section>
 
-        <h4 class="h4custom bold-text">Information We Collect</h4>
-        <p>When you make a reservation or contact us, we collect the following personal information:</p>
-        <ul>
-            <li>Name</li>
-            <li>Email address</li>
-            <li>Phone number</li>
-            <li>Payment information</li>
-        </ul>
+    <section class="mb-4">
+        <h4>6. Contact Us</h4>
+        <p>If you have any questions about this policy or need to report a potential violation, please reach out via our <a href="contact.php" class="text-decoration-underline text-white">Contact page</a>.</p>
+    </section>
+</main>
 
-        <h4 class="h4custom bold-text">How We Use Your Information</h4>
-        <p>We use your personal information to:</p>
-        <ul>
-            <li>Process your rental bookings</li>
-            <li>Communicate with you about your rental</li>
-            <li>Improve our services</li>
-            <li>Provide customer support</li>
-        </ul>
-
-        <h4 class="h4custom bold-text">Data Security</h4>
-        <p>We take reasonable precautions to protect your information. We use secure servers and encryption methods to safeguard your personal data.</p>
-
-        <h4 class="h4custom bold-text">Sharing Your Information</h4>
-        <p>We will not sell, rent, or share your personal information with third parties unless required by law or to facilitate the processing of your rental.</p>
-
-        <h4 class="h4custom bold-text">Your Rights</h4>
-        <p>You have the right to access, correct, or request deletion of your personal information. If you wish to exercise these rights, please contact our customer support team.</p>
-    </div>
-</div>
-
-<!-- Footer -->
-<?php include "inc/footer.inc.php"; ?>
-
-</body>
-</html>
+<?php include 'inc/footer.inc.php'; ?>
