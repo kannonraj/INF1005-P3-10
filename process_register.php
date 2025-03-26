@@ -92,7 +92,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <?php if (!$success): ?>
         <h3>Oops!</h3>
         <h4>The following input errors were detected:</h4>
-        <p><?= nl2br(htmlspecialchars($errorMsg)) ?></p>
+        <p><?= $errorMsg ?></p>
         <a href="register.php" class="btn btn-danger">Return to Sign Up</a>
     <?php endif; ?>
 </main>

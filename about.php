@@ -22,7 +22,7 @@
         }
 
         .about-section p {
-            font-size: 28px;
+            font-size: 1.3rem;
             text-align: justify;
             margin: 0 auto;
         }
@@ -36,26 +36,26 @@
         /* Why Choose Us / Our Service Section */
         .why-choose-us h2,
         .our-services h2 {
-            font-size: 38px;
+            font-size: 28px;
             font-weight: bold;
         }
 
         .why-choose-us h4,
         .our-services h4 {
-            font-size: 30px;
+            font-size: 1.3rem;
             font-weight: bold;
         }
 
         
         .why-choose-us hr,
         .our-services hr {
-            font-size: 30px;
+            font-size: 1.3rem;
             font-weight: bold;
         }
 
         .why-choose-us p,
         .our-services p {
-            font-size: 28px;
+            font-size: 1.3rem;
         }
 
         .why-choose-us .row,
@@ -130,24 +130,25 @@
     </section>
 
     <!-- Our Services Section -->
-    <section class="container my-5 our-services">
-    <div class="policy-container" style="font-size: 0.85rem;">
+    <section class="container mt-0 mb-5 our-services">
         <h2 class="text-center mb-4">Our Services</h2>
-        <div class="row">
-            <div class="col-md-4 text-center">
-                <h4>Vehicle Sales</h4>
-                <hr>
-                <p>Browse our wide selection of vehicles, and find the one that fits your needs. We offer both new and pre-owned options to fit every budget.</p>
-            </div>
-            <div class="col-md-4 text-center">
-                <h4>Financing Assistance</h4>
-                <hr>
-                <p>We work with multiple financial institutions to offer competitive financing options. Let us help you find the best financing plan for your car purchase.</p>
-            </div>
-            <div class="col-md-4 text-center">
-                <h4>Vehicle Servicing</h4>
-                <hr>    
-                <p>We offer comprehensive car servicing to ensure your vehicle remains in top condition. From routine maintenance to major repairs, our certified technicians are here to help.</p>
+        <div class="policy-container" style="font-size: 0.85rem;">
+            <div class="row">
+                <div class="col-md-4 text-center">
+                    <h4>Vehicle Sales</h4>
+                    <hr>
+                    <p>Browse our wide selection of vehicles, and find the one that fits your needs. We offer both new and pre-owned options to fit every budget.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h4>Financing Assistance</h4>
+                    <hr>
+                    <p>We work with multiple financial institutions to offer competitive financing options. Let us help you find the best financing plan for your car purchase.</p>
+                </div>
+                <div class="col-md-4 text-center">
+                    <h4>Vehicle Servicing</h4>
+                    <hr>    
+                    <p>We offer comprehensive car servicing to ensure your vehicle remains in top condition. From routine maintenance to major repairs, our certified technicians are here to help.</p>
+                </div>
             </div>
         </div>
     </section>
