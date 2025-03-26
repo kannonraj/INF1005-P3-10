@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html lang="en">
 <head>
     <?php include "inc/head.inc.php"; ?>
-    <title>Register Result | PEAK</title>
+    <title>Register Failed | PEAK</title>
     <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
