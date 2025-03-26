@@ -6,6 +6,8 @@
     <?php include "inc/head.inc.php" ?>
     <title>About Us | PEAK</title>
 
+    <link rel="stylesheet" href="css/main.css">
+
     <style>
         /* Set background color for the entire page */
         body {
@@ -86,6 +88,7 @@
 
     <!-- About Us Section -->
     <section class="container my-5 about-section">
+    <div class="policy-container" style="font-size: 0.85rem;">
         <!-- Display Logo Image -->
         <img src="images/logo.png" alt="PEAK Logo" class="logo-img">
         <p>
@@ -100,6 +103,7 @@
     <!-- Why Choose Us Section -->
     <section class="container my-5 why-choose-us">
         <h2 class="text-center mb-4">Why Choose Us?</h2>
+        <div class="policy-container" style="font-size: 0.85rem;">
         <div class="row">
             <div class="col-md-4 text-center">
                 <!-- Image added above the text -->
@@ -127,6 +131,7 @@
 
     <!-- Our Services Section -->
     <section class="container my-5 our-services">
+    <div class="policy-container" style="font-size: 0.85rem;">
         <h2 class="text-center mb-4">Our Services</h2>
         <div class="row">
             <div class="col-md-4 text-center">
