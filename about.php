@@ -9,7 +9,6 @@
     <style>
         /* Set background color for the entire page */
         body {
-            background-color: #3c4a59;
             color: white;
             font-family: Arial, sans-serif;
         }

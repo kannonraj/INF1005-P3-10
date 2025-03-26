@@ -4,7 +4,7 @@ html, body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-color: #3C4A59; /* Ensure background color is applied */
+  background-color: #343A40; /* Ensure background color is applied */
   color: white; /* Ensure text color is applied */
   font-family: Arial, sans-serif; /* Ensure font is applied */
   line-height: 1.6; /* Ensure line height is applied */
@@ -64,7 +64,7 @@ ul {
 /* Navigation */
 .navbar {
   padding: 0 30px; /* Align the navbar with the body content */
-  background-color: #3c4a59;
+  background-color: #212529;
 }
 
 .navbar .img-thumbnail {
@@ -117,7 +117,7 @@ ul {
 
 /* Footer Styles */
 footer {
-  background-color: #3c4a59;
+  background-color: #212529;
   padding: 20px 0;
   margin-top: auto; /* Pushes the footer to the bottom */
   width: 100%; /* Ensure the footer spans the entire width of the page */
