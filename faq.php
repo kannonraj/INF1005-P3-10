@@ -1,8 +1,37 @@
-<?php
-$title = "FAQs";
-include 'inc/head.inc.php';
-include 'inc/nav.inc.php';
-?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Header -->
+    <?php include "inc/head.inc.php" ?>
+    <title>Home | PEAK</title>
+
+
+<!-- Optional: Add this CSS to your main stylesheet if not already there -->
+<style>
+    .faq-answer {
+        display: none;
+        background-color: #f5f5f5;
+        color: black;
+        padding: 12px;
+        margin-bottom: 20px;
+        border-left: 5px solid #007bff;
+    }
+    .faq-question {
+        width: 100%;
+        text-align: left;
+        font-weight: bold;
+        padding: 15px;
+        margin-bottom: 5px;
+        border: none;
+        background-color: #eee;
+        cursor: pointer;
+    }
+</style>
+
+ <!-- Navigation -->
+ <?php include "inc/nav.inc.php"; ?>
+
 
 <main class="container my-5 text-white">
     <h1 class="mb-4">Frequently Asked Questions</h1>
@@ -38,6 +67,10 @@ include 'inc/nav.inc.php';
     </div>
 </main>
 
+ <!-- Footer -->
+ <?php include "inc/footer.inc.php"; ?>
+
+
 <!-- Minimal toggle logic without design changes -->
 <script>
     const questions = document.querySelectorAll(".faq-question");
@@ -55,25 +88,6 @@ include 'inc/nav.inc.php';
         });
     });
 </script>
+</body>
 
-<!-- Optional: Add this CSS to your main stylesheet if not already there -->
-<style>
-    .faq-answer {
-        display: none;
-        background-color: #f5f5f5;
-        color: black;
-        padding: 12px;
-        margin-bottom: 20px;
-        border-left: 5px solid #007bff;
-    }
-    .faq-question {
-        width: 100%;
-        text-align: left;
-        font-weight: bold;
-        padding: 15px;
-        margin-bottom: 5px;
-        border: none;
-        background-color: #eee;
-        cursor: pointer;
-    }
-</style>
+</html>

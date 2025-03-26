@@ -48,11 +48,6 @@
             <a href="account.php" class="btn btn-outline-light me-2">
                 <span class="material-icons">account_circle</span> Account
             </a>
-
-            <!-- Cart Icon with Google Material Icon -->
-            <a href="cart.php" class="btn btn-outline-light">
-                <span class="material-icons">shopping_cart</span> Cart
-            </a>
         </div>
     </div>
 </nav>
