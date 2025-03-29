@@ -47,7 +47,6 @@ html, body {
 /* Body text */
 p, ul li {
   font-size: 0.8rem;/* Font size of body text */
-  margin-bottom: 15px;
 }
 
 /* Lists */
@@ -74,7 +73,7 @@ ul {
 
 .navbar-nav {
   display: flex;
-  justify-content: flex-start; /* Align items to the left */
+  justify-content: center; /* Center the items horizontally */
   margin-left: 0; /* Remove extra spacing */
 }
 
@@ -92,7 +91,12 @@ ul {
 
 /* Add spacing between the links */
 .navbar-nav .nav-item {
-  margin-right: 20px; /* Add space between the items */
+  margin-right: 30px; /* Increased space between the items */
+}
+
+/* Ensure there's no extra space after the last item */
+.navbar-nav .nav-item:last-child {
+  margin-right: 0;
 }
 
 .navbar-nav .nav-link::before {
@@ -142,7 +146,6 @@ footer h5 {
   font-size: 1.25rem;
   font-weight: bold;
   color: #ffffff;
-  margin-bottom: 15px; /* Space between heading and links */
 }
 
 /* Footer links */
