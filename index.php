@@ -179,7 +179,7 @@
         <h1>Welcome to PEAK Car Rentals</h1>
         <p>Explore our wide range of cars and drive away in style!</p>
         <!-- Optional: Add a button for action -->
-        <a href="#rentals" class="btn btn-primary">Browse Our Cars</a>
+        <a href="car-listings.php" class="btn btn-primary">Browse Our Cars</a>
       </div>
     </div>
 

@@ -155,7 +155,7 @@
 
     <!-- Footer -->
     <?php include "inc/footer.inc.php" ?>
-
+  
 </body>
 
 </html>
