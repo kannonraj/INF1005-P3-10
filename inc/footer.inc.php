@@ -12,7 +12,7 @@
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
       <h5>RENTALS</h5>
       <ul class="list-unstyled">
-        <li><a href="#">Rent a Car</a></li>
+        <li><a href="car-listings.php">Rent a Car</a></li>
       </ul>
     </div>
 
@@ -44,3 +44,6 @@
     <p>Copyright &copy; 2025 P3-10 Assignment</p>
   </div>
 </footer>
+
+<!-- Include the scroll-to-top button just before the closing body tag -->
+<?php include 'scroll.inc.php'; ?>
