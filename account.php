@@ -158,25 +158,30 @@ $result = $stmt->get_result();
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
                     echo "<div class='booking-box'>";
+                    echo "<strong>Booking ID:</strong> {$row['id']}<br>";
                     echo "<strong>Car:</strong> " . htmlspecialchars($row['brand']) . " " . htmlspecialchars($row['model']) . " (" . $row['year'] . ")<br>";
                     echo "<strong>From:</strong> " . $row['start_date'] . " to " . $row['end_date'] . "<br>";
                     echo "<strong>Status:</strong> " . ucfirst($row['status']) . "<br>";
 
-                    $statusClass = strtolower($row['payment_status']);
-                    $formattedAmount = number_format($row['amount'], 2);
-                    echo "<strong>Payment:</strong> $$formattedAmount <span class='payment-status $statusClass'>(" . ucfirst($row['payment_status']) . ")</span><br>";
+                    if (isset($row['payment_status'])) {
+                        $statusClass = strtolower($row['payment_status']);
+                        $formattedAmount = number_format($row['amount'], 2);
+                        echo "<strong>Payment:</strong> $$formattedAmount <span class='payment-status $statusClass'>(" . ucfirst($row['payment_status']) . ")</span><br>";
 
-                    if ($row['payment_status'] === 'pending') {
-                        echo "<form action='process_payment.php' method='post' style='margin-top: 10px;'>
-                                <input type='hidden' name='payment_id' value='{$row['payment_id']}'>
-                                <label for='method'>Choose Method:</label>
-                                <select name='method' required>
-                                    <option value='credit'>Credit Card</option>
-                                    <option value='paypal'>PayPal</option>
-                                    <option value='bank'>Bank Transfer</option>
-                                </select>
-                                <button type='submit' style='margin-left: 10px;'>Pay Now</button>
-                              </form>";
+                        if ($row['payment_status'] === 'pending') {
+                            echo "<form action='process_payment.php' method='post' style='margin-top: 10px;'>
+                                    <input type='hidden' name='payment_id' value='{$row['payment_id']}'>
+                                    <label for='method'>Choose Method:</label>
+                                    <select name='method' required>
+                                        <option value='credit'>Credit Card</option>
+                                        <option value='paypal'>PayPal</option>
+                                        <option value='bank'>Bank Transfer</option>
+                                    </select>
+                                    <button type='submit' style='margin-left: 10px;'>Pay Now</button>
+                                  </form>";
+                        }
+                    } else {
+                        echo "<strong>Payment:</strong> <span style='color: gray;'>No payment record found</span><br>";
                     }
 
                     if ($row['status'] === 'active') {
@@ -193,7 +198,6 @@ $result = $stmt->get_result();
             }
 
             $stmt->close();
-            $conn->close();
             ?>
         </div>
     </div>
