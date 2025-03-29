@@ -15,6 +15,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn = connectToDatabase(); 
 
+
     $stmt = $conn->prepare("SELECT fname, lname, email, password FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
