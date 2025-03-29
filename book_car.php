@@ -45,17 +45,21 @@ $conn->close();
 <div class="container" style="max-width: 600px; margin: 50px auto;">
     <h2>Book <?= htmlspecialchars($car["brand"]) . " " . htmlspecialchars($car["model"]) ?> (<?= $car["year"] ?>)</h2>
 
+    <?php if (!empty($car['image'])): ?>
+        <img src="images/<?= htmlspecialchars($car['image']) ?>" alt="Car Image" class="img-fluid" style="max-width: 100%; margin-bottom: 20px;">
+    <?php endif; ?>
+
     <form action="process_booking.php" method="post">
         <input type="hidden" name="car_id" value="<?= $car_id ?>">
 
         <div class="form-group">
             <label for="start_date">Start Date:</label>
-            <input type="date" name="start_date" id="start_date" required class="form-control">
+            <input type="date" name="start_date" id="start_date" required class="form-control" min="<?= date('Y-m-d') ?>">
         </div>
 
         <div class="form-group" style="margin-top: 15px;">
             <label for="end_date">End Date:</label>
-            <input type="date" name="end_date" id="end_date" required class="form-control">
+            <input type="date" name="end_date" id="end_date" required class="form-control" min="<?= date('Y-m-d') ?>">
         </div>
 
         <button type="submit" class="btn btn-primary" style="margin-top: 20px;">Confirm Booking</button>
