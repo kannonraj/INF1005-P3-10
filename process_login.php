@@ -57,13 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include "inc/head.inc.php"; ?>
     <title>Login Failed | PEAK</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        body {
-            background-color: #2c3e50;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        
+    <style>        
         .btn-danger {
             background-color: red;
             color: white;
