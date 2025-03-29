@@ -58,18 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include "inc/head.inc.php"; ?>
     <title>Login Failed | PEAK</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>
-        body {
-            background-color: #2c3e50;
-            color: white;
-            font-family: Arial, sans-serif;
-        }
-        .container {
-            padding: 30px;
-            max-width: 600px;
-            margin: auto;
-            text-align: center;
-        }
+    <style>        
         .btn-danger {
             background-color: red;
             color: white;
@@ -81,10 +70,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <?php include "inc/nav.inc.php"; ?>
-    <div class="main-content container">
+    <div class="main-content">
+    <main class="container" style="padding: 30px;">
         <h2>Login Failed</h2>
         <p><?= htmlspecialchars($errorMsg) ?></p>
         <a href="login.php" class="btn-danger">Return to Login</a>
+    </main>
     </div>
     <?php include "inc/footer.inc.php"; ?>
 </body>
@@ -95,3 +86,4 @@ function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 ?>
+

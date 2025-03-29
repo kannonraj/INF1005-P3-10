@@ -84,10 +84,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <head>
     <?php include "inc/head.inc.php"; ?>
     <title>Register Failed | PEAK</title>
-    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 <?php include "inc/nav.inc.php"; ?>
+<div class="main-content">
 <main class="container" style="padding: 30px;">
     <?php if (!$success): ?>
         <h3>Oops!</h3>
@@ -96,6 +96,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <a href="register.php" class="btn btn-danger">Return to Sign Up</a>
     <?php endif; ?>
 </main>
+</div>
 <?php include "inc/footer.inc.php"; ?>
 </body>
 </html>
