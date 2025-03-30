@@ -1,163 +1,181 @@
+<?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Header -->
-    <?php include "inc/head.inc.php" ?>
-    <title>Home | PEAK</title>
+  <!-- Header -->
+  <?php include "inc/head.inc.php" ?>
+  <title>Home | PEAK</title>
 
-    <style>
-        /* General Layout */
-        .main-content {
-            flex: 1; /* This will take up all available space */
-        }
+  <style>
+    /* General Layout */
+    .main-content {
+      flex: 1;
+      /* This will take up all available space */
+    }
 
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+    }
 
-        /* Hero Section */
-        .hero {
-            position: relative;
-            width: 100%;
-            height: 700px; /* Adjust the height as needed */
-            overflow: hidden;
-        }
+    /* Hero Section */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 700px;
+      /* Adjust the height as needed */
+      overflow: hidden;
+    }
 
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
-            z-index: 1;
-        }
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      /* Semi-transparent black background */
+      z-index: 1;
+    }
 
-        .hero-images {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            transition: opacity 1s ease-in-out; /* Smooth fade transition */
-        }
+    .hero-images {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      transition: opacity 1s ease-in-out;
+      /* Smooth fade transition */
+    }
 
-        .hero-images img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover; /* Ensures the images cover the container */
-            display: none;
-        }
+    .hero-images img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Ensures the images cover the container */
+      display: none;
+    }
 
-        .hero-images img.active {
-            display: block; /* Only display the active image */
-        }
+    .hero-images img.active {
+      display: block;
+      /* Only display the active image */
+    }
 
-        .hero-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            color: white;
-            z-index: 2;
-        }
+    .hero-content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: white;
+      z-index: 2;
+    }
 
-        .hero-content h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
+    .hero-content h1 {
+      font-size: 48px;
+      margin-bottom: 20px;
+    }
 
-        .hero-content p {
-            font-size: 18px;
-        }
+    .hero-content p {
+      font-size: 18px;
+    }
 
-        /* Section Layout */
-        .section {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr); /* 2 columns per section */
-            gap: 20px;
-            padding: 20px;
-        }
+    /* Section Layout */
+    .section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      /* 2 columns per section */
+      gap: 20px;
+      padding: 20px;
+    }
 
-        .section-content {
-            padding: 50px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
+    .section-content {
+      padding: 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
 
-        .section h2 {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-        }
+    .section h2 {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 20px;
+    }
 
-        .section p {
-            font-size: 24px;
-        }
+    .section p {
+      font-size: 24px;
+    }
 
-        /* Colors */
-        .bg-white {
-            background-color: white;
-        }
+    /* Colors */
+    .bg-white {
+      background-color: white;
+    }
 
-        .bg-black {
-            background-color: black;
-        }
+    .bg-black {
+      background-color: black;
+    }
 
-        .tx-white {
-            color: white;
-        }
+    .tx-white {
+      color: white;
+    }
 
-        .tx-black {
-            color: black !important; /* Ensure this class forces black color */
-        }
+    .tx-black {
+      color: black !important;
+      /* Ensure this class forces black color */
+    }
 
-        .tx-brand-03 {
-            color: #3e8bff; /* Example of brand color */
-        }
+    .tx-brand-03 {
+      color: #3e8bff;
+      /* Example of brand color */
+    }
 
-        .tx-spacing-3 {
-            letter-spacing: 3px;
-        }
+    .tx-spacing-3 {
+      letter-spacing: 3px;
+    }
 
-        .mg-b-40 {
-            margin-bottom: 40px;
-        }
+    .mg-b-40 {
+      margin-bottom: 40px;
+    }
 
-        /* Background Images */
-        .section > div {
-            height: 450px;
-            background-size: contain; /* Ensure the image is contained within the div */
-            background-position: center;
-            background-repeat: no-repeat;
-        }
+    /* Background Images */
+    .section>div {
+      height: 450px;
+      background-size: contain;
+      /* Ensure the image is contained within the div */
+      background-position: center;
+      background-repeat: no-repeat;
+    }
 
-        /* Swapping Text and Image for Black Background */
-        .bg-black .section {
-            display: grid;
-            grid-template-columns: 1fr 1fr; /* 2 columns */
-        }
+    /* Swapping Text and Image for Black Background */
+    .bg-black .section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      /* 2 columns */
+    }
 
-        .bg-black .section > div:nth-child(1) {
-            order: 2; /* Image on the right */
-        }
+    .bg-black .section>div:nth-child(1) {
+      order: 2;
+      /* Image on the right */
+    }
 
-        .bg-black .section .section-content {
-            order: 1; /* Text on the left */
-        }
+    .bg-black .section .section-content {
+      order: 1;
+      /* Text on the left */
+    }
 
-        /* Semi-transparent black */
-        .tx-black-7 {
-            color: rgba(0, 0, 0, 0.7) !important;
-        }
+    /* Semi-transparent black */
+    .tx-black-7 {
+      color: rgba(0, 0, 0, 0.7) !important;
+    }
 
-        /* Font size for tx-24 */
-        .tx-24 {
-            font-size: 24px;
-        }
-    </style>
+    /* Font size for tx-24 */
+    .tx-24 {
+      font-size: 24px;
+    }
+  </style>
 </head>
 
 <body>
@@ -206,7 +224,8 @@
           <h2 class="tx-white tx-spacing-3 tx-brand-03">Wide Selection of Car Models</h2>
           <h2 class="tx-white mg-b-40">For Any Occasion Any Need</h2>
           <div class="tx-white tx-24">
-            Whether you're going out with friends, family or need it for business or a date, we've got a right model for you.
+            Whether you're going out with friends, family or need it for business or a date, we've got a right model for
+            you.
           </div>
         </div>
       </div>
@@ -220,7 +239,8 @@
           <h2 class="tx-black tx-spacing-3">Cars Near The MRT Stations</h2>
           <h2 class="tx-brand-03 mg-b-40">Across The Island</h2>
           <div class="tx-black-7 tx-24">
-            Rent without ranting. <br />Most of our cars are located near the MRT stations. So now you can spend more time for things that matter in your life.
+            Rent without ranting. <br />Most of our cars are located near the MRT stations. So now you can spend more
+            time for things that matter in your life.
           </div>
         </div>
       </div>
@@ -237,14 +257,14 @@
     const totalImages = images.length;
 
     function changeImage() {
-        // Remove 'active' class from the current image
-        images[currentIndex].classList.remove('active');
-        
-        // Update index to the next image, reset to 0 if we reach the end
-        currentIndex = (currentIndex + 1) % totalImages;
-        
-        // Add 'active' class to the next image
-        images[currentIndex].classList.add('active');
+      // Remove 'active' class from the current image
+      images[currentIndex].classList.remove('active');
+
+      // Update index to the next image, reset to 0 if we reach the end
+      currentIndex = (currentIndex + 1) % totalImages;
+
+      // Add 'active' class to the next image
+      images[currentIndex].classList.add('active');
     }
 
     // Change image every 5 seconds
