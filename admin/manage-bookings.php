@@ -33,70 +33,69 @@ $sql = "SELECT b.id, b.user_id, b.car_id, b.start_date, b.end_date, b.created_at
 $result = $conn->query($sql);
 ?>
 
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <?php include '../inc/admin.head.inc.php'; ?>
     <title>Manage Bookings</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
-    <div class="container py-5">
-        <h2 class="mb-4">Manage Bookings</h2>
+    <div class="d-flex">
+        <!-- Admin Panel (Include) -->
+        <?php include '../inc/admin.panel.inc.php'; ?>
 
-        <table class="table table-bordered table-hover">
-            <thead class="table-dark">
-                <tr>
-                    <th>Booking ID</th>
-                    <th>User Email</th>
-                    <th>Car</th>
-                    <th>Start Date</th>
-                    <th>End Date</th>
-                    <th>Booked On</th>
-                    <th>Status</th>
-                    <th>Payment</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
+        <!-- Main Content -->
+        <div class="container py-5">
+            <!-- Back Button -->
+            <div class="position-absolute top-0 end-0 mt-3 me-3">
+                <a href="admin-dashboard.php" class="btn btn-secondary">← Back to Dashboard</a>
+            </div>
+
+            <h2 class="mb-4">Manage Bookings</h2>
+
+            <!-- Booking Cards -->
+            <div class="row g-3">
                 <?php while ($row = $result->fetch_assoc()): ?>
-                    <tr>
-                        <td><?= $row['id'] ?></td>
-                        <td><?= htmlspecialchars($row['email']) ?></td>
-                        <td><?= htmlspecialchars($row['brand'] . ' ' . $row['model']) ?></td>
-                        <td><?= $row['start_date'] ?></td>
-                        <td><?= $row['end_date'] ?></td>
-                        <td><?= $row['created_at'] ?></td>
-                        <td>
-                            <?= $row['booking_status'] === 'cancelled' ? '<span class="badge bg-danger">Cancelled</span>' : '<span class="badge bg-success">Active</span>' ?>
-                        </td>
-                        <td>
-                            <?php
-                            if ($row['payment_status'] === 'completed') {
-                                echo '<span class="badge bg-success">Paid</span>';
-                            } elseif ($row['payment_status'] === 'failed') {
-                                echo '<span class="badge bg-danger">Failed</span>';
-                            } else {
-                                echo '<span class="badge bg-secondary">-</span>';
-                            }
-                            ?>
-                        </td>
-                        <td>
-                            <?php if ($row['booking_status'] === 'active'): ?>
-                                <a href="manage-bookings.php?cancel=<?= $row['id'] ?>" class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Cancel this booking?')">Cancel</a>
-                            <?php else: ?>
-                                <span class="text-muted">N/A</span>
-                            <?php endif; ?>
-                        </td>
-                    </tr>
-                <?php endwhile; ?>
-            </tbody>
-        </table>
+                    <div class="col-md-4">
+                        <div class="card shadow-sm h-100">
+                            <div class="card-body">
+                                <h5 class="card-title"><?= htmlspecialchars($row['brand'] . ' ' . $row['model']) ?></h5>
+                                <p class="card-text"><strong>User Email:</strong> <?= htmlspecialchars($row['email']) ?></p>
+                                <p class="card-text"><strong>Start Date:</strong> <?= $row['start_date'] ?></p>
+                                <p class="card-text"><strong>End Date:</strong> <?= $row['end_date'] ?></p>
+                                <p class="card-text"><strong>Booked On:</strong> <?= $row['created_at'] ?></p>
 
-        <a href="admin-dashboard.php" class="btn btn-secondary mt-3">← Back to Dashboard</a>
+                                <p>
+                                    <strong>Status:</strong>
+                                    <?= $row['booking_status'] === 'cancelled' ? '<span class="badge bg-danger">Cancelled</span>' : '<span class="badge bg-success">Active</span>' ?>
+                                </p>
+                                <p>
+                                    <strong>Payment Status:</strong>
+                                    <?php
+                                    if ($row['payment_status'] === 'completed') {
+                                        echo '<span class="badge bg-success">Paid</span>';
+                                    } elseif ($row['payment_status'] === 'failed') {
+                                        echo '<span class="badge bg-danger">Failed</span>';
+                                    } else {
+                                        echo '<span class="badge bg-secondary">Pending</span>';
+                                    }
+                                    ?>
+                                </p>
+
+                                <?php if ($row['booking_status'] === 'active'): ?>
+                                    <a href="manage-bookings.php?cancel=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Cancel this booking?')">Cancel Booking</a>
+                                <?php else: ?>
+                                    <span class="text-muted">N/A</span>
+                                <?php endif; ?>
+                            </div>
+                        </div>
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        </div>
     </div>
 </body>
 
