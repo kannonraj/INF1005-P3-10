@@ -17,15 +17,16 @@ $totalCustomers = $totalUsers;
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<?php include '../inc/admin.head.inc.php'; ?>
+<title>Admin Dashboard</title>
 </head>
 
-<body class="bg-light">
-    <div class="container py-5">
-        <h2 class="mb-4">Admin Dashboard</h2>
+<body>
+    <div class="d-flex">
+      <?php include '../inc/admin.panel.inc.php'; ?>
+       
 
+<<<<<<< Updated upstream
         <div class="row mb-4">
             <div class="col-md-3">
                 <div class="card text-white bg-primary mb-3">
@@ -62,15 +63,51 @@ $totalCustomers = $totalUsers;
                 </div>
             </div>
         </div>
+=======
+        <!-- Main Content -->
+        <div class="container-fluid py-5 px-4">
+            <h2 class="mb-4">Admin Dashboard</h2>
+>>>>>>> Stashed changes
 
-        <h4>Admin Navigation</h4>
-        <div class="list-group">
-            <a href="manage-cars.php" class="list-group-item list-group-item-action">Manage Cars</a>
-            <a href="manage-bookings.php" class="list-group-item list-group-item-action">Manage Bookings</a>
-            <a href="manage-users.php" class="list-group-item list-group-item-action">Manage Users</a>
-            <a href="logout.php" class="list-group-item list-group-item-action text-danger">Logout</a>
+            <div class="row g-3">
+                <div class="col-md-3">
+                    <a href="manage-cars.php" class="card dashboard-card bg-primary text-white h-100">
+                        <div class="card-body">
+                            <i class="fas fa-car"></i>
+                            <h5 class="card-title mt-2">Total Cars</h5>
+                            <p class="card-text fs-4"><?= $totalCars ?></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="manage-cars.php" class="card dashboard-card bg-success text-white h-100">
+                        <div class="card-body">
+                            <i class="fas fa-car-side"></i>
+                            <h5 class="card-title mt-2">Available Cars</h5>
+                            <p class="card-text fs-4"><?= $availableCars ?></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="manage-bookings.php" class="card dashboard-card bg-warning text-white h-100">
+                        <div class="card-body">
+                            <i class="fas fa-clipboard-list"></i>
+                            <h5 class="card-title mt-2">Total Bookings</h5>
+                            <p class="card-text fs-4"><?= $totalBookings ?></p>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-3">
+                    <a href="manage-users.php" class="card dashboard-card bg-info text-white h-100">
+                        <div class="card-body">
+                            <i class="fas fa-user"></i>
+                            <h5 class="card-title mt-2">Users</h5>
+                            <p class="card-text fs-5">Total: <?= $totalUsers ?><br>Admins: <?= $totalAdmins ?><br>Customers: <?= $totalCustomers ?></p>
+                        </div>
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 </body>
-
 </html>

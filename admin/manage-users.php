@@ -25,38 +25,47 @@ while ($row = $admins->fetch_assoc()) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <?php include '../inc/admin.head.inc.php'; ?>
     <title>Manage Users</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-light">
-    <div class="container py-5">
-        <h2 class="mb-4">Manage Users</h2>
-        <a href="admin-dashboard.php" class="btn btn-secondary mb-3">← Back to Dashboard</a>
+    <div class="d-flex">
+        <!-- Admin Panel (Include) -->
+        <?php include '../inc/admin.panel.inc.php'; ?>
 
-        <table class="table table-bordered table-striped">
-            <thead class="table-dark">
-                <tr>
-                    <th>User ID</th>
-                    <th>Full Name</th>
-                    <th>Email</th>
-                    <th>Role</th>
-                    <th>Joined</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($allUsers as $user): ?>
+        <!-- Main Content -->
+        <div class="container-fluid py-5 px-4">
+            <!-- Button moved to top right -->
+            <div class="position-absolute top-0 end-0 mt-3 me-3">
+                <a href="admin-dashboard.php" class="btn btn-secondary">← Back to Dashboard</a>
+            </div>
+
+            <h2 class="mb-4">Manage Users</h2>
+
+            <table class="table table-bordered table-striped">
+                <thead class="table-dark">
                     <tr>
-                        <td><?= $user['id'] ?></td>
-                        <td><?= htmlspecialchars($user['fname'] . ' ' . $user['lname']) ?></td>
-                        <td><?= htmlspecialchars($user['email']) ?></td>
-                        <td><?= $user['role'] ?></td>
-                        <td><?= $user['created_at'] ?></td>
+                        <th>User ID</th>
+                        <th>Full Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Joined</th>
                     </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php foreach ($allUsers as $user): ?>
+                        <tr>
+                            <td><?= $user['id'] ?></td>
+                            <td><?= htmlspecialchars($user['fname'] . ' ' . $user['lname']) ?></td>
+                            <td><?= htmlspecialchars($user['email']) ?></td>
+                            <td><?= $user['role'] ?></td>
+                            <td><?= $user['created_at'] ?></td>
+                        </tr>
+                    <?php endforeach; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 

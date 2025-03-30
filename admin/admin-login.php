@@ -37,12 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <?php include "../inc/head.inc.php"; ?>
     <title>Admin Login | PEAK</title>
+    <!-- Custom CSS (Load After Bootstrap) -->
+    <link rel="stylesheet" href="../css/main.css">
     <style>
-        body {
-            background-color: #2c3e50;
-            color: white;
-        }
-
         .login-wrapper {
             max-width: 400px;
             margin: 100px auto;

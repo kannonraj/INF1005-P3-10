@@ -1,0 +1,110 @@
+/* admin.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+}
+
+.dashboard-card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.dashboard-card:hover {
+    transform: scale(1.05);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.card-body i {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.sidebar {
+    min-height: 100vh;
+    width: 250px;
+    background-color: #343a40;
+    color: white;
+    padding-top: 20px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+.logout {
+    color: red;
+}
+
+
+/*Scroll button styles */
+.scroll-to-top {
+    position: fixed;
+    top: 80%;  /* Position it at 80% from the top of the screen */
+    right: 10px; /* Place it 10px from the right edge */
+    transform: translateY(-50%); /* Adjust so it stays at 80% vertically */
+    display: none; /* Initially hidden */
+    z-index: 1000; /* Ensure it's on top of other elements */
+    opacity: 0; /* Initially transparent */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  
+  /* Show the button when it should be visible */
+  .scroll-to-top.show {
+    display: block; /* Make it visible */
+    opacity: 1; /* Fully opaque */
+  }
+  
+  /* Style for the button */
+  .scroll-to-top button {
+    background-color: #007bff;
+    border: none;
+    width: 60px; /* Set a fixed width for the button */
+    height: 60px; /* Set a fixed height for the button */
+    font-size: 30px; /* Size of the icon */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Make the button round */
+    padding: 0; /* Remove any padding */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Optional: add shadow for a floating effect */
+    cursor: pointer; /* Change cursor to indicate it's clickable */
+  }
+  
+  /* Button hover effect */
+  .scroll-to-top button:hover {
+    background-color: #0056b3; /* Darken the button on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Optional: shadow change on hover */
+  }
+  
+  /* Ensure icon is properly sized and centered */
+  .scroll-to-top .material-icons {
+    font-size: 30px; /* Size of the icon */
+  }
+  
+  /* When button is visible */
+  .scroll-to-top.show {
+    display: block;
+    opacity: 1;
+  }
