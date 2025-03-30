@@ -24,10 +24,10 @@ $result = $conn->query($query);
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="index.php">Home</a>
+                    <a class="nav-link" href="/index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="about.php">About Us</a>
+                    <a class="nav-link" href="/about.php">About Us</a>
                 </li>
 
                 <!-- Rent A Car dropdown -->
@@ -37,7 +37,7 @@ $result = $conn->query($query);
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <!-- Static All Cars Link -->
-                        <li><a class="dropdown-item" href="car-listings.php">All Cars</a></li>
+                        <li><a class="dropdown-item" href="/car-listings.php">All Cars</a></li>
 
                         <?php
                         // Check if any categories are returned
@@ -58,7 +58,7 @@ $result = $conn->query($query);
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.php">Contact</a>
+                    <a class="nav-link" href="/contact.php">Contact</a>
                 </li>
             </ul>
         </div>
