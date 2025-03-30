@@ -1,5 +1,4 @@
-<!-- admin.panel.inc.php -->
-<div class="sidebar p-3">
+<div class="sidebar p-3" style="position: -webkit-sticky; position: sticky; top: 0; height: 100vh; overflow-y: auto;">
     <h3 class="text-center mb-4">Admin Panel</h3>
     <a href="manage-cars.php"><i class="fas fa-car"></i> Manage Cars</a>
     <a href="manage-bookings.php"><i class="fas fa-calendar-check"></i> Manage Bookings</a>
