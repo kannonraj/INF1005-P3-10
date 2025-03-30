@@ -63,12 +63,23 @@ $result = $conn->query($query);
             </ul>
         </div>
 
-        <!-- Right-side Account and Cart Icons -->
+        <!-- Right-side Account -->
         <div class="d-flex ms-auto">
-            <!-- Account Icon with Google Material Icon -->
-            <a href="account.php" class="btn btn-outline-light me-2">
-                <span class="material-icons">account_circle</span> Account
-            </a>
+            <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
+                <!-- Account Icon with Google Material Icon -->
+                <a href="account.php" class="btn btn-outline-light me-2">
+                    <span class="material-icons">account_circle</span> Account
+                </a>
+                <!-- Logout Icon with Font Awesome -->
+                <a href="logout.php" class="btn btn-outline-light">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            <?php else: ?>
+                <!-- Account Icon if not logged in -->
+                <a href="login.php" class="btn btn-outline-light me-2">
+                    <span class="material-icons">account_circle</span> Account
+                </a>
+            <?php endif; ?>
         </div>
     </div>
 </nav>
