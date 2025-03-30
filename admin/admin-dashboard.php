@@ -7,7 +7,7 @@ $conn = connectToDatabase();
 // Get stats
 $totalCars = $conn->query("SELECT COUNT(*) AS total FROM cars")->fetch_assoc()['total'];
 $availableCars = $conn->query("SELECT COUNT(*) AS total FROM cars WHERE status = 'available'")->fetch_assoc()['total'];
-$totalBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings")->fetch_assoc()['total'];
+$totalBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE status = 'active'")->fetch_assoc()['total'];
 $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM users")->fetch_assoc()['total'];
 $totalAdmins = $conn->query("SELECT COUNT(*) AS total FROM admins")->fetch_assoc()['total'];
 $totalCustomers = $totalUsers;
@@ -56,7 +56,8 @@ $totalCustomers = $totalUsers;
                     <div class="card-body">
                         <h5 class="card-title">Users</h5>
                         <p class="card-text fs-5">Total: <?= $totalUsers ?><br>Admins: <?= $totalAdmins ?><br>Customers:
-                            <?= $totalCustomers ?></p>
+                            <?= $totalCustomers ?>
+                        </p>
                     </div>
                 </div>
             </div>

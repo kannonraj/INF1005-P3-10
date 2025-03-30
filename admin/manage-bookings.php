@@ -2,25 +2,33 @@
 require 'auth.php';
 require_once '../db/db.php';
 
-$conn = connectToDatabase(); // ← ADD THIS LINE
+$conn = connectToDatabase();
 
 // Handle cancel booking via GET
 if (isset($_GET['cancel'])) {
     $bookingId = intval($_GET['cancel']);
-    $stmt = $conn->prepare("DELETE FROM bookings WHERE id = ?");
+    $stmt = $conn->prepare("UPDATE bookings SET status = 'cancelled' WHERE id = ?");
     $stmt->bind_param("i", $bookingId);
     $stmt->execute();
+
+    // Also mark payment as failed
+    $stmt = $conn->prepare("UPDATE payments SET status = 'failed' WHERE booking_id = ?");
+    $stmt->bind_param("i", $bookingId);
+    $stmt->execute();
+
     header("Location: manage-bookings.php");
     exit();
 }
 
-
-// Fetch all bookings with car and user info
+// Fetch all bookings with car, user, and payment info
 $sql = "SELECT b.id, b.user_id, b.car_id, b.start_date, b.end_date, b.created_at,
+               b.status AS booking_status,
+               p.status AS payment_status,
                c.brand, c.model, u.email
         FROM bookings b
         JOIN cars c ON b.car_id = c.id
         JOIN users u ON b.user_id = u.id
+        LEFT JOIN payments p ON b.id = p.booking_id
         ORDER BY b.created_at DESC";
 $result = $conn->query($sql);
 ?>
@@ -47,6 +55,8 @@ $result = $conn->query($sql);
                     <th>Start Date</th>
                     <th>End Date</th>
                     <th>Booked On</th>
+                    <th>Status</th>
+                    <th>Payment</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -60,8 +70,26 @@ $result = $conn->query($sql);
                         <td><?= $row['end_date'] ?></td>
                         <td><?= $row['created_at'] ?></td>
                         <td>
-                            <a href="manage-bookings.php?cancel=<?= $row['id'] ?>" class="btn btn-sm btn-danger"
-                                onclick="return confirm('Cancel this booking?')">Cancel</a>
+                            <?= $row['booking_status'] === 'cancelled' ? '<span class="badge bg-danger">Cancelled</span>' : '<span class="badge bg-success">Active</span>' ?>
+                        </td>
+                        <td>
+                            <?php
+                            if ($row['payment_status'] === 'completed') {
+                                echo '<span class="badge bg-success">Paid</span>';
+                            } elseif ($row['payment_status'] === 'failed') {
+                                echo '<span class="badge bg-danger">Failed</span>';
+                            } else {
+                                echo '<span class="badge bg-secondary">-</span>';
+                            }
+                            ?>
+                        </td>
+                        <td>
+                            <?php if ($row['booking_status'] === 'active'): ?>
+                                <a href="manage-bookings.php?cancel=<?= $row['id'] ?>" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Cancel this booking?')">Cancel</a>
+                            <?php else: ?>
+                                <span class="text-muted">N/A</span>
+                            <?php endif; ?>
                         </td>
                     </tr>
                 <?php endwhile; ?>
