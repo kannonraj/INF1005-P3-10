@@ -1,6 +1,6 @@
 <?php
 // Include database connection
-require_once "db/db.php";
+require_once __DIR__ . '/../db/db.php';
 $conn = connectToDatabase();
 
 // Query to get distinct categories from the cars table
@@ -12,7 +12,7 @@ $result = $conn->query($query);
     <div class="container-fluid">
         <!-- Logo on the left -->
         <a class="navbar-brand" href="index.php">
-            <img src="images/logo.png" alt="logo" width="80" height="70"/>
+            <img src="/images/logo.png" alt="logo" width="80" height="70"/>
         </a>
 
         <!-- Toggler button for mobile -->

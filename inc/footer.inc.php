@@ -4,7 +4,7 @@
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
       <h5>COMPANY</h5>
       <ul class="list-unstyled">
-        <li><a href="about.php">About Us</a></li>
+        <li><a href="/about.php">About Us</a></li>
       </ul>
     </div>
 
@@ -12,7 +12,7 @@
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
       <h5>RENTALS</h5>
       <ul class="list-unstyled">
-        <li><a href="car-listings.php">Rent a Car</a></li>
+        <li><a href="/car-listings.php">Rent a Car</a></li>
       </ul>
     </div>
 
@@ -20,10 +20,10 @@
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
       <h5>POLICY</h5>
       <ul class="list-unstyled">
-        <li><a href="policy-warranty.php">Warranty Policy</a></li>
-        <li><a href="policy-refund.php">Refund Policy</a></li>
-        <li><a href="policy-piracy.php">Privacy Policy</a></li>
-        <li><a href="policy-tos.php">Terms of Service</a></li>
+        <li><a href="/policy-warranty.php">Warranty Policy</a></li>
+        <li><a href="/policy-refund.php">Refund Policy</a></li>
+        <li><a href="/policy-piracy.php">Privacy Policy</a></li>
+        <li><a href="/policy-tos.php">Terms of Service</a></li>
       </ul>
     </div>
 
@@ -31,8 +31,8 @@
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
       <h5>SUPPORT</h5>
       <ul class="list-unstyled">
-        <li><a href="contact.php">Contact Us</a></li>
-        <li><a href="faq.php">FAQs</a></li>
+        <li><a href="/contact.php">Contact Us</a></li>
+        <li><a href="/faq.php">FAQs</a></li>
       </ul>
     </div>
   </div>
