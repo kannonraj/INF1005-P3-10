@@ -45,7 +45,7 @@ $result = $conn->query($query);
                             while ($row = $result->fetch_assoc()) {
                                 $category = htmlspecialchars($row['category']);
                                 // Create a dropdown item for each category
-                                echo "<li><a class='dropdown-item' href='car-listings.php?category={$category}'>" . ucfirst($category) . "</a></li>";
+                                echo "<li><a class='dropdown-item' href='/car-listings.php?category={$category}'>" . ucfirst($category) . "</a></li>";
                             }
                         } else {
                             echo "<li><a class='dropdown-item' href='#'>No categories available</a></li>";
