@@ -27,42 +27,9 @@ $totalCustomers = $totalUsers;
       <?php include '../inc/admin.panel.inc.php'; ?>
        
 
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="card text-white bg-primary mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Cars</h5>
-                        <p class="card-text fs-4"><?= $totalCars ?></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-success mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Available Cars</h5>
-                        <p class="card-text fs-4"><?= $availableCars ?></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-warning mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Bookings</h5>
-                        <p class="card-text fs-4"><?= $totalBookings ?></p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-white bg-info mb-3">
-                    <div class="card-body">
-                        <h5 class="card-title">Users</h5>
-                        <p class="card-text fs-5">Total: <?= $totalUsers ?><br>Admins: <?= $totalAdmins ?><br>Customers:
-                            <?= $totalCustomers ?>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <!-- Main Content -->
+        <div class="container-fluid py-5 px-4">
+            <h2 class="mb-4">Admin Dashboard</h2>
 
             <div class="row g-3">
                 <div class="col-md-3">
