@@ -7,6 +7,7 @@ $conn = connectToDatabase();
 // Get stats
 $totalCars = $conn->query("SELECT COUNT(*) AS total FROM cars")->fetch_assoc()['total'];
 $availableCars = $conn->query("SELECT COUNT(*) AS total FROM cars WHERE status = 'available'")->fetch_assoc()['total'];
+$totalBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings")->fetch_assoc()['total'];
 $totalBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE status = 'active'")->fetch_assoc()['total'];
 $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM users")->fetch_assoc()['total'];
 $totalAdmins = $conn->query("SELECT COUNT(*) AS total FROM admins")->fetch_assoc()['total'];
@@ -26,7 +27,6 @@ $totalCustomers = $totalUsers;
       <?php include '../inc/admin.panel.inc.php'; ?>
        
 
-<<<<<<< Updated upstream
         <div class="row mb-4">
             <div class="col-md-3">
                 <div class="card text-white bg-primary mb-3">
@@ -63,11 +63,6 @@ $totalCustomers = $totalUsers;
                 </div>
             </div>
         </div>
-=======
-        <!-- Main Content -->
-        <div class="container-fluid py-5 px-4">
-            <h2 class="mb-4">Admin Dashboard</h2>
->>>>>>> Stashed changes
 
             <div class="row g-3">
                 <div class="col-md-3">
