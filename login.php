@@ -18,7 +18,8 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 70vh; /* Full viewport height */
+            height: 70vh;
+            /* Full viewport height */
             padding: 20px;
         }
 
@@ -27,9 +28,11 @@
             justify-content: space-between;
             width: 100%;
             max-width: 1100px;
-            background-color: #fff; /* White background for the table */
+            background-color: #fff;
+            /* White background for the table */
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-            border-radius: 15px; /* Rounded corners for the container */
+            border-radius: 15px;
+            /* Rounded corners for the container */
         }
 
         /* Left Column: Login Form */
@@ -38,8 +41,10 @@
             padding: 30px;
             flex: 1;
             box-sizing: border-box;
-            border-top-left-radius: 15px; /* Rounded top left corner */
-            border-bottom-left-radius: 15px; /* Rounded bottom left corner */
+            border-top-left-radius: 15px;
+            /* Rounded top left corner */
+            border-bottom-left-radius: 15px;
+            /* Rounded bottom left corner */
         }
 
         .login-form h1 {
@@ -65,13 +70,16 @@
             position: relative;
             margin-bottom: 15px;
             display: flex;
-            align-items: center; /* Vertically center the icon and input */
+            align-items: center;
+            /* Vertically center the icon and input */
         }
 
         .login-form .form-group i {
             font-size: 18px;
-            color: #aaa; /* Grey color for the icon */
-            margin-right: 10px; /* Add space between icon and input */
+            color: #aaa;
+            /* Grey color for the icon */
+            margin-right: 10px;
+            /* Add space between icon and input */
         }
 
         .login-form .form-control {
@@ -80,7 +88,8 @@
             border: 1px solid #ddd;
             box-sizing: border-box;
             width: 100%;
-            font-size: 16px; /* Adjust input font size */
+            font-size: 16px;
+            /* Adjust input font size */
         }
 
         .login-form .btn {
@@ -104,13 +113,19 @@
             color: #fff;
             padding: 30px;
             flex: 1;
-            display: flex; /* Flexbox to center content */
-            flex-direction: column; /* Arrange elements vertically */
-            justify-content: center; /* Vertically center content */
-            align-items: center; /* Horizontally center content */
+            display: flex;
+            /* Flexbox to center content */
+            flex-direction: column;
+            /* Arrange elements vertically */
+            justify-content: center;
+            /* Vertically center content */
+            align-items: center;
+            /* Horizontally center content */
             box-sizing: border-box;
-            border-top-right-radius: 15px; /* Rounded top right corner */
-            border-bottom-right-radius: 15px; /* Rounded bottom right corner */
+            border-top-right-radius: 15px;
+            /* Rounded top right corner */
+            border-bottom-right-radius: 15px;
+            /* Rounded bottom right corner */
         }
 
         .signup-info h2 {
@@ -147,8 +162,10 @@
             .login-form,
             .signup-info {
                 margin-right: 0;
-                width: 100%; /* Ensure both sections take full width */
-                border-radius: 0; /* Remove rounding for mobile view */
+                width: 100%;
+                /* Ensure both sections take full width */
+                border-radius: 0;
+                /* Remove rounding for mobile view */
             }
 
             .login-form h1,
@@ -173,14 +190,19 @@
                     <form action="process_login.php" method="post">
                         <div class="form-group">
                             <i class="fa fa-envelope"></i> <!-- Email Icon -->
-                            <input required maxlength="45" type="email" id="email" name="email" class="form-control" placeholder="Enter email">
+                            <input required maxlength="45" type="email" id="email" name="email" class="form-control"
+                                placeholder="Enter email">
                         </div>
                         <div class="form-group">
                             <i class="fa fa-lock"></i> <!-- Lock Icon -->
-                            <input required type="password" id="pwd" name="pwd" class="form-control" placeholder="Enter password">
+                            <input required type="password" id="pwd" name="pwd" class="form-control"
+                                placeholder="Enter password">
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn">Submit</button>
+                        </div>
+                        <div style="text-align:center; margin-top: 10px;">
+                            <a href="/admin/admin-login.php" class="btn btn-outline-secondary btn-sm">Login as Admin</a>
                         </div>
                     </form>
                 </div>
