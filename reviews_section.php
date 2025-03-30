@@ -43,14 +43,14 @@ $reviews = $review_stmt->get_result();
 if ($reviews->num_rows > 0):
     while ($row = $reviews->fetch_assoc()):
 ?>
-    <div style="border-bottom: 1px solid #ccc; padding: 10px 0;">
+    <div style="border-bottom: 1px solid #ddd; padding: 20px 0;">
         <strong><?= htmlspecialchars($row['fname'] . ' ' . $row['lname']) ?></strong><br>
         <?php
         $rating = intval($row['rating']);
         $stars = str_repeat("★", $rating) . str_repeat("☆", 5 - $rating);
-        echo "<div class='rating-stars' style='color: gold; font-size: 18px;'>$stars</div>";
+        echo "<div class='rating-stars' style='color: gold;'>$stars</div>";
         ?>
-        <small><?= $row['created_at'] ?></small>
+        <small style="color: #777;"><?= $row['created_at'] ?></small>
         <p><?= nl2br(htmlspecialchars($row['review'])) ?></p>
     </div>
 <?php
@@ -70,7 +70,7 @@ $count_stmt->close();
 $total_pages = ceil($total_reviews / $limit);
 
 if ($total_pages > 1):
-    echo "<div style='margin-top: 20px;'>Pages: ";
+    echo "<div class='pagination' style='text-align: center; margin-top: 30px;'>";
     for ($i = 1; $i <= $total_pages; $i++) {
         $active = ($i == $page) ? "font-weight: bold;" : "";
         echo "<a style='margin-right:10px; $active' href='car-details.php?car_id=$car_id&sort=$sort&page=$i'>$i</a>";
@@ -93,19 +93,21 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
 
     if ($check_stmt->num_rows > 0):
 ?>
-    <form action="submit_review.php" method="post" style="margin-top: 20px;">
-        <h4>Leave a Review</h4>
-        <input type="hidden" name="car_id" value="<?= $car_id ?>">
-        <label for="rating">Rating (1–5):</label>
-        <select name="rating" id="rating" required>
-            <?php for ($i = 5; $i >= 1; $i--): ?>
-                <option value="<?= $i ?>"><?= $i ?> ⭐</option>
-            <?php endfor; ?>
-        </select><br><br>
-        <label for="review">Your Review:</label><br>
-        <textarea name="review" id="review" rows="4" style="width: 100%;" required></textarea><br>
-        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Submit</button>
-    </form>
+    <div class="form-container">
+        <form action="submit_review.php" method="post">
+            <h4>Leave a Review</h4>
+            <input type="hidden" name="car_id" value="<?= $car_id ?>">
+            <label for="rating">Rating (1–5):</label>
+            <select name="rating" id="rating" required>
+                <?php for ($i = 5; $i >= 1; $i--): ?>
+                    <option value="<?= $i ?>"><?= $i ?> ⭐</option>
+                <?php endfor; ?>
+            </select><br><br>
+            <label for="review">Your Review:</label><br>
+            <textarea name="review" id="review" rows="4" required></textarea><br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 <?php
     endif;
     $check_stmt->close();
