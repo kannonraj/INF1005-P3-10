@@ -4,13 +4,28 @@ require_once '../db/db.php';
 
 $conn = connectToDatabase();
 
-// Get stats
+// Total cars
 $totalCars = $conn->query("SELECT COUNT(*) AS total FROM cars")->fetch_assoc()['total'];
-$availableCars = $conn->query("SELECT COUNT(*) AS total FROM cars WHERE status = 'available'")->fetch_assoc()['total'];
-$totalBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings")->fetch_assoc()['total'];
-$totalBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE status = 'active'")->fetch_assoc()['total'];
+
+// Active bookings
+$activeBookings = $conn->query("SELECT COUNT(*) AS total FROM bookings WHERE status = 'active'")->fetch_assoc()['total'];
+
+// Calculate available cars (cars with no active booking)
+$availableQuery = "
+    SELECT COUNT(*) AS total
+    FROM cars
+    WHERE id NOT IN (
+        SELECT car_id FROM bookings WHERE status = 'active'
+    )
+";
+$availableCars = $conn->query($availableQuery)->fetch_assoc()['total'];
+
+// Total users
 $totalUsers = $conn->query("SELECT COUNT(*) AS total FROM users")->fetch_assoc()['total'];
+
+// Total admins
 $totalAdmins = $conn->query("SELECT COUNT(*) AS total FROM admins")->fetch_assoc()['total'];
+
 $totalCustomers = $totalUsers;
 ?>
 
@@ -18,16 +33,14 @@ $totalCustomers = $totalUsers;
 <html lang="en">
 
 <head>
-<?php include '../inc/admin.head.inc.php'; ?>
-<title>Admin Dashboard</title>
+    <?php include '../inc/admin.head.inc.php'; ?>
+    <title>Admin Dashboard</title>
 </head>
 
 <body>
     <div class="d-flex">
-      <?php include '../inc/admin.panel.inc.php'; ?>
-       
+        <?php include '../inc/admin.panel.inc.php'; ?>
 
-        <!-- Main Content -->
         <div class="container-fluid py-5 px-4">
             <h2 class="mb-4">Admin Dashboard</h2>
 
@@ -54,8 +67,8 @@ $totalCustomers = $totalUsers;
                     <a href="manage-bookings.php" class="card dashboard-card bg-warning text-white h-100">
                         <div class="card-body">
                             <i class="fas fa-clipboard-list"></i>
-                            <h5 class="card-title mt-2">Total Bookings</h5>
-                            <p class="card-text fs-4"><?= $totalBookings ?></p>
+                            <h5 class="card-title mt-2">Active Bookings</h5>
+                            <p class="card-text fs-4"><?= $activeBookings ?></p>
                         </div>
                     </a>
                 </div>
@@ -64,7 +77,9 @@ $totalCustomers = $totalUsers;
                         <div class="card-body">
                             <i class="fas fa-user"></i>
                             <h5 class="card-title mt-2">Users</h5>
-                            <p class="card-text fs-5">Total: <?= $totalUsers ?><br>Admins: <?= $totalAdmins ?><br>Customers: <?= $totalCustomers ?></p>
+                            <p class="card-text fs-5">Total: <?= $totalUsers ?><br>Admins:
+                                <?= $totalAdmins ?><br>Customers: <?= $totalCustomers ?>
+                            </p>
                         </div>
                     </a>
                 </div>
@@ -72,4 +87,5 @@ $totalCustomers = $totalUsers;
         </div>
     </div>
 </body>
+
 </html>

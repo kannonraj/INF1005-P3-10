@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
     $brand = $_POST['brand'];
     $model = $_POST['model'];
     $year = $_POST['year'];
-    $status = $_POST['status'];
     $price = $_POST['price'];
     $category = $_POST['category'];
     $description = $_POST['description'];
@@ -21,8 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['add_car'])) {
         move_uploaded_file($_FILES['image']['tmp_name'], $targetDir . $image);
     }
 
-    $stmt = $conn->prepare("INSERT INTO cars (brand, model, year, status, price_per_day, category, description, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssisdsss", $brand, $model, $year, $status, $price, $category, $description, $image);
+    $stmt = $conn->prepare("INSERT INTO cars (brand, model, year, price_per_day, category, description, image) VALUES (?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssdsss", $brand, $model, $year, $price, $category, $description, $image);
     $stmt->execute();
     header("Location: manage-cars.php");
     exit();
@@ -34,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_car'])) {
     $brand = $_POST['brand'];
     $model = $_POST['model'];
     $year = $_POST['year'];
-    $status = $_POST['status'];
     $price = $_POST['price'];
     $category = $_POST['category'];
     $description = $_POST['description'];
@@ -60,8 +58,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_car'])) {
         }
     }
 
-    $stmt = $conn->prepare("UPDATE cars SET brand=?, model=?, year=?, status=?, price_per_day=?, category=?, description=?, image=? WHERE id=?");
-    $stmt->bind_param("ssisssssi", $brand, $model, $year, $status, $price, $category, $description, $image, $carId);
+    $stmt = $conn->prepare("UPDATE cars SET brand=?, model=?, year=?, price_per_day=?, category=?, description=?, image=? WHERE id=?");
+    $stmt->bind_param("sssdsssi", $brand, $model, $year, $price, $category, $description, $image, $carId);
     $stmt->execute();
     $stmt->close();
 
@@ -72,6 +70,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_car'])) {
 // Handle car deletion
 if (isset($_GET['delete'])) {
     $carId = intval($_GET['delete']);
+    $stmt = $conn->prepare("SELECT image FROM cars WHERE id = ?");
+    $stmt->bind_param("i", $carId);
+    $stmt->execute();
+    $stmt->bind_result($imageToDelete);
+    $stmt->fetch();
+    $stmt->close();
+
+    if (!empty($imageToDelete)) {
+        $imagePath = "../images/" . $imageToDelete;
+        if (file_exists($imagePath))
+            unlink($imagePath);
+    }
+
     $stmt = $conn->prepare("DELETE FROM cars WHERE id = ?");
     $stmt->bind_param("i", $carId);
     $stmt->execute();
@@ -79,9 +90,23 @@ if (isset($_GET['delete'])) {
     exit();
 }
 
-$result = $conn->query("SELECT * FROM cars ORDER BY id DESC");
-$cars = $result->fetch_all(MYSQLI_ASSOC);
+// Fetch cars
+$cars = [];
 $categories = ['Sedan', 'SUV', 'Hatchback', 'Convertible', 'Coupe', 'Truck', 'Minivan'];
+$car_query = $conn->query("SELECT * FROM cars ORDER BY id DESC");
+
+while ($car = $car_query->fetch_assoc()) {
+    $car_id = $car['id'];
+    $booked_check = $conn->prepare("SELECT COUNT(*) FROM bookings WHERE car_id = ? AND status = 'active'");
+    $booked_check->bind_param("i", $car_id);
+    $booked_check->execute();
+    $booked_check->bind_result($active_bookings);
+    $booked_check->fetch();
+    $booked_check->close();
+
+    $car['is_booked'] = $active_bookings > 0;
+    $cars[] = $car;
+}
 ?>
 
 <!DOCTYPE html>
@@ -96,11 +121,10 @@ $categories = ['Sedan', 'SUV', 'Hatchback', 'Convertible', 'Coupe', 'Truck', 'Mi
     <div class="d-flex">
         <?php include '../inc/admin.panel.inc.php'; ?>
 
-        <!-- Main content -->
         <div class="container-fluid px-4 py-5">
             <h2 class="mb-4">Manage Cars</h2>
 
-            <!-- Add Car -->
+            <!-- Add Form -->
             <form method="POST" enctype="multipart/form-data" class="row g-3 mb-5 bg-white p-4 shadow-sm rounded">
                 <h5>Add New Car</h5>
                 <div class="col-md-3"><input type="text" name="brand" class="form-control" placeholder="Brand" required>
@@ -112,12 +136,6 @@ $categories = ['Sedan', 'SUV', 'Hatchback', 'Convertible', 'Coupe', 'Truck', 'Mi
                 <div class="col-md-2"><input type="number" step="0.01" name="price" class="form-control"
                         placeholder="Price/day" required></div>
                 <div class="col-md-2">
-                    <select name="status" class="form-select">
-                        <option value="available">Available</option>
-                        <option value="unavailable">Unavailable</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
                     <select name="category" class="form-select">
                         <?php foreach ($categories as $cat): ?>
                             <option value="<?= $cat ?>"><?= $cat ?></option>
@@ -131,7 +149,7 @@ $categories = ['Sedan', 'SUV', 'Hatchback', 'Convertible', 'Coupe', 'Truck', 'Mi
                         Car</button></div>
             </form>
 
-            <!-- Car Table -->
+            <!-- Table -->
             <table class="table table-bordered table-hover bg-white shadow-sm">
                 <thead class="table-dark">
                     <tr>
@@ -153,7 +171,13 @@ $categories = ['Sedan', 'SUV', 'Hatchback', 'Convertible', 'Coupe', 'Truck', 'Mi
                             <td><?= htmlspecialchars($car['brand']) ?></td>
                             <td><?= htmlspecialchars($car['model']) ?></td>
                             <td><?= $car['year'] ?></td>
-                            <td><?= ucfirst($car['status']) ?></td>
+                            <td>
+                                <?php if ($car['is_booked']): ?>
+                                    <span class="badge bg-danger">Booked</span>
+                                <?php else: ?>
+                                    <span class="badge bg-success">Available</span>
+                                <?php endif; ?>
+                            </td>
                             <td>$<?= number_format($car['price_per_day'], 2) ?></td>
                             <td><?= $car['category'] ?></td>
                             <td>
@@ -169,7 +193,7 @@ $categories = ['Sedan', 'SUV', 'Hatchback', 'Convertible', 'Coupe', 'Truck', 'Mi
                             </td>
                         </tr>
 
-                        <!-- Edit Modal -->
+                        <!-- Modal -->
                         <div class="modal fade" id="editModal<?= $car['id'] ?>" tabindex="-1" aria-hidden="true">
                             <div class="modal-dialog modal-lg modal-dialog-centered">
                                 <div class="modal-content" onclick="event.stopPropagation();">
@@ -186,13 +210,6 @@ $categories = ['Sedan', 'SUV', 'Hatchback', 'Convertible', 'Coupe', 'Truck', 'Mi
                                                     value="<?= htmlspecialchars($car['model']) ?>" required></div>
                                             <div class="col-md-4"><input type="number" name="year" class="form-control"
                                                     value="<?= $car['year'] ?>" required></div>
-
-                                            <div class="col-md-4">
-                                                <select name="status" class="form-select">
-                                                    <option value="available" <?= $car['status'] === 'available' ? 'selected' : '' ?>>Available</option>
-                                                    <option value="unavailable" <?= $car['status'] === 'unavailable' ? 'selected' : '' ?>>Unavailable</option>
-                                                </select>
-                                            </div>
                                             <div class="col-md-4"><input type="number" step="0.01" name="price"
                                                     class="form-control" value="<?= $car['price_per_day'] ?>" required>
                                             </div>
@@ -223,7 +240,6 @@ $categories = ['Sedan', 'SUV', 'Hatchback', 'Convertible', 'Coupe', 'Truck', 'Mi
                                 </div>
                             </div>
                         </div>
-
                     <?php endforeach; ?>
                 </tbody>
             </table>

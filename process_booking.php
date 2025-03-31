@@ -66,7 +66,7 @@ if ($overlap_count > 0) {
 
 // Get car price
 $stmt = $conn->prepare("SELECT price_per_day FROM cars WHERE id = ?");
-stmt->bind_param("i", $car_id);
+$stmt->bind_param("i", $car_id);
 $stmt->execute();
 $stmt->bind_result($price_per_day);
 $stmt->fetch();
