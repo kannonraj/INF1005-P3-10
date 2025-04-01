@@ -28,9 +28,10 @@ $cars = $result->fetch_all(MYSQLI_ASSOC);
             <?php foreach ($cars as $car): ?>
                 <div class="col">
                     <div class="card h-100">
-                        <?php if (!empty($car['image'])): ?>
-                            <img src="images/<?= $car['image'] ?>" class="card-img-top" alt="<?= $car['brand'] ?>">
-                        <?php endif; ?>
+                    <?php if (!empty($car['image'])): ?>
+    <div class="image-container" style="position: relative; width: 100%; height: 0; padding-top: 50%; background-image: url('images/<?= $car['image'] ?>'); background-size: cover; background-position: center;">
+    </div>
+<?php endif; ?>
                         <div class="card-body">
                             <h5 class="card-title"><?= $car['brand'] ?>     <?= $car['model'] ?> (<?= $car['year'] ?>)</h5>
                             <p class="card-text">Price: $<?= number_format($car['price_per_day'], 2) ?> / day</p>
