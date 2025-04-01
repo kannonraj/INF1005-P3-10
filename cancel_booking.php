@@ -2,7 +2,7 @@
 session_start();
 require_once "db/db.php";
 
-//  Require login
+// Require login
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
     exit();
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
 
     $conn = connectToDatabase();
 
-    //  Get user ID from email
+    // Get user ID from email
     $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $stmt->bind_param("s", $user_email);
     $stmt->execute();
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
     $stmt->fetch();
     $stmt->close();
 
-    //  Check if the booking belongs to the logged-in user and is still active
+    // Check if the booking belongs to the logged-in user and is still active
     $stmt = $conn->prepare("SELECT id FROM bookings WHERE id = ? AND user_id = ? AND status = 'active'");
     $stmt->bind_param("ii", $booking_id, $user_id);
     $stmt->execute();
@@ -31,31 +31,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
     if ($stmt->num_rows === 1) {
         $stmt->close();
 
-        //  Update booking status to cancelled
+        // Update booking status to cancelled
         $update = $conn->prepare("UPDATE bookings SET status = 'cancelled' WHERE id = ?");
         $update->bind_param("i", $booking_id);
         $update->execute();
         $update->close();
 
-        //  Update payment status
+        // Update payment status to failed
         $update_payment = $conn->prepare("UPDATE payments SET status = 'failed' WHERE booking_id = ?");
         $update_payment->bind_param("i", $booking_id);
         $update_payment->execute();
         $update_payment->close();
-
-        // Get the car_id from the booking
-        $get_car_id = $conn->prepare("SELECT car_id FROM bookings WHERE id = ?");
-        $get_car_id->bind_param("i", $booking_id);
-        $get_car_id->execute();
-        $get_car_id->bind_result($car_id);
-        $get_car_id->fetch();
-        $get_car_id->close();
-
-        // Update car status to available
-        $update_car = $conn->prepare("UPDATE cars SET status = 'available' WHERE id = ?");
-        $update_car->bind_param("i", $car_id);
-        $update_car->execute();
-        $update_car->close();
 
         $conn->close();
         header("Location: account.php?cancel=success");

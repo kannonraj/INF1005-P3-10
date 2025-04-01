@@ -1,26 +1,34 @@
 <?php
-// Include database connection
-require_once __DIR__ . '/../db/db.php';
+require_once(__DIR__ . '/../db/db.php');
 $conn = connectToDatabase();
 
-// Query to get distinct categories from the cars table
-$query = "SELECT DISTINCT category FROM cars WHERE status = 'available' ORDER BY category";
-$result = $conn->query($query);
+// Count available cars dynamically (for potential display use)
+$availableCarsQuery = "
+    SELECT COUNT(*) AS count FROM cars 
+    WHERE id NOT IN (SELECT car_id FROM bookings WHERE status = 'active')
+";
+$availableResult = $conn->query($availableCarsQuery);
+$availableCars = $availableResult->fetch_assoc()['count'];
+
+// Fetch unique categories (optional enhancement)
+$categoryQuery = "SELECT DISTINCT category FROM cars ORDER BY category";
+$categoryResult = $conn->query($categoryQuery);
 ?>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
-        <!-- Logo on the left -->
+        <!-- Logo -->
         <a class="navbar-brand" href="index.php">
-            <img src="/images/logo.png" alt="logo" width="80" height="70"/>
+            <img src="/images/logo.png" alt="logo" width="80" height="70" />
         </a>
 
-        <!-- Toggler button for mobile -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <!-- Toggler -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <!-- Collapsible Navbar Links -->
+        <!-- Navigation Links -->
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -30,29 +38,23 @@ $result = $conn->query($query);
                     <a class="nav-link" href="/about.php">About Us</a>
                 </li>
 
-                <!-- Rent A Car dropdown -->
+                <!-- Rent A Car Dropdown -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" id="navbarDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Rent A Car
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <!-- Static All Cars Link -->
                         <li><a class="dropdown-item" href="/car-listings.php">All Cars</a></li>
-
                         <?php
-                        // Check if any categories are returned
-                        if ($result->num_rows > 0) {
-                            while ($row = $result->fetch_assoc()) {
+                        if ($categoryResult->num_rows > 0) {
+                            while ($row = $categoryResult->fetch_assoc()) {
                                 $category = htmlspecialchars($row['category']);
-                                // Create a dropdown item for each category
                                 echo "<li><a class='dropdown-item' href='/car-listings.php?category={$category}'>" . ucfirst($category) . "</a></li>";
                             }
                         } else {
                             echo "<li><a class='dropdown-item' href='#'>No categories available</a></li>";
                         }
-
-                        // Close the database connection
-                        $conn->close();
                         ?>
                     </ul>
                 </li>
@@ -63,19 +65,16 @@ $result = $conn->query($query);
             </ul>
         </div>
 
-        <!-- Right-side Account -->
+        <!-- Right-side Account Buttons -->
         <div class="d-flex ms-auto">
             <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-                <!-- Account Icon with Google Material Icon -->
                 <a href="account.php" class="btn btn-outline-light me-2">
                     <span class="material-icons">account_circle</span> Account
                 </a>
-                <!-- Logout Icon with Font Awesome -->
                 <a href="logout.php" class="btn btn-outline-light">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             <?php else: ?>
-                <!-- Account Icon if not logged in -->
                 <a href="login.php" class="btn btn-outline-light me-2">
                     <span class="material-icons">account_circle</span> Account
                 </a>

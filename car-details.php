@@ -2,12 +2,13 @@
 session_start();
 require_once "db/db.php";
 
-if (!isset($_GET['car_id'])) {
+// ✅ Check for the correct GET parameter ('id')
+if (!isset($_GET['id'])) {
     echo "No car selected.";
     exit;
 }
 
-$car_id = intval($_GET['car_id']);
+$car_id = intval($_GET['id']);
 $conn = connectToDatabase();
 
 // ✅ Fetch car details regardless of status

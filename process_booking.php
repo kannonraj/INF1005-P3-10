@@ -18,7 +18,7 @@ if (!$car_id || !$start_date || !$end_date || $start_date > $end_date) {
 
 $conn = connectToDatabase();
 
-// Get user ID from email
+// Get user ID
 $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
 $stmt->bind_param("s", $user_email);
 $stmt->execute();
@@ -41,7 +41,7 @@ if ($active_count > 0) {
     exit();
 }
 
-// Check if car is already booked during selected dates
+// Check for overlapping active bookings on this car
 $stmt = $conn->prepare("
     SELECT COUNT(*) FROM bookings 
     WHERE car_id = ? AND status = 'active'
@@ -72,7 +72,7 @@ $stmt->bind_result($price_per_day);
 $stmt->fetch();
 $stmt->close();
 
-// Calculate total cost
+// Calculate total price
 $days = (strtotime($end_date) - strtotime($start_date)) / 86400 + 1;
 $total_cost = $days * $price_per_day;
 
@@ -88,12 +88,6 @@ if ($stmt->execute()) {
     $stmt_payment->bind_param("id", $booking_id, $total_cost);
     $stmt_payment->execute();
     $stmt_payment->close();
-
-    // Mark car as unavailable
-    $update_car_status = $conn->prepare("UPDATE cars SET status = 'unavailable' WHERE id = ?");
-    $update_car_status->bind_param("i", $car_id);
-    $update_car_status->execute();
-    $update_car_status->close();
 
     $stmt->close();
     $conn->close();

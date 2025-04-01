@@ -40,11 +40,16 @@ $conn->close();
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <?php include "inc/head.inc.php"; ?>
     <title>Account | PEAK</title>
     <style>
-        .main-content { padding: 50px 20px; text-align: center; }
+        .main-content {
+            padding: 50px 20px;
+            text-align: center;
+        }
+
         .booking-box {
             border: 1px solid #ccc;
             padding: 15px;
@@ -55,9 +60,22 @@ $conn->close();
             text-align: left;
             color: black;
         }
-        .payment-status.completed { color: green; font-weight: bold; }
-        .payment-status.failed { color: red; font-weight: bold; }
-        .payment-status.pending { color: orange; font-weight: bold; }
+
+        .payment-status.completed {
+            color: green;
+            font-weight: bold;
+        }
+
+        .payment-status.failed {
+            color: red;
+            font-weight: bold;
+        }
+
+        .payment-status.pending {
+            color: orange;
+            font-weight: bold;
+        }
+
         .cancel-btn {
             background-color: red;
             color: white;
@@ -65,99 +83,106 @@ $conn->close();
             text-decoration: none;
             border-radius: 5px;
         }
-        .cancel-btn:hover { background-color: darkred; }
+
+        .cancel-btn:hover {
+            background-color: darkred;
+        }
     </style>
 </head>
+
 <body>
-<?php include "inc/nav.inc.php"; ?>
+    <?php include "inc/nav.inc.php"; ?>
 
-<div class="main-content">
-    <h1>Welcome back, <?= htmlspecialchars($_SESSION["user_name"]); ?>!</h1>
-    <p>Email: <?= htmlspecialchars($_SESSION["user_email"]); ?></p>
-    <a href="logout.php" class="btn btn-primary">Logout</a>
+    <div class="main-content">
+        <h1>Welcome back, <?= htmlspecialchars($_SESSION["user_name"]); ?>!</h1>
+        <p>Email: <?= htmlspecialchars($_SESSION["user_email"]); ?></p>
+        <a href="logout.php" class="btn btn-primary">Logout</a>
 
-    <h2 style="margin-top: 40px;">Active Bookings</h2>
-    <?php
-    $hasActive = false;
-    foreach ($bookings as $row):
-        if ($row['status'] === 'active'):
-            $hasActive = true;
-    ?>
-        <div class="booking-box">
-            <p><strong>Booking ID:</strong> <?= $row['id'] ?></p>
-            <p><strong>Car:</strong> <?= htmlspecialchars($row['brand']) ?> <?= htmlspecialchars($row['model']) ?> (<?= $row['year'] ?>)</p>
-            <p><strong>From:</strong> <?= $row['start_date'] ?> to <?= $row['end_date'] ?></p>
-            <p><strong>Status:</strong> <?= ucfirst($row['status']) ?></p>
-            <?php if (!empty($row['payment_id'])): ?>
-                <?php
-                    $statusClass = strtolower($row['payment_status']);
-                    $formattedAmount = number_format($row['amount'], 2);
+        <h2 style="margin-top: 40px;">Active Bookings</h2>
+        <?php
+        $hasActive = false;
+        foreach ($bookings as $row):
+            if ($row['status'] === 'active'):
+                $hasActive = true;
                 ?>
-                <p><strong>Payment:</strong> $<?= $formattedAmount ?> 
-                    <span class="payment-status <?= $statusClass ?>">(<?= ucfirst($row['payment_status']) ?>)</span>
-                </p>
-                <?php if ($row['payment_status'] === 'pending'): ?>
-                    <form action="process_payment.php" method="post">
-                        <input type="hidden" name="payment_id" value="<?= $row['payment_id'] ?>">
-                        <label>Payment Method:</label>
-                        <select name="method" required>
-                            <option value="credit">Credit Card</option>
-                            <option value="paypal">PayPal</option>
-                            <option value="bank">Bank Transfer</option>
-                        </select>
-                        <button type="submit">Pay Now</button>
+                <div class="booking-box">
+                    <p><strong>Booking ID:</strong> <?= $row['id'] ?></p>
+                    <p><strong>Car:</strong> <?= htmlspecialchars($row['brand']) ?>         <?= htmlspecialchars($row['model']) ?>
+                        (<?= $row['year'] ?>)</p>
+                    <p><strong>From:</strong> <?= $row['start_date'] ?> to <?= $row['end_date'] ?></p>
+                    <p><strong>Status:</strong> <?= ucfirst($row['status']) ?></p>
+                    <?php if (!empty($row['payment_id'])): ?>
+                        <?php
+                        $statusClass = strtolower($row['payment_status']);
+                        $formattedAmount = number_format($row['amount'], 2);
+                        ?>
+                        <p><strong>Payment:</strong> $<?= $formattedAmount ?>
+                            <span class="payment-status <?= $statusClass ?>">(<?= ucfirst($row['payment_status']) ?>)</span>
+                        </p>
+                        <?php if ($row['payment_status'] === 'pending'): ?>
+                            <form action="process_payment.php" method="post">
+                                <input type="hidden" name="payment_id" value="<?= $row['payment_id'] ?>">
+                                <label>Payment Method:</label>
+                                <select name="method" required>
+                                    <option value="credit">Credit Card</option>
+                                    <option value="paypal">PayPal</option>
+                                    <option value="bank">Bank Transfer</option>
+                                </select>
+                                <button type="submit">Pay Now</button>
+                            </form>
+                        <?php endif; ?>
+                    <?php else: ?>
+                        <p><strong>Payment:</strong> <span class="text-muted">Not available</span></p>
+                    <?php endif; ?>
+
+                    <form action="cancel_booking.php" method="post">
+                        <input type="hidden" name="booking_id" value="<?= $row['id'] ?>">
+                        <button type="submit" class="cancel-btn">Cancel Booking</button>
                     </form>
-                <?php endif; ?>
-            <?php else: ?>
-                <p><strong>Payment:</strong> <span class="text-muted">Not available</span></p>
-            <?php endif; ?>
-
-            <form action="cancel_booking.php" method="post">
-                <input type="hidden" name="booking_id" value="<?= $row['id'] ?>">
-                <button type="submit" class="cancel-btn">Cancel Booking</button>
-            </form>
-        </div>
-    <?php
-        endif;
-    endforeach;
-    if (!$hasActive) {
-        echo "<p>You have no active bookings.</p>";
-    }
-    ?>
-
-    <h2 style="margin-top: 40px;">Booking History</h2>
-    <?php
-    $hasHistory = false;
-    foreach ($bookings as $row):
-        if ($row['status'] !== 'active'):
-            $hasHistory = true;
-    ?>
-        <div class="booking-box">
-            <p><strong>Booking ID:</strong> <?= $row['id'] ?></p>
-            <p><strong>Car:</strong> <?= htmlspecialchars($row['brand']) ?> <?= htmlspecialchars($row['model']) ?> (<?= $row['year'] ?>)</p>
-            <p><strong>From:</strong> <?= $row['start_date'] ?> to <?= $row['end_date'] ?></p>
-            <p><strong>Status:</strong> <?= ucfirst($row['status']) ?></p>
-            <?php if (!empty($row['payment_id'])): ?>
+                </div>
                 <?php
-                    $statusClass = strtolower($row['payment_status']);
-                    $formattedAmount = number_format($row['amount'], 2);
-                ?>
-                <p><strong>Payment:</strong> $<?= $formattedAmount ?> 
-                    <span class="payment-status <?= $statusClass ?>">(<?= ucfirst($row['payment_status']) ?>)</span>
-                </p>
-            <?php else: ?>
-                <p><strong>Payment:</strong> <span class="text-muted">Not available</span></p>
-            <?php endif; ?>
-        </div>
-    <?php
-        endif;
-    endforeach;
-    if (!$hasHistory) {
-        echo "<p>No past bookings found.</p>";
-    }
-    ?>
-</div>
+            endif;
+        endforeach;
+        if (!$hasActive) {
+            echo "<p>You have no active bookings.</p>";
+        }
+        ?>
 
-<?php include "inc/footer.inc.php"; ?>
+        <h2 style="margin-top: 40px;">Booking History</h2>
+        <?php
+        $hasHistory = false;
+        foreach ($bookings as $row):
+            if ($row['status'] !== 'active'):
+                $hasHistory = true;
+                ?>
+                <div class="booking-box">
+                    <p><strong>Booking ID:</strong> <?= $row['id'] ?></p>
+                    <p><strong>Car:</strong> <?= htmlspecialchars($row['brand']) ?>         <?= htmlspecialchars($row['model']) ?>
+                        (<?= $row['year'] ?>)</p>
+                    <p><strong>From:</strong> <?= $row['start_date'] ?> to <?= $row['end_date'] ?></p>
+                    <p><strong>Status:</strong> <?= ucfirst($row['status']) ?></p>
+                    <?php if (!empty($row['payment_id'])): ?>
+                        <?php
+                        $statusClass = strtolower($row['payment_status']);
+                        $formattedAmount = number_format($row['amount'], 2);
+                        ?>
+                        <p><strong>Payment:</strong> $<?= $formattedAmount ?>
+                            <span class="payment-status <?= $statusClass ?>">(<?= ucfirst($row['payment_status']) ?>)</span>
+                        </p>
+                    <?php else: ?>
+                        <p><strong>Payment:</strong> <span class="text-muted">Not available</span></p>
+                    <?php endif; ?>
+                </div>
+                <?php
+            endif;
+        endforeach;
+        if (!$hasHistory) {
+            echo "<p>No past bookings found.</p>";
+        }
+        ?>
+    </div>
+
+    <?php include "inc/footer.inc.php"; ?>
 </body>
+
 </html>

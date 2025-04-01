@@ -1,15 +1,26 @@
 <?php
 include "db.php"; // Include DB connection
 
-$sql = "SELECT brand, model, year, price_per_day FROM cars WHERE status='available'";
+$conn = connectToDatabase(); // Assuming db.php has this function
+
+//  Fetch cars that are NOT part of any active bookings
+$sql = "
+    SELECT brand, model, year, price_per_day 
+    FROM cars 
+    WHERE id NOT IN (
+        SELECT car_id FROM bookings WHERE status = 'active'
+    )
+";
 $result = $conn->query($sql);
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Available Cars</title>
 </head>
+
 <body>
     <h2>Available Cars</h2>
     <table border="1">
@@ -31,4 +42,5 @@ $result = $conn->query($sql);
         ?>
     </table>
 </body>
+
 </html>
