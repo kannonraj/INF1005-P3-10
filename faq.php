@@ -36,7 +36,7 @@
 <main class="container my-5 text-white">
     <h1 class="mb-4">Frequently Asked Questions</h1>
 
-    <button class="faq-question">- What types of cars do you offer for rent?</button>
+    <button class="faq-question">+ What types of cars do you offer for rent?</button>
     <div class="faq-answer">
         We offer a wide variety of cars, including economy, luxury, SUVs, and family vehicles. You can view all available options when booking.
     </div>
@@ -80,11 +80,17 @@
             const answer = this.nextElementSibling;
             const isVisible = answer.style.display === "block";
 
-            // Hide all answers
+            // Hide all answers and reset button text
             document.querySelectorAll(".faq-answer").forEach((ans) => ans.style.display = "none");
+            document.querySelectorAll(".faq-question").forEach((q) => q.textContent = "+ " + q.textContent.slice(2));
 
             // Show or hide clicked one
-            answer.style.display = isVisible ? "none" : "block";
+            if (!isVisible) {
+                answer.style.display = "block";
+                this.textContent = "- " + this.textContent.slice(2);  // Change "+" to "-"
+            } else {
+                answer.style.display = "none";
+            }
         });
     });
 </script>
