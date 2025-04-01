@@ -1,6 +1,17 @@
 <?php
-$title = "Refund Policy";
-include 'inc/head.inc.php';
+session_start();  
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Header -->
+  <?php include "inc/head.inc.php" ?>
+  <title>Refund Policy | PEAK</title>
+
+</head>
+<body>
+<?php 
 include 'inc/nav.inc.php';
 ?>
 
@@ -27,3 +38,5 @@ include 'inc/nav.inc.php';
 </main>
 
 <?php include 'inc/footer.inc.php'; ?>
+</body>
+</html>

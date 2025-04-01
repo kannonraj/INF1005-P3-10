@@ -1,4 +1,5 @@
 <?php
+session_start();  
 require_once 'db/db.php';
 $conn = connectToDatabase();
 
@@ -34,6 +35,15 @@ $cars = $result->fetch_all(MYSQLI_ASSOC);
 <head>
     <?php include "inc/head.inc.php"; ?>
     <title>Available Cars | PEAK</title>
+    <style>
+        
+/* Ensure the main content area expands to fill space between header and footer */
+.container {
+  flex-grow: 1;  /* This makes sure the content expands to fill remaining space */
+  padding-bottom: 10px;
+}
+
+</style>
 </head>
 
 <body>

@@ -1,19 +1,20 @@
 /* Body and HTML fill the entire viewport height */
 html, body {
-  height: 100%;
+  height: 100%;  /* Ensure the body takes the full height of the viewport */
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-color: #343A40; /* Ensure background color is applied */
-  color: white; /* Ensure text color is applied */
-  font-family: Arial, sans-serif; /* Ensure font is applied */
-  line-height: 1.6; /* Ensure line height is applied */
+  background-color: #343A40;
+  color: white;
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
 }
 
-     /* Main content area */
-     .main-content {
-      flex: 1; /* This will take up all available space */
-  }
+/* Ensure the main content takes up all available space */
+.main-content {
+  flex-grow: 1;  /* This ensures the main content fills the available space */
+}
+
 /* Headings */
 .h1custom {
   text-align: center; /* Center the h1 main header */
@@ -123,16 +124,16 @@ ul {
 footer {
   background-color: #212529;
   padding: 20px 0;
+  width: 100%; /* Full width */
+  box-sizing: border-box;
   margin-top: auto; /* Pushes the footer to the bottom */
-  width: 100%; /* Ensure the footer spans the entire width of the page */
-  box-sizing: border-box; /* Include padding in the width calculation */
 }
 
-/* Center the entire footer columns */
+/* Ensure the footer remains at the bottom */
 footer .row {
   display: flex;
-  justify-content: center; /* Center the columns horizontally */
-  flex-wrap: wrap; /* Ensure the columns wrap on smaller screens */
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* Column Styles (ensure the columns are centered) */

@@ -1,6 +1,17 @@
 <?php
-$title = "Terms of Service";
-include 'inc/head.inc.php';
+session_start();  
+?>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Header -->
+  <?php include "inc/head.inc.php" ?>
+  <title>Terms of Service | PEAK</title>
+
+</head>
+<body>
+<?php 
 include 'inc/nav.inc.php';
 ?>
 
@@ -26,3 +37,5 @@ include 'inc/nav.inc.php';
 </main>
 
 <?php include 'inc/footer.inc.php'; ?>
+</body>
+</html>
