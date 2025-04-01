@@ -86,7 +86,12 @@
                 document.querySelectorAll(".faq-question").forEach((q) => q.textContent = "+ " + q.textContent.slice(2));
 
                 // Show or hide clicked one
-                answer.style.display = isVisible ? "none" : "block";
+                if (!isVisible) {
+                    answer.style.display = "block";
+                    this.textContent = "- " + this.textContent.slice(2);  // Change "+" to "-"
+                } else {
+                    answer.style.display = "none";
+                }
             });
         });
     </script>
