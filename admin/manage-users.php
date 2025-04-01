@@ -38,7 +38,6 @@ while ($row = $admins->fetch_assoc()) {
         <div class="container-fluid py-5 px-4">
             <!-- Button moved to top right -->
             <div class="position-absolute top-0 end-0 mt-3 me-3">
-                <a href="admin-dashboard.php" class="btn btn-secondary">← Back to Dashboard</a>
             </div>
 
             <h2 class="mb-4">Manage Users</h2>

@@ -51,7 +51,6 @@ $result = $conn->query($sql);
         <div class="container py-5">
             <!-- Back Button -->
             <div class="position-absolute top-0 end-0 mt-3 me-3">
-                <a href="admin-dashboard.php" class="btn btn-secondary">← Back to Dashboard</a>
             </div>
 
             <h2 class="mb-4">Manage Bookings</h2>
@@ -86,7 +85,8 @@ $result = $conn->query($sql);
                                 </p>
 
                                 <?php if ($row['booking_status'] === 'active'): ?>
-                                    <a href="manage-bookings.php?cancel=<?= $row['id'] ?>" class="btn btn-sm btn-danger" onclick="return confirm('Cancel this booking?')">Cancel Booking</a>
+                                    <a href="manage-bookings.php?cancel=<?= $row['id'] ?>" class="btn btn-sm btn-danger"
+                                        onclick="return confirm('Cancel this booking?')">Cancel Booking</a>
                                 <?php else: ?>
                                     <span class="text-muted">N/A</span>
                                 <?php endif; ?>
