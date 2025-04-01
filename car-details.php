@@ -2,16 +2,15 @@
 session_start();
 require_once "db/db.php";
 
-// ✅ Check for the correct GET parameter ('id')
-if (!isset($_GET['id'])) {
+if (!isset($_GET['car_id'])) {
     echo "No car selected.";
     exit;
 }
 
-$car_id = intval($_GET['id']);
+$car_id = intval($_GET['car_id']);
 $conn = connectToDatabase();
 
-// ✅ Fetch car details regardless of status
+//  Fetch car details regardless of status
 $stmt = $conn->prepare("SELECT * FROM cars WHERE id = ?");
 $stmt->bind_param("i", $car_id);
 $stmt->execute();
@@ -25,7 +24,7 @@ if ($result->num_rows === 0) {
 $car = $result->fetch_assoc();
 $stmt->close();
 
-// ✅ Check if this car has an active booking
+//  Check if this car has an active booking
 $active_stmt = $conn->prepare("SELECT COUNT(*) FROM bookings WHERE car_id = ? AND status = 'active'");
 $active_stmt->bind_param("i", $car_id);
 $active_stmt->execute();

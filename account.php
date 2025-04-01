@@ -96,7 +96,8 @@ $conn->close();
     <div class="main-content">
         <h1>Welcome back, <?= htmlspecialchars($_SESSION["user_name"]); ?>!</h1>
         <p>Email: <?= htmlspecialchars($_SESSION["user_email"]); ?></p>
-        <a href="logout.php" class="btn btn-primary">Logout</a>
+
+        <!-- Removed extra logout button -->
 
         <h2 style="margin-top: 40px;">Active Bookings</h2>
         <?php

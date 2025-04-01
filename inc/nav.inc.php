@@ -2,7 +2,6 @@
 require_once(__DIR__ . '/../db/db.php');
 $conn = connectToDatabase();
 
-// Count available cars dynamically (for potential display use)
 $availableCarsQuery = "
     SELECT COUNT(*) AS count FROM cars 
     WHERE id NOT IN (SELECT car_id FROM bookings WHERE status = 'active')
@@ -10,10 +9,20 @@ $availableCarsQuery = "
 $availableResult = $conn->query($availableCarsQuery);
 $availableCars = $availableResult->fetch_assoc()['count'];
 
-// Fetch unique categories (optional enhancement)
 $categoryQuery = "SELECT DISTINCT category FROM cars ORDER BY category";
 $categoryResult = $conn->query($categoryQuery);
+
+// Determine current page
+$currentPage = basename($_SERVER['PHP_SELF']);
 ?>
+
+<!-- Optional active link CSS -->
+<style>
+    .nav-link.active {
+        font-weight: bold;
+        color: #ffc107 !important;
+    }
+</style>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
@@ -32,16 +41,16 @@ $categoryResult = $conn->query($categoryQuery);
         <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="/index.php">Home</a>
+                    <a class="nav-link <?= $currentPage == 'index.php' ? 'active' : '' ?>" href="/index.php">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about.php">About Us</a>
+                    <a class="nav-link <?= $currentPage == 'about.php' ? 'active' : '' ?>" href="/about.php">About
+                        Us</a>
                 </li>
 
-                <!-- Rent A Car Dropdown -->
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
+                    <a class="nav-link dropdown-toggle <?= $currentPage == 'car-listings.php' ? 'active' : '' ?>"
+                        href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Rent A Car
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -60,22 +69,28 @@ $categoryResult = $conn->query($categoryQuery);
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact.php">Contact</a>
+                    <a class="nav-link <?= $currentPage == 'contact.php' ? 'active' : '' ?>"
+                        href="/contact.php">Contact</a>
                 </li>
             </ul>
         </div>
 
-        <!-- Right-side Account Buttons -->
+        <!-- Right-side buttons -->
         <div class="d-flex ms-auto">
             <?php if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true): ?>
-                <a href="account.php" class="btn btn-outline-light me-2">
-                    <span class="material-icons">account_circle</span> Account
+                <?php
+                $firstName = explode(" ", $_SESSION["user_name"] ?? 'Account')[0];
+                ?>
+                <a href="/account.php"
+                    class="btn btn-outline-light me-2 <?= $currentPage == 'account.php' ? 'disabled' : '' ?>">
+                    <span class="material-icons">account_circle</span> <?= htmlspecialchars($firstName) ?>
                 </a>
-                <a href="logout.php" class="btn btn-outline-light">
+                <a href="/logout.php" class="btn btn-outline-light">
                     <i class="fas fa-sign-out-alt"></i> Logout
                 </a>
             <?php else: ?>
-                <a href="login.php" class="btn btn-outline-light me-2">
+                <a href="/login.php"
+                    class="btn btn-outline-light me-2 <?= $currentPage == 'login.php' ? 'disabled' : '' ?>">
                     <span class="material-icons">account_circle</span> Account
                 </a>
             <?php endif; ?>
