@@ -176,6 +176,51 @@ ini_set('display_errors', 1);
     .tx-24 {
       font-size: 24px;
     }
+
+/* Media query for mobile screens */
+@media screen and (max-width: 768px) {
+  .section {
+    grid-template-columns: 1fr; /* Stack the sections vertically on smaller screens */
+    padding: 10px; /* Reduce padding for mobile */
+  }
+
+  .section-content {
+    padding: 15px; /* Reduce padding to avoid text overflow */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center; /* Center align the text for smaller screens */
+  }
+
+  .section h2 {
+    font-size: 20px; /* Adjust the font size for better readability on mobile */
+    margin-bottom: 15px; /* Ensure spacing between text elements */
+  }
+
+  .tx-24 {
+    font-size: 16px; /* Adjust text size for readability */
+    line-height: 1.5; /* Ensure proper line spacing */
+  }
+
+  .bg-black .section>div {
+    height: 300px; /* Reduce image height for mobile devices */
+    background-size: cover; /* Ensure image is properly scaled */
+    background-position: center;
+  }
+
+  .bg-white .section>div {
+    height: 300px; /* Ensure white section background height is similar */
+    background-size: cover; /* Ensure image is properly scaled */
+    background-position: center;
+  }
+
+  /* Ensuring that the text does not overflow */
+  .section-content p {
+    overflow-wrap: break-word; /* Break long words */
+    word-wrap: break-word;
+    hyphens: auto; /* Automatically hyphenate words to avoid overflow */
+  }
+}
   </style>
 </head>
 
