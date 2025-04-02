@@ -16,19 +16,11 @@ $categoryResult = $conn->query($categoryQuery);
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>
 
-<!-- Optional active link CSS -->
-<style>
-    .nav-link.active {
-        font-weight: bold;
-        color: #ffc107 !important;
-    }
-</style>
-
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="index.php">
-            <img src="/images/logo.png" alt="logo" width="80" height="70" />
+            <img src="/images/logo.png" alt="logo" width="80" height="70">
         </a>
 
         <!-- Toggler -->

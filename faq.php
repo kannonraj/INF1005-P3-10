@@ -72,10 +72,7 @@ session_start();
         </div>
     </main>
 
-    <!--  Footer gets pushed to bottom using mt-auto -->
-    <footer class="bg-dark text-light mt-auto">
-        <?php include "inc/footer.inc.php"; ?>
-    </footer>
+    <?php include "inc/footer.inc.php"; ?>
 
     <script>
         const questions = document.querySelectorAll(".faq-question");

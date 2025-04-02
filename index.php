@@ -285,7 +285,7 @@ ini_set('display_errors', 1);
           <h2 class="tx-black tx-spacing-3">Cars Near The MRT Stations</h2>
           <h2 class="tx-brand-03 mg-b-40">Across The Island</h2>
           <div class="tx-black-7 tx-24">
-            Rent without ranting. <br />Most of our cars are located near the MRT stations. So now you can spend more
+            Rent without ranting. <br>Most of our cars are located near the MRT stations. So now you can spend more
             time for things that matter in your life.
           </div>
         </div>

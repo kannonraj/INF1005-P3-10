@@ -37,6 +37,7 @@ session_start();
         }
 
         /* Why Choose Us / Our Service Section */
+        .about-section h2,
         .why-choose-us h2,
         .our-services h2 {
             font-size: 28px;
@@ -139,6 +140,7 @@ session_start();
 
     <!-- About Us Section -->
     <section class="container my-5 about-section">
+        <h2 class="text-center mb-4">About Us</h2>
         <div class="policy-container" style="font-size: 0.85rem;">
             <!-- Display Logo Image -->
             <img src="images/logo.png" alt="PEAK Logo" class="logo-img">
