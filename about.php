@@ -44,8 +44,8 @@ session_start();
             font-weight: bold;
         }
 
-        .why-choose-us h4,
-        .our-services h4 {
+        .why-choose-us h3,
+        .our-services h3 {
             font-size: 1.3rem;
             font-weight: bold;
         }
@@ -98,8 +98,6 @@ session_start();
             position: relative;
         }
 
-        
-
         .service-box::before {
             content: "";
             position: absolute;
@@ -111,13 +109,13 @@ session_start();
             z-index: 1;
         }
 
-        .service-box h4, .service-box p {
+        .service-box h3, .service-box p {
             z-index: 2;
             color: white;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Added text shadow */
         }
 
-        .service-box h4 {
+        .service-box h3 {
             margin-bottom: 15px;
         }
 
@@ -162,21 +160,21 @@ session_start();
                 <div class="col-md-4 text-center">
                     <!-- Image added above the text -->
                     <img src="images/why-knowledge.png" alt="Expert Knowledge">
-                    <h4>Expert Knowledge</h4>
+                    <h3>Expert Knowledge</h3>
                     <hr>
                     <p>Our team of experts has extensive knowledge of the automotive industry and is here to guide you in choosing the best car for your needs.</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <!-- Image added above the text -->
                     <img src="images/why-selection.png" alt="Wide Selection">
-                    <h4>Wide Selection</h4>
+                    <h3>Wide Selection</h3>
                     <hr>
                     <p>We offer a broad range of cars, from affordable models to luxury vehicles, ensuring that there is something for everyone.</p>
                 </div>
                 <div class="col-md-4 text-center">
                     <!-- Image added above the text -->
                     <img src="images/why-service.png" alt="Exceptional Service">
-                    <h4>Exceptional Service</h4>
+                    <h3>Exceptional Service</h3>
                     <hr>
                     <p>Our customer service is second to none. We strive to provide a hassle-free and enjoyable car buying experience, from start to finish.</p>
                 </div>
@@ -191,21 +189,21 @@ session_start();
             <div class="row">
                 <div class="col-md-4 text-center">
                     <div class="service-box" style="background-image: url('images/service-sales.jpg');">
-                        <h4>Vehicle Sales</h4>
+                        <h3>Vehicle Sales</h3>
                         <hr>
                         <p>Browse our wide selection of vehicles, and find the one that fits your needs. We offer both new and pre-owned options to fit every budget.</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
                     <div class="service-box" style="background-image: url('images/service-finance.jpg');">
-                        <h4>Financing Assistance</h4>
+                        <h3>Financing Assistance</h3>
                         <hr>
                         <p>We work with multiple financial institutions to offer competitive financing options. Let us help you find the best financing plan for your car purchase.</p>
                     </div>
                 </div>
                 <div class="col-md-4 text-center">
                     <div class="service-box" style="background-image: url('images/service-repair.jpg');">
-                        <h4>Vehicle Servicing</h4>
+                        <h3>Vehicle Servicing</h3>
                         <hr>    
                         <p>We offer comprehensive car servicing to ensure your vehicle remains in top condition. From routine maintenance to major repairs, our certified technicians are here to help.</p>
                     </div>

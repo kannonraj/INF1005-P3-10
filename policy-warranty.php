@@ -8,7 +8,12 @@ session_start();
   <!-- Header -->
   <?php include "inc/head.inc.php" ?>
   <title>Warranty Policy | PEAK</title>
-
+<style>
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+</style>
 </head>
 <body>
 <?php 
@@ -20,7 +25,7 @@ include 'inc/nav.inc.php';
     <h1 class="text-center mb-5">WARRANTY POLICY</h1>
 
     <section class="mb-4">
-      <h5 class="fw-bold">COVERAGE</h5>
+      <h2 class="fw-bold">COVERAGE</h2>
       <ul>
         <li>All vehicles are regularly inspected and maintained by PEAK Car Rentals.</li>
         <li>Mechanical issues during rental that are not caused by misuse are covered under our basic warranty.</li>
@@ -29,7 +34,7 @@ include 'inc/nav.inc.php';
     </section>
 
     <section>
-      <h5 class="fw-bold">EXCLUSIONS</h5>
+      <h2 class="fw-bold">EXCLUSIONS</h2>
       <p>The warranty does not cover driver-caused damage, lost keys, flat tires, accidents, or negligence. Optional protection plans are available during checkout for added coverage.</p>
     </section>
   </div>
