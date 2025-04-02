@@ -38,8 +38,8 @@ session_start();
             font-weight: bold;
         }
 
-        .why-choose-us h4,
-        .our-services h4 {
+        .why-choose-us h3,
+        .our-services h3 {
             font-size: 1.3rem;
             font-weight: bold;
         }
@@ -101,13 +101,13 @@ session_start();
             z-index: 1;
         }
 
-        .service-box h4, .service-box p {
+        .service-box h3, .service-box p {
             z-index: 2;
             color: white;
             text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
-        .service-box h4 {
+        .service-box h3 {
             margin-bottom: 15px;
         }
 

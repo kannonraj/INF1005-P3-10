@@ -83,6 +83,20 @@ $totalCustomers = $totalUsers;
                         </div>
                     </a>
                 </div>
+                <div class="col-md-3">
+                <a href="manage-submissions.php" class="card dashboard-card bg-danger text-white h-100">
+                    <div class="card-body">
+                        <i class="fas fa-envelope"></i>
+                        <h5 class="card-title mt-2">Contact Submissions</h5>
+                        <p class="card-text fs-4">
+                            <?php
+                            $contactSubmissions = $conn->query("SELECT COUNT(*) AS total FROM contact_submissions")->fetch_assoc()['total'];
+                            echo $contactSubmissions;
+                            ?>
+                        </p>
+                    </div>
+                </a>
+            </div>
             </div>
         </div>
     </div>
