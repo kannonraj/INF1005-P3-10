@@ -4,6 +4,11 @@ require_once "db/db.php";
 require_once "send_email.php";
 require_once "generate_booking_pdf.php";
 
+// Enable error reporting for debugging
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
     exit();
@@ -67,13 +72,15 @@ if ($overlap_count > 0) {
     exit();
 }
 
-// Get car name & price
-$stmt = $conn->prepare("SELECT name, price_per_day FROM cars WHERE id = ?");
+// ✅ Get car details using correct column names
+$stmt = $conn->prepare("SELECT brand, model, price_per_day FROM cars WHERE id = ?");
 $stmt->bind_param("i", $car_id);
 $stmt->execute();
-$stmt->bind_result($car_name, $price_per_day);
+$stmt->bind_result($brand, $model, $price_per_day);
 $stmt->fetch();
 $stmt->close();
+
+$car_display_name = "$brand $model";
 
 // Calculate total price
 $days = (strtotime($end_date) - strtotime($start_date)) / 86400 + 1;
@@ -93,7 +100,7 @@ if ($stmt->execute()) {
     $stmt_payment->close();
 
     // ✅ Generate booking confirmation PDF
-    $pdfPath = generateBookingPDF($fname, $car_name, $start_date, $end_date, $booking_id);
+    $pdfPath = generateBookingPDF($fname, $car_display_name, $start_date, $end_date, $booking_id);
 
     // ✅ Send email with PDF
     $subject = "Booking Confirmation - PEAK Car Rental";
@@ -101,7 +108,7 @@ if ($stmt->execute()) {
         <h2>Hi $fname,</h2>
         <p>Your booking with <strong>PEAK Car Rental</strong> has been successfully confirmed.</p>
         <p>We've attached your booking confirmation PDF below.</p>
-        <p><strong>Car:</strong> $car_name<br>
+        <p><strong>Car:</strong> $car_display_name<br>
            <strong>Booking ID:</strong> $booking_id<br>
            <strong>Start Date:</strong> $start_date<br>
            <strong>End Date:</strong> $end_date</p>

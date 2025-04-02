@@ -36,13 +36,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
         $stmt->fetch();
         $stmt->close();
 
-        // Get car name
-        $stmt_car = $conn->prepare("SELECT name FROM cars WHERE id = ?");
+        // ✅ Get car brand + model
+        $stmt_car = $conn->prepare("SELECT brand, model FROM cars WHERE id = ?");
         $stmt_car->bind_param("i", $car_id);
         $stmt_car->execute();
-        $stmt_car->bind_result($car_name);
+        $stmt_car->bind_result($brand, $model);
         $stmt_car->fetch();
         $stmt_car->close();
+
+        $car_display_name = "$brand $model";
 
         // Update booking status
         $update = $conn->prepare("UPDATE bookings SET status = 'cancelled' WHERE id = ?");
@@ -57,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
         $update_payment->close();
 
         // ✅ Generate PDF
-        $pdfPath = generateCancellationPDF($fname, $car_name, $start_date, $end_date, $booking_id);
+        $pdfPath = generateCancellationPDF($fname, $car_display_name, $start_date, $end_date, $booking_id);
 
         // ✅ Send Email
         $subject = "Cancellation Confirmation - PEAK Car Rental";
@@ -65,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
             <h2>Hi $fname,</h2>
             <p>Your booking has been successfully cancelled.</p>
             <p>We’ve attached a cancellation confirmation PDF below for your records.</p>
-            <p><strong>Car:</strong> $car_name<br>
+            <p><strong>Car:</strong> $car_display_name<br>
                <strong>Booking ID:</strong> $booking_id<br>
                <strong>Start Date:</strong> $start_date<br>
                <strong>End Date:</strong> $end_date</p>
