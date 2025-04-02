@@ -230,9 +230,9 @@ ini_set('display_errors', 1);
   <?php include "inc/nav.inc.php"; ?>
 
   <!-- Main Content Area -->
-  <div class="main-content">
+  <main class="main-content">
     <!-- Hero Section -->
-    <div class="hero">
+    <section class="hero">
       <!-- Overlay -->
       <div class="hero-overlay"></div>
       <div class="hero-images">
@@ -245,10 +245,10 @@ ini_set('display_errors', 1);
         <!-- Optional: Add a button for action -->
         <a href="car-listings.php" class="btn btn-primary">Browse Our Cars</a>
       </div>
-    </div>
+    </section>
 
     <!-- Sections Below Hero -->
-    <div class="bg-white">
+    <section class="bg-white">
       <div class="section">
         <!-- Background Image 1 -->
         <div style="background: url('images/index1.jpg') no-repeat center center;"></div>
@@ -260,9 +260,9 @@ ini_set('display_errors', 1);
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="bg-black">
+    <section class="bg-black">
       <div class="section">
         <!-- Background Image 2 -->
         <div style="background: url('images/index2.jpg') no-repeat top center;"></div>
@@ -275,9 +275,9 @@ ini_set('display_errors', 1);
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="bg-white">
+    <section class="bg-white">
       <div class="section">
         <!-- Background Image 3 -->
         <div style="background: url('images/index3.jpg') no-repeat center center;"></div>
@@ -290,8 +290,8 @@ ini_set('display_errors', 1);
           </div>
         </div>
       </div>
-    </div>
-  </div>
+    </section>
+  </main>
 
   <!-- Footer -->
   <?php include "inc/footer.inc.php"; ?>
