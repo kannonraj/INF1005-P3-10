@@ -12,21 +12,15 @@ session_start();
     <style>
         body {
             background: url('images/background.jpg') no-repeat;
-            -webkit-background-size: cover;
-            -moz-background-size: cover;
-            -o-background-size: cover;
             background-size: cover;
             background-attachment: fixed;
             color: white;
-            /* Make text white across the whole page */
         }
 
-        /* Style for the Contact Us header */
         .contact-header {
             text-align: center;
             font-size: 36px;
             margin-top: 50px;
-            /* Space above the header */
             color: white;
         }
 
@@ -35,7 +29,6 @@ session_start();
             border-radius: 10px;
             max-width: 600px;
             margin: 30px auto;
-            /* Space between header and form */
         }
 
         #ContactForm h2 {
@@ -50,13 +43,10 @@ session_start();
             margin-bottom: 5px;
             display: block;
             color: white;
-            /* Ensures label text is white */
         }
 
-        #ContactForm-name,
-        #ContactForm-email,
-        #ContactForm-phone,
-        #ContactForm-message {
+        #ContactForm input,
+        #ContactForm textarea {
             width: 100%;
             padding: 10px;
             margin: 10px 0;
@@ -67,21 +57,14 @@ session_start();
             background-color: #333;
         }
 
-        #ContactForm-name,
-        #ContactForm-email,
-        #ContactForm-phone {
-            margin-bottom: 20px;
-        }
-
-        #ContactForm-message {
+        #ContactForm textarea {
             height: 120px;
             resize: vertical;
-            /* Allow users to resize the textarea vertically */
         }
 
         #ContactForm button {
             padding: 10px 20px;
-            background-color: #4CAF50;
+            background-color: #2e7d32; /* Darker for contrast */
             color: white;
             border: none;
             border-radius: 5px;
@@ -90,7 +73,15 @@ session_start();
         }
 
         #ContactForm button:hover {
-            background-color: #45a049;
+            background-color: #27682a;
+        }
+
+        .visually-hidden {
+            position: absolute !important;
+            height: 1px; width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap;
         }
     </style>
 </head>
@@ -100,11 +91,12 @@ session_start();
     <!-- Navigation -->
     <?php include "inc/nav.inc.php"; ?>
 
-    <!-- Main Content Area -->
-    <div class="main-content">
-        <div class="container">
+    <!-- Main Content -->
+    <main>
+        <!-- Accessible hidden heading -->
+        <h1 class="visually-hidden">Contact PEAK Car Rental</h1>
 
-            <!-- Contact Us Header (Now outside the form) -->
+        <div class="container">
             <div class="contact-header">
                 <h2>Contact Us</h2>
             </div>
@@ -115,11 +107,9 @@ session_start();
                 </div>
             <?php endif; ?>
 
-
-            <!-- Contact Us Form -->
-            <div id="ContactForm">
+            <!-- Contact Form -->
+            <section id="ContactForm" aria-labelledby="contact-form-heading">
                 <form action="process_contact.php" method="POST" onsubmit="return validateForm()">
-                    <!-- Row 1: Name and Email -->
                     <div class="row">
                         <div style="width: 48%; float: left; margin-right: 4%;">
                             <label for="ContactForm-name">Name</label>
@@ -131,57 +121,45 @@ session_start();
                         </div>
                     </div>
 
-                    <!-- Row 2: Phone -->
                     <div class="row">
                         <label for="ContactForm-phone">Phone</label>
                         <input type="tel" id="ContactForm-phone" name="phone" required>
                     </div>
 
-                    <!-- Row 3: Message -->
                     <div class="row">
                         <label for="ContactForm-message">Message</label>
                         <textarea id="ContactForm-message" name="message" rows="4" required></textarea>
                     </div>
 
-                    <!-- Submit Button -->
                     <button type="submit">Submit</button>
                 </form>
-            </div>
+            </section>
         </div>
-    </div>
+    </main>
 
     <!-- Footer -->
     <?php include "inc/footer.inc.php"; ?>
 
-    <!-- JavaScript for Form Validation -->
+    <!-- JS Validation -->
     <script>
         function validateForm() {
-            // Get the phone number input value
             var phone = document.getElementById("ContactForm-phone").value;
-
-            // Check if phone contains only numbers and has a max length of 8
             var phonePattern = /^[0-9]{8}$/;
             if (!phonePattern.test(phone)) {
-                alert("Please enter a valid phone number (only 8 digits allowed).");
-                return false; // Prevent form submission
+                alert("Please enter a valid phone number (8 digits).");
+                return false;
             }
 
-            // Get the email value
             var email = document.getElementById("ContactForm-email").value;
-
-            // Regex pattern to validate email, ensuring it ends with a valid domain like .com, .org, etc.
             var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.(com|org|net|edu|gov|io)$/;
-
-            // Check if the email matches the pattern
             if (!emailPattern.test(email)) {
-                alert("Please enter a valid email address (e.g., user@domain.com).");
-                return false; // Prevent form submission
+                alert("Please enter a valid email address.");
+                return false;
             }
 
-            return true; // Allow form submission
+            return true;
         }
     </script>
 
 </body>
-
 </html>

@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $_SESSION["user_name"] = "$fname $lname";
             $_SESSION["fname"] = $fname;
 
-            // ✅ Generate Welcome PDF and Send Email
+            // Send welcome email with attached PDF
             $pdfPath = generateWelcomePDF($fname, $email);
             $subject = "Welcome to PEAK Car Rental!";
             $body = "
@@ -95,21 +95,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <title>Register Failed | PEAK</title>
     <style>
         .btn-danger {
-            background-color: red;
+            background-color: #b30000; /* Fixed contrast */
             color: white;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-danger:hover {
+            background-color: #990000;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
 <?php include "inc/nav.inc.php"; ?>
 <div class="main-content">
-    <main class="container" style="padding: 30px;">
+    <main class="container">
+        <!-- Visually hidden h1 for accessibility -->
+        <h1 class="visually-hidden">Registration Error - PEAK</h1>
+
         <?php if (!$success): ?>
-            <h3>Oops!</h3>
-            <h4>The following input errors were detected:</h4>
+            <h2>Oops!</h2> <!-- Corrected heading level -->
+            <h3>The following input errors were detected:</h3> <!-- Corrected heading level -->
             <p><?= $errorMsg ?></p>
             <a href="register.php" class="btn-danger">Return to Sign Up</a>
         <?php endif; ?>
@@ -120,8 +142,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </html>
 
 <?php
-function sanitize_input($data)
-{
+function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 ?>

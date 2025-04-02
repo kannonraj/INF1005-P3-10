@@ -3,7 +3,6 @@ session_start();
 require_once 'db/db.php';
 $conn = connectToDatabase();
 
-// Filter logic (e.g., /car-listings.php?category=SUV)
 $categoryFilter = isset($_GET['category']) ? $_GET['category'] : null;
 
 if ($categoryFilter) {
@@ -36,19 +35,31 @@ $cars = $result->fetch_all(MYSQLI_ASSOC);
     <?php include "inc/head.inc.php"; ?>
     <title>Available Cars | PEAK</title>
     <style>
-        
-/* Ensure the main content area expands to fill space between header and footer */
-.container {
-  flex-grow: 1;  /* This makes sure the content expands to fill remaining space */
-  padding-bottom: 10px;
-}
+        .container {
+            flex-grow: 1;
+            padding-bottom: 10px;
+        }
 
-</style>
+        /* Contrast fix for links if needed */
+        a.contrast-fix {
+            color: #004080; /* darker blue for better contrast */
+        }
+
+        a.contrast-fix:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 
 <body>
     <?php include "inc/nav.inc.php"; ?>
-    <div class="container mt-5">
+
+    <!-- Main Landmark -->
+    <main class="container mt-5">
+
+        <!-- Level-One Heading -->
+        <h1 class="visually-hidden">PEAK Car Listings</h1>
+
         <h2 class="text-center mb-4">
             <?php if ($categoryFilter): ?>
                 <?= htmlspecialchars($categoryFilter) ?> Cars
@@ -65,12 +76,13 @@ $cars = $result->fetch_all(MYSQLI_ASSOC);
                 <?php foreach ($cars as $car): ?>
                     <div class="col">
                         <div class="card h-100">
-                             <?php if (!empty($car['image'])): ?>
-                            <div class="image-container" style="position: relative; width: 100%; height: 0; padding-top: 50%; background-image: url('images/<?= $car['image'] ?>'); background-size: cover; background-position: center;">
-                            </div>
+                            <?php if (!empty($car['image'])): ?>
+                                <div class="image-container" style="position: relative; width: 100%; height: 0; padding-top: 50%; background-image: url('images/<?= $car['image'] ?>'); background-size: cover; background-position: center;">
+                                </div>
                             <?php endif; ?>
                             <div class="card-body">
-                                <h5 class="card-title"><?= $car['brand'] ?>         <?= $car['model'] ?> (<?= $car['year'] ?>)</h5>
+                                <!-- Fixed heading hierarchy: use h3 since h2 is above -->
+                                <h3 class="card-title"><?= $car['brand'] ?> <?= $car['model'] ?> (<?= $car['year'] ?>)</h3>
                                 <p class="card-text">Price: $<?= number_format($car['price_per_day'], 2) ?> / day</p>
                                 <a href="car-details.php?car_id=<?= $car['id'] ?>" class="btn btn-primary">View Details</a>
                             </div>
@@ -79,7 +91,8 @@ $cars = $result->fetch_all(MYSQLI_ASSOC);
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
-    </div>
+    </main>
+
     <?php include "inc/footer.inc.php"; ?>
 </body>
 
