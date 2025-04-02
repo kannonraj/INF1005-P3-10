@@ -21,7 +21,7 @@ include 'inc/nav.inc.php';
 ?>
 
 <main class="policy-main-content text-white">
-  <div class="policy-container">
+  <section class="policy-container">
     <h1 class="text-center mb-5">REFUND POLICY</h1>
 
     <section class="mb-4">
@@ -39,7 +39,7 @@ include 'inc/nav.inc.php';
       <h2 class="fw-bold">EXCLUSIONS</h2>
       <p>Refunds will not be provided for cancellations made within 24 hours of rental start, no-shows, or if terms of service are violated. Refunds are also not applicable for fuel, cleaning, or damage fees.</p>
     </section>
-  </div>
+</section>
 </main>
 
 <?php include 'inc/footer.inc.php'; ?>

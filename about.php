@@ -155,7 +155,7 @@ session_start();
     <!-- Why Choose Us Section -->
     <section class="container my-5 why-choose-us">
         <h2 class="text-center mb-4">Why Choose Us?</h2>
-        <div class="policy-container" style="font-size: 0.85rem;">
+        <section class="policy-container" style="font-size: 0.85rem;">
             <div class="row">
                 <div class="col-md-4 text-center">
                     <!-- Image added above the text -->
@@ -179,13 +179,13 @@ session_start();
                     <p>Our customer service is second to none. We strive to provide a hassle-free and enjoyable car buying experience, from start to finish.</p>
                 </div>
             </div>
-        </div>
+    </section>
     </section>
 
     <!-- Our Services Section -->
     <section class="container mt-0 mb-5 our-services">
         <h2 class="text-center mb-4">Our Services</h2>
-        <div class="policy-container" style="font-size: 0.85rem;">
+        <section class="policy-container" style="font-size: 0.85rem;">
             <div class="row">
                 <div class="col-md-4 text-center">
                     <div class="service-box" style="background-image: url('images/service-sales.jpg');">
@@ -209,7 +209,7 @@ session_start();
                     </div>
                 </div>
             </div>
-        </div>
+    </section>
     </section>
 
     <!-- Footer -->

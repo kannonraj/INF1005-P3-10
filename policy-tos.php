@@ -21,7 +21,7 @@ include 'inc/nav.inc.php';
 ?>
 
 <main class="policy-main-content text-white">
-  <div class="policy-container">
+  <section class="policy-container">
     <h1 class="text-center mb-5">TERMS OF SERVICE</h1>
 
     <section class="mb-4">
@@ -38,7 +38,7 @@ include 'inc/nav.inc.php';
       <h2 class="fw-bold">MODIFICATIONS</h2>
       <p>PEAK Car Rentals reserves the right to modify or terminate services at any time without notice. Please review terms before each rental.</p>
     </section>
-  </div>
+</section>
 </main>
 
 <?php include 'inc/footer.inc.php'; ?>

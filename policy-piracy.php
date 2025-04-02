@@ -25,7 +25,7 @@ include 'inc/nav.inc.php';
 ?>
 
 <main class="policy-main-content text-white">
-  <div class="policy-container">
+  <section class="policy-container">
     <h1 class="text-center mb-5">ANTI-PIRACY POLICY</h1>
 
     <section class="mb-4">
@@ -41,7 +41,7 @@ include 'inc/nav.inc.php';
       <h2 class="fw-bold">REPORTING VIOLATIONS</h2>
       <p>If you suspect any form of piracy or misuse of our platform, please report it immediately via our <a href="contact.php" class="text-decoration-underline text-white">Contact</a> page. All reports are confidential and investigated thoroughly.</p>
     </section>
-  </div>
+</section>
 </main>
 
 <?php include 'inc/footer.inc.php'; ?>
