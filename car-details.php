@@ -2,9 +2,22 @@
 session_start();
 require_once "db/db.php";
 
+// Check if car_id is set before any HTML output
 if (!isset($_GET['car_id'])) {
-    echo "No car selected.";
-    exit;
+    // Output an HTML error message if car_id is not set
+    echo "<!DOCTYPE html>
+    <html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <title>No Car Selected</title>
+    </head>
+    <body>
+        <h1>No car selected.</h1>
+        <p>Please go back and select a car to view.</p>
+    </body>
+    </html>";
+    exit;  // Exit immediately to stop further script execution
 }
 
 $car_id = intval($_GET['car_id']);
