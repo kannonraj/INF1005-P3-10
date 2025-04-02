@@ -120,6 +120,12 @@ ul {
   left: 0; /* Ensure the line starts from the left */
 }
 
+.navbar-nav .nav-item .nav-link.active {
+  font-weight: bold;
+  color: #007bff !important; /* Make sure this rule applies */
+}
+
+
 /* Footer Styles */
 footer {
   background-color: #212529;
@@ -143,11 +149,12 @@ footer .col-md-3 {
 }
 
 /* Heading Styles */
-footer h5 {
-  font-size: 1.25rem;
+.footer-heading {
+  font-size: 1rem;
   font-weight: bold;
+  text-transform: uppercase;
   color: #ffffff;
-}
+} 
 
 /* Footer links */
 footer ul li a {
