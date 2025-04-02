@@ -149,11 +149,12 @@ footer .col-md-3 {
 }
 
 /* Heading Styles */
-footer h5 {
-  font-size: 1.25rem;
+.footer-heading {
+  font-size: 1rem;
   font-weight: bold;
+  text-transform: uppercase;
   color: #ffffff;
-}
+} 
 
 /* Footer links */
 footer ul li a {

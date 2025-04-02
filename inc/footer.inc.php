@@ -2,7 +2,7 @@
   <div class="row justify-content-center"> <!-- Center all footer columns -->
     <!-- Company Column -->
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
-      <h5>COMPANY</h5>
+      <p class="footer-heading">COMPANY</p>
       <ul class="list-unstyled">
         <li><a href="/about.php">About Us</a></li>
       </ul>
@@ -10,7 +10,7 @@
 
     <!-- Rentals Column -->
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
-      <h5>RENTALS</h5>
+      <p class="footer-heading">RENTALS</p>
       <ul class="list-unstyled">
         <li><a href="/car-listings.php">Rent a Car</a></li>
       </ul>
@@ -18,7 +18,7 @@
 
     <!-- Policy Column -->
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
-      <h5>POLICY</h5>
+      <p class="footer-heading">POLICY</p>
       <ul class="list-unstyled">
         <li><a href="/policy-warranty.php">Warranty Policy</a></li>
         <li><a href="/policy-refund.php">Refund Policy</a></li>
@@ -29,7 +29,7 @@
 
     <!-- Support Column -->
     <div class="col-md-3 text-center"> <!-- Ensure content in this column is centered -->
-      <h5>SUPPORT</h5>
+      <p class="footer-heading">SUPPORT</p>
       <ul class="list-unstyled">
         <li><a href="/contact.php">Contact Us</a></li>
         <li><a href="/faq.php">FAQs</a></li>
