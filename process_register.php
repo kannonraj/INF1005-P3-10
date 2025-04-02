@@ -1,17 +1,17 @@
 <?php
 session_start();
 
-require_once "db/db.php"; // use your db connection helper
+require_once "db/db.php";
+require 'send_email.php';
+require 'generate_welcome_pdf.php';
 
 $fname = $lname = $email = $password = $confirm_password = "";
 $errorMsg = "";
 $success = true;
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    // First Name
     $fname = !empty($_POST["fname"]) ? sanitize_input($_POST["fname"]) : "";
 
-    // Last Name
     if (empty($_POST["lname"])) {
         $errorMsg .= "Last name is required.<br>";
         $success = false;
@@ -19,7 +19,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $lname = sanitize_input($_POST["lname"]);
     }
 
-    // Email
     if (empty($_POST["email"])) {
         $errorMsg .= "Email is required.<br>";
         $success = false;
@@ -31,7 +30,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     }
 
-    // Password
     if (empty($_POST["pwd"]) || empty($_POST["pwd_confirm"])) {
         $errorMsg .= "Both password fields are required.<br>";
         $success = false;
@@ -54,16 +52,26 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $conn = connectToDatabase();
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Insert user into DB
         $stmt = $conn->prepare("INSERT INTO users (fname, lname, email, password) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $fname, $lname, $email, $hashed_password);
 
         if ($stmt->execute()) {
-            // ✅ Set session variables (Tip 4 included)
             $_SESSION["loggedin"] = true;
             $_SESSION["user_email"] = $email;
             $_SESSION["user_name"] = "$fname $lname";
             $_SESSION["fname"] = $fname;
+
+            // ✅ Generate Welcome PDF and Send Email
+            $pdfPath = generateWelcomePDF($fname, $email);
+            $subject = "Welcome to PEAK Car Rental!";
+            $body = "
+                <h2>Hi $fname,</h2>
+                <p>Thank you for registering with <strong>PEAK Car Rental</strong>.</p>
+                <p>We've attached a welcome guide to help you get started.</p>
+                <br>
+                <p>Cheers,<br>PEAK Car Rental Team</p>
+            ";
+            sendEmail($email, $subject, $body, $pdfPath);
 
             $stmt->close();
             $conn->close();
@@ -82,7 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php include "inc/head.inc.php"; ?>
     <title>Register Failed | PEAK</title>
@@ -96,22 +103,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         }
     </style>
 </head>
-
 <body>
-    <?php include "inc/nav.inc.php"; ?>
-    <div class="main-content">
-        <main class="container" style="padding: 30px;">
-            <?php if (!$success): ?>
-                <h3>Oops!</h3>
-                <h4>The following input errors were detected:</h4>
-                <p><?= $errorMsg ?></p>
-                <a href="register.php" class="btn-danger">Return to Sign Up</a>
-            <?php endif; ?>
-        </main>
-    </div>
-    <?php include "inc/footer.inc.php"; ?>
+<?php include "inc/nav.inc.php"; ?>
+<div class="main-content">
+    <main class="container" style="padding: 30px;">
+        <?php if (!$success): ?>
+            <h3>Oops!</h3>
+            <h4>The following input errors were detected:</h4>
+            <p><?= $errorMsg ?></p>
+            <a href="register.php" class="btn-danger">Return to Sign Up</a>
+        <?php endif; ?>
+    </main>
+</div>
+<?php include "inc/footer.inc.php"; ?>
 </body>
-
 </html>
 
 <?php
