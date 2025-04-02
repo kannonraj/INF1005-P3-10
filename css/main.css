@@ -120,6 +120,12 @@ ul {
   left: 0; /* Ensure the line starts from the left */
 }
 
+.navbar-nav .nav-item .nav-link.active {
+  font-weight: bold;
+  color: #007bff !important; /* Make sure this rule applies */
+}
+
+
 /* Footer Styles */
 footer {
   background-color: #212529;
