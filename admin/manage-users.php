@@ -31,25 +31,22 @@ while ($row = $admins->fetch_assoc()) {
 
 <body class="bg-light">
     <div class="d-flex">
-        <!-- Admin Panel (Include) -->
-        <?php include '../inc/admin.panel.inc.php'; ?>
+        <aside aria-label="Admin navigation">
+            <?php include '../inc/admin.panel.inc.php'; ?>
+        </aside>
 
-        <!-- Main Content -->
-        <div class="container-fluid py-5 px-4">
-            <!-- Button moved to top right -->
-            <div class="position-absolute top-0 end-0 mt-3 me-3">
-            </div>
-
+        <main class="container-fluid py-5 px-4">
+            <h1 class="visually-hidden">Manage Users - Admin Panel</h1>
             <h2 class="mb-4">Manage Users</h2>
 
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
-                        <th>User ID</th>
-                        <th>Full Name</th>
-                        <th>Email</th>
-                        <th>Role</th>
-                        <th>Joined</th>
+                        <th scope="col">User ID</th>
+                        <th scope="col">Full Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Role</th>
+                        <th scope="col">Joined</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -64,7 +61,7 @@ while ($row = $admins->fetch_assoc()) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
+        </main>
     </div>
 </body>
 

@@ -87,23 +87,26 @@ $result = $stmt->get_result();
 
 <body>
     <div class="d-flex">
-        <?php include '../inc/admin.panel.inc.php'; ?>
+        <aside aria-label="Admin navigation">
+            <?php include '../inc/admin.panel.inc.php'; ?>
+        </aside>
 
-        <div class="container-fluid py-5 wide-container">
+        <main class="container-fluid py-5 wide-container">
+            <h1 class="visually-hidden">Manage Bookings - Admin Panel</h1>
             <h2 class="mb-4">Manage Bookings</h2>
 
             <div class="table-responsive">
                 <table class="table table-bordered table-striped bg-white">
                     <thead class="table-dark">
                         <tr>
-                            <th>ID</th>
-                            <th>User Email</th>
-                            <th>Car</th>
-                            <th>Start - End</th>
-                            <th>Booked On</th>
-                            <th>Status</th>
-                            <th>Payment</th>
-                            <th>Action</th>
+                            <th scope="col">ID</th>
+                            <th scope="col">User Email</th>
+                            <th scope="col">Car</th>
+                            <th scope="col">Start - End</th>
+                            <th scope="col">Booked On</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Payment</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -145,16 +148,16 @@ $result = $stmt->get_result();
             </div>
 
             <!-- Pagination -->
-            <nav aria-label="Page navigation">
+            <nav aria-label="Booking pagination">
                 <ul class="pagination justify-content-center">
                     <?php for ($i = 1; $i <= $totalPages; $i++): ?>
                         <li class="page-item <?= ($i === $page) ? 'active' : '' ?>">
-                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                            <a class="page-link" href="?page=<?= $i ?>">Page <?= $i ?></a>
                         </li>
                     <?php endfor; ?>
                 </ul>
             </nav>
-        </div>
+        </main>
     </div>
 </body>
 
