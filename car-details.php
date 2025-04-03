@@ -4,7 +4,6 @@ require_once "db/db.php";
 
 // Check if car_id is set before any HTML output
 if (!isset($_GET['car_id'])) {
-    // Output an HTML error message if car_id is not set
     echo "<!DOCTYPE html>
     <html lang='en'>
     <head>
@@ -17,13 +16,13 @@ if (!isset($_GET['car_id'])) {
         <p>Please go back and select a car to view.</p>
     </body>
     </html>";
-    exit;  // Exit immediately to stop further script execution
+    exit;
 }
 
 $car_id = intval($_GET['car_id']);
 $conn = connectToDatabase();
 
-//  Fetch car details regardless of status
+// Fetch car details
 $stmt = $conn->prepare("SELECT * FROM cars WHERE id = ?");
 $stmt->bind_param("i", $car_id);
 $stmt->execute();
@@ -37,7 +36,7 @@ if ($result->num_rows === 0) {
 $car = $result->fetch_assoc();
 $stmt->close();
 
-//  Check if this car has an active booking
+// Check if car has an active booking
 $active_stmt = $conn->prepare("SELECT COUNT(*) FROM bookings WHERE car_id = ? AND status = 'active'");
 $active_stmt->bind_param("i", $car_id);
 $active_stmt->execute();
@@ -165,17 +164,33 @@ $isAvailable = $activeBooking == 0;
             background-color: #0d6efd;
             color: white;
         }
+
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
     </style>
 </head>
 
 <body>
     <?php include "inc/nav.inc.php"; ?>
 
-    <div class="button-container">
-        <a href="car-listings.php" class="back-button">Back to View</a>
-    </div>
+    <main class="main-content" role="main">
+        <!-- Hidden H1 for screen readers -->
+        <h1 class="visually-hidden"><?= htmlspecialchars($car['brand']) . " " . htmlspecialchars($car['model']) ?>
+            Details</h1>
 
-    <div class="main-content">
+        <div class="button-container">
+            <a href="car-listings.php" class="back-button">Back to View</a>
+        </div>
+
         <div class="container">
             <div class="car-box">
                 <h2 class="h2custom"><?= htmlspecialchars($car['brand']) . " " . htmlspecialchars($car['model']) ?>
@@ -207,7 +222,7 @@ $isAvailable = $activeBooking == 0;
                 <?php include "reviews_section.php"; ?>
             </div>
         </div>
-    </div>
+    </main>
 
     <?php include "inc/footer.inc.php"; ?>
 </body>
