@@ -221,6 +221,114 @@ ini_set('display_errors', 1);
     hyphens: auto; /* Automatically hyphenate words to avoid overflow */
   }
 }
+
+/* START: Email Popup Styles */
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup {
+    background-color: white;
+    max-width: 500px;
+    width: 90%;
+    position: relative;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.popup-content {
+    padding: 20px;
+    text-align: center;
+    background-image: url('https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+}
+
+.popup-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+}
+
+.popup-close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    z-index: 10;
+}
+
+.popup-logo {
+    margin: 0 auto 20px;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.popup h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.popup p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.email-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.email-input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    font-size: 16px;
+    width: 80%; /* Make the input box narrower */
+    margin: 0 auto; /* Center the input box */
+}
+
+.submit-button {
+    padding: 8px;
+    background-color: #0275d8; /* Blue color matching your website */
+    color: white;
+    border: none;
+    border-radius: 2px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 80%; /* Make the input box narrower */
+    margin: 0 auto; /* Center the input box */
+
+}
+
+.submit-button:hover {
+    background-color: #025aa5;
+}
+/* END: Email Popup Styles */
   </style>
 </head>
 
@@ -296,6 +404,35 @@ ini_set('display_errors', 1);
   <!-- Footer -->
   <?php include "inc/footer.inc.php"; ?>
 
+  <!-- START: Email Popup HTML -->
+  <div class="popup-container" id="emailPopup">
+    <div class="popup">
+        <button class="popup-close" id="closePopup">×</button>
+        <div class="popup-content">
+            <div class="popup-overlay"></div>
+            
+            <!-- Initial subscription form -->
+            <div id="subscriptionForm">
+                <h2>10% OFF</h2>
+                <p>YOUR FIRST CAR RENTAL</p>
+                <form class="email-form" id="subscribeForm">
+                    <input type="email" placeholder="Email Address" class="email-input" required>
+                    <button type="submit" class="submit-button">Continue</button>
+                </form>
+            </div>
+            
+            <!-- Confirmation message (initially hidden) -->
+            <div id="confirmationMessage" style="display: none;">
+                <h2>Thank You!</h2>
+                <p>Your 10% discount code has been sent to:</p>
+                <p id="confirmedEmail" style="font-weight: bold; margin-bottom: 30px;"></p>
+                <button type="button" class="submit-button" id="keepBrowsingBtn">Keep Browsing</button>
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- END: Email Popup HTML -->
+
   <script>
     // JavaScript to change the image at interval
     let currentIndex = 0;
@@ -316,6 +453,86 @@ ini_set('display_errors', 1);
     // Change image every 5 seconds
     setInterval(changeImage, 5000);
   </script>
+
+  <!-- START: Email Popup JavaScript -->
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+      // Show popup after 2 seconds
+      setTimeout(function() {
+          showPopup();
+      }, 2000);
+      
+      // Close popup when clicking the close button
+      document.getElementById('closePopup').addEventListener('click', function() {
+          hidePopup();
+          // Set cookie to remember that user closed the popup
+          setCookie('popupClosed', 'true', 7); // 7 days expiration
+      });
+      
+      // Handle form submission
+      document.getElementById('subscribeForm').addEventListener('submit', function(e) {
+          e.preventDefault();
+          // Get the email
+          var email = this.querySelector('input[type="email"]').value;
+          
+          // Here you would typically have code to send the email to your server
+          
+          // Show confirmation screen
+          document.getElementById('subscriptionForm').style.display = 'none';
+          document.getElementById('confirmedEmail').textContent = email;
+          document.getElementById('confirmationMessage').style.display = 'block';
+          
+          // No 365-day cookie as requested
+      });
+      
+      // Handle "Keep Browsing" button click
+      document.getElementById('keepBrowsingBtn').addEventListener('click', function() {
+          hidePopup();
+      });
+      
+      // Close popup when clicking outside
+      document.querySelector('.popup-container').addEventListener('click', function(e) {
+          if (e.target === this) {
+              hidePopup();
+              if (document.getElementById('confirmationMessage').style.display === 'none') {
+                  // Only set cookie if user is closing the subscription form, not the confirmation
+                  setCookie('popupClosed', 'true', 7);
+              }
+          }
+      });
+      
+      function showPopup() {
+        document.getElementById('emailPopup').style.display = 'flex';
+      }
+      
+      function hidePopup() {
+          document.getElementById('emailPopup').style.display = 'none';
+      }
+      
+      // Cookie functions
+      function setCookie(name, value, days) {
+          var expires = '';
+          if (days) {
+              var date = new Date();
+              date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+              expires = '; expires=' + date.toUTCString();
+          }
+          document.cookie = name + '=' + (value || '') + expires + '; path=/';
+      }
+      
+      function getCookie(name) {
+          var nameEQ = name + '=';
+          var ca = document.cookie.split(';');
+          for (var i = 0; i < ca.length; i++) {
+              var c = ca[i];
+              while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+              if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+          }
+          return null;
+      }
+  });
+  </script>
+  <!-- END: Email Popup JavaScript -->
 
 </body>
 
