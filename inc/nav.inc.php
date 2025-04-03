@@ -19,7 +19,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="container-fluid">
         <!-- Logo -->
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="/index.php">
             <img src="/images/logo.png" alt="logo" width="80" height="70">
         </a>
 

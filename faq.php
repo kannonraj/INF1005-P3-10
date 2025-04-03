@@ -40,36 +40,36 @@ session_start();
         <h1 class="mb-4">Frequently Asked Questions</h1>
 
         <button class="faq-question">+ What types of cars do you offer for rent?</button>
-        <section class="faq-answer">
+        <div class="faq-answer">
             We offer a wide variety of cars, including economy, luxury, SUVs, and family vehicles. You can view all
             available options when booking.
-        </section>
+        </div>
 
         <button class="faq-question">+ What documents do I need to rent a car?</button>
-        <section class="faq-answer">
+        <div class="faq-answer">
             A valid driver’s license, an ID card or passport, and a valid credit or debit card are typically required.
-        </section>
+        </div>
 
         <button class="faq-question">+ How old do I need to be to rent a car?</button>
-        <section class="faq-answer">
+        <div class="faq-answer">
             Most rental companies require renters to be at least 21 years old. Some vehicles may require the driver to
             be 25 or older.
-        </section>
+        </div>
 
         <button class="faq-question">+ Can I rent a car without a credit card?</button>
-        <section class="faq-answer">
+        <div class="faq-answer">
             Some locations allow debit cards, but having a credit card is generally preferred and sometimes required.
-        </section>
+        </div>
 
         <button class="faq-question">+ Can I extend my rental period?</button>
-        <section class="faq-answer">
+        <div class="faq-answer">
             Yes, you can extend your rental period by contacting us before your original return date.
-        </section>
+        </div>
 
         <button class="faq-question">+ What happens if I return the car late?</button>
-        <section class="faq-answer">
+        <div class="faq-answer">
             Late returns may result in additional fees. It’s best to inform us ahead of time if you anticipate delays.
-        </section>
+        </div>
     </main>
 
     <?php include "inc/footer.inc.php"; ?>
