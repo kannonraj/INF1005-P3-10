@@ -64,7 +64,7 @@ session_start();
 
         #ContactForm button {
             padding: 10px 20px;
-            background-color: #2e7d32; /* Darker for contrast */
+            background-color: #0275d8; 
             color: white;
             border: none;
             border-radius: 5px;
