@@ -67,7 +67,8 @@ $conn->close();
         }
 
         .payment-status.failed {
-            color: red;
+            color: #cc0000;
+            /* ✅ improved contrast */
             font-weight: bold;
         }
 
@@ -93,11 +94,10 @@ $conn->close();
 <body>
     <?php include "inc/nav.inc.php"; ?>
 
-    <div class="main-content">
+    <!-- ✅ Accessibility fix: wrapped content inside <main> landmark -->
+    <main class="main-content">
         <h1>Welcome back, <?= htmlspecialchars($_SESSION["user_name"]); ?>!</h1>
         <p>Email: <?= htmlspecialchars($_SESSION["user_email"]); ?></p>
-
-        <!-- Removed extra logout button -->
 
         <h2 style="margin-top: 40px;">Active Bookings</h2>
         <?php
@@ -181,7 +181,7 @@ $conn->close();
             echo "<p>No past bookings found.</p>";
         }
         ?>
-    </div>
+    </main>
 
     <?php include "inc/footer.inc.php"; ?>
 </body>

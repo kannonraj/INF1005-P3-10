@@ -119,34 +119,54 @@ while ($car = $car_query->fetch_assoc()) {
 
 <body>
     <div class="d-flex">
-        <?php include '../inc/admin.panel.inc.php'; ?>
+        <aside aria-label="Admin navigation">
+            <?php include '../inc/admin.panel.inc.php'; ?>
+        </aside>
 
-        <div class="container-fluid px-4 py-5">
+        <main class="container-fluid px-4 py-5">
+            <h1 class="visually-hidden">Manage Cars - Admin Panel</h1>
             <h2 class="mb-4">Manage Cars</h2>
 
             <!-- Add Form -->
             <form method="POST" enctype="multipart/form-data" class="row g-3 mb-5 bg-white p-4 shadow-sm rounded">
-                <h5>Add New Car</h5>
-                <div class="col-md-3"><input type="text" name="brand" class="form-control" placeholder="Brand" required>
+                <h3>Add New Car</h3>
+                <div class="col-md-3">
+                    <label for="brand" class="visually-hidden">Brand</label>
+                    <input type="text" name="brand" id="brand" class="form-control" placeholder="Brand" required>
                 </div>
-                <div class="col-md-3"><input type="text" name="model" class="form-control" placeholder="Model" required>
+                <div class="col-md-3">
+                    <label for="model" class="visually-hidden">Model</label>
+                    <input type="text" name="model" id="model" class="form-control" placeholder="Model" required>
                 </div>
-                <div class="col-md-2"><input type="number" name="year" class="form-control" placeholder="Year" required>
-                </div>
-                <div class="col-md-2"><input type="number" step="0.01" name="price" class="form-control"
-                        placeholder="Price/day" required></div>
                 <div class="col-md-2">
-                    <select name="category" class="form-select">
+                    <label for="year" class="visually-hidden">Year</label>
+                    <input type="number" name="year" id="year" class="form-control" placeholder="Year" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="price" class="visually-hidden">Price per day</label>
+                    <input type="number" step="0.01" name="price" id="price" class="form-control"
+                        placeholder="Price/day" required>
+                </div>
+                <div class="col-md-2">
+                    <label for="category" class="visually-hidden">Category</label>
+                    <select name="category" id="category" class="form-select">
                         <?php foreach ($categories as $cat): ?>
                             <option value="<?= $cat ?>"><?= $cat ?></option>
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="col-md-3"><input type="file" name="image" class="form-control"></div>
-                <div class="col-md-6"><textarea name="description" class="form-control"
-                        placeholder="Car Description (optional)"></textarea></div>
-                <div class="col-md-12"><button type="submit" name="add_car" class="btn btn-primary w-100">Add
-                        Car</button></div>
+                <div class="col-md-3">
+                    <label for="image" class="visually-hidden">Image</label>
+                    <input type="file" name="image" id="image" class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <label for="description" class="visually-hidden">Description</label>
+                    <textarea name="description" id="description" class="form-control"
+                        placeholder="Car Description (optional)"></textarea>
+                </div>
+                <div class="col-md-12">
+                    <button type="submit" name="add_car" class="btn btn-primary w-100">Add Car</button>
+                </div>
             </form>
 
             <!-- Table -->
@@ -182,7 +202,8 @@ while ($car = $car_query->fetch_assoc()) {
                             <td><?= $car['category'] ?></td>
                             <td>
                                 <?php if ($car['image']): ?>
-                                    <img src="../images/<?= $car['image'] ?>" width="60">
+                                    <img src="../images/<?= $car['image'] ?>" width="60"
+                                        alt="Car image of <?= htmlspecialchars($car['brand'] . ' ' . $car['model']) ?>">
                                 <?php else: ?>N/A<?php endif; ?>
                             </td>
                             <td>
@@ -220,15 +241,19 @@ while ($car = $car_query->fetch_assoc()) {
                                                     <?php endforeach; ?>
                                                 </select>
                                             </div>
-                                            <div class="col-md-6"><input type="file" name="image" class="form-control">
+                                            <div class="col-md-6">
+                                                <input type="file" name="image" class="form-control">
                                             </div>
                                             <div class="col-md-6">
                                                 <?php if ($car['image']): ?>
-                                                    <img src="../images/<?= $car['image'] ?>" width="100">
+                                                    <img src="../images/<?= $car['image'] ?>" width="100"
+                                                        alt="Preview of <?= htmlspecialchars($car['brand'] . ' ' . $car['model']) ?>">
                                                 <?php else: ?>No Image<?php endif; ?>
                                             </div>
-                                            <div class="col-md-12"><textarea name="description" class="form-control"
-                                                    rows="3"><?= htmlspecialchars($car['description']) ?></textarea></div>
+                                            <div class="col-md-12">
+                                                <textarea name="description" class="form-control"
+                                                    rows="3"><?= htmlspecialchars($car['description']) ?></textarea>
+                                            </div>
                                         </div>
                                         <div class="modal-footer">
                                             <button type="submit" name="edit_car" class="btn btn-success">Save
@@ -243,7 +268,7 @@ while ($car = $car_query->fetch_assoc()) {
                     <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
+        </main>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

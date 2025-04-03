@@ -30,61 +30,65 @@ $result = $stmt->get_result();
 </head>
 
 <body>
-<div class="d-flex">
-    <?php include '../inc/admin.panel.inc.php'; ?>
+    <div class="d-flex">
+        <aside aria-label="Admin navigation">
+            <?php include '../inc/admin.panel.inc.php'; ?>
+        </aside>
 
-    <div class="container-fluid py-5 px-4">
-        <h2 class="mb-4">Contact Form Submissions</h2>
+        <main class="container-fluid py-5 px-4">
+            <h1 class="visually-hidden">Manage Contact Submissions - Admin Panel</h1>
+            <h2 class="mb-4">Contact Form Submissions</h2>
 
-        <?php if ($result->num_rows > 0): ?>
-            <div class="table-responsive">
-                <table class="table table-striped table-bordered align-middle">
-                    <thead class="table-dark">
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Phone</th>
-                            <th>Message</th>
-                            <th>Submitted At</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php while ($row = $result->fetch_assoc()): ?>
+            <?php if ($result->num_rows > 0): ?>
+                <div class="table-responsive">
+                    <table class="table table-striped table-bordered align-middle">
+                        <thead class="table-dark">
                             <tr>
-                                <td><?= htmlspecialchars($row['id']) ?></td>
-                                <td><?= htmlspecialchars($row['name']) ?></td>
-                                <td><?= htmlspecialchars($row['email']) ?></td>
-                                <td><?= htmlspecialchars($row['phone']) ?></td>
-                                <td><?= nl2br(htmlspecialchars($row['message'])) ?></td>
-                                <td><?= htmlspecialchars($row['submitted_at']) ?></td>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Message</th>
+                                <th scope="col">Submitted At</th>
                             </tr>
-                        <?php endwhile; ?>
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            <?php while ($row = $result->fetch_assoc()): ?>
+                                <tr>
+                                    <td><?= htmlspecialchars($row['id']) ?></td>
+                                    <td><?= htmlspecialchars($row['name']) ?></td>
+                                    <td><?= htmlspecialchars($row['email']) ?></td>
+                                    <td><?= htmlspecialchars($row['phone']) ?></td>
+                                    <td><?= nl2br(htmlspecialchars($row['message'])) ?></td>
+                                    <td><?= htmlspecialchars($row['submitted_at']) ?></td>
+                                </tr>
+                            <?php endwhile; ?>
+                        </tbody>
+                    </table>
+                </div>
 
-            <!-- Pagination Controls -->
-            <nav>
-                <ul class="pagination justify-content-center">
-                    <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=<?= $page - 1 ?>">Previous</a>
-                    </li>
-                    <?php for ($i = 1; $i <= $totalPages; $i++): ?>
-                        <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
-                            <a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a>
+                <!-- Pagination Controls -->
+                <nav aria-label="Submissions pagination">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item <?= ($page <= 1) ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page - 1 ?>" aria-label="Previous page">Previous</a>
                         </li>
-                    <?php endfor; ?>
-                    <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
-                        <a class="page-link" href="?page=<?= $page + 1 ?>">Next</a>
-                    </li>
-                </ul>
-            </nav>
+                        <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                            <li class="page-item <?= ($i == $page) ? 'active' : '' ?>">
+                                <a class="page-link" href="?page=<?= $i ?>">Page <?= $i ?></a>
+                            </li>
+                        <?php endfor; ?>
+                        <li class="page-item <?= ($page >= $totalPages) ? 'disabled' : '' ?>">
+                            <a class="page-link" href="?page=<?= $page + 1 ?>" aria-label="Next page">Next</a>
+                        </li>
+                    </ul>
+                </nav>
 
-        <?php else: ?>
-            <p class="text-muted">No submissions found.</p>
-        <?php endif; ?>
+            <?php else: ?>
+                <p class="text-muted">No submissions found.</p>
+            <?php endif; ?>
+        </main>
     </div>
-</div>
 </body>
+
 </html>
