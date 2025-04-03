@@ -60,7 +60,7 @@ $contactSubmissions = $conn->query("SELECT COUNT(*) AS total FROM contact_submis
 
             <div class="row g-3">
                 <div class="col-md-3">
-                    <a href="manage-cars.php" class="card dashboard-card text-white h-100"
+                    <a href="manage-cars.php" class="card dashboard-card h-100"
                         style="background-color: #0d6efd;">
                         <div class="card-body">
                             <i class="fas fa-car"></i>
@@ -70,7 +70,7 @@ $contactSubmissions = $conn->query("SELECT COUNT(*) AS total FROM contact_submis
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="manage-cars.php" class="card dashboard-card text-white h-100"
+                    <a href="manage-cars.php" class="card dashboard-card h-100"
                         style="background-color: #198754;">
                         <div class="card-body">
                             <i class="fas fa-car-side"></i>
@@ -100,7 +100,7 @@ $contactSubmissions = $conn->query("SELECT COUNT(*) AS total FROM contact_submis
                     </a>
                 </div>
                 <div class="col-md-3">
-                    <a href="manage-submissions.php" class="card dashboard-card text-white h-100"
+                    <a href="manage-submissions.php" class="card dashboard-card h-100"
                         style="background-color: #dc3545;">
                         <div class="card-body">
                             <i class="fas fa-envelope"></i>
