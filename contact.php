@@ -109,6 +109,7 @@ session_start();
 
             <!-- Contact Form -->
             <section id="ContactForm" aria-labelledby="contact-form-heading">
+                <h2 id="contact-form-heading" class="visually-hidden">Contact Us Form</h2>
                 <form action="process_contact.php" method="POST" onsubmit="return validateForm()">
                     <div class="row">
                         <div style="width: 48%; float: left; margin-right: 4%;">
