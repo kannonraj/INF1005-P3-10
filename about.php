@@ -5,20 +5,16 @@ session_start();
 <html lang="en">
 
 <head>
-    <!-- Header -->
     <?php include "inc/head.inc.php" ?>
     <title>About Us | PEAK</title>
-
     <link rel="stylesheet" href="css/main.css">
 
     <style>
-        /* Set background color for the entire page */
         body {
             color: white;
             font-family: Arial, sans-serif;
         }
 
-        /* About Us Section */
         .about-section {
             text-align: center;
             margin: 20px auto;
@@ -30,13 +26,11 @@ session_start();
             margin: 0 auto;
         }
 
-        /* Logo Image Style */
         .logo-img {
-            max-width: 350px; /* Adjust size of the logo */
+            max-width: 350px;
             margin: 20px 0;
         }
 
-        /* Why Choose Us / Our Service Section */
         .about-section h2,
         .why-choose-us h2,
         .our-services h2 {
@@ -73,27 +67,25 @@ session_start();
 
         hr {
             color: white;
-            border-top: 2px solid white; /* Thicker, bold line */
+            border-top: 2px solid white;
         }
 
-        /* Style for images in Why Choose Us */
         .why-choose-us img {
             max-width: 200px;
             margin-bottom: 20px;
         }
 
-        /* Our Services Section */
         .service-box {
             background-size: cover;
             background-position: center;
-            padding: 40px 20px; /* Increased padding for better layout */
+            padding: 40px 20px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 0; /* Removed rounded edges */
-            height: 450px; /* Increased height */
-            width: 100%; /* Ensures the box spans the full width of its parent */
+            border-radius: 0;
+            height: 450px;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: space-between; /* Distributes space evenly */
+            justify-content: space-between;
             text-align: center;
             position: relative;
         }
@@ -105,14 +97,14 @@ session_start();
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6); /* Semi-transparent grey background */
+            background: rgba(0, 0, 0, 0.6);
             z-index: 1;
         }
 
         .service-box h3, .service-box p {
             z-index: 2;
             color: white;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Added text shadow */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
         }
 
         .service-box h3 {
@@ -124,7 +116,7 @@ session_start();
         }
 
         .service-box hr {
-            border-top: 2px solid white; /* White line between title and description */
+            border-top: 2px solid white;
             width: 60%;
             margin: 15px auto;
         }
@@ -132,89 +124,86 @@ session_start();
 </head>
 
 <body>
-
-    <!-- Navigation -->
     <?php include "inc/nav.inc.php" ?>
 
-    <!-- About Us Section -->
-    <section class="container my-5 about-section">
-        <h2 class="text-center mb-4">About Us</h2>
-        <div class="policy-container" style="font-size: 0.85rem;">
-            <!-- Display Logo Image -->
-            <img src="images/logo.png" alt="PEAK Logo" class="logo-img">
-            <p>
-                Welcome to PEAK, your trusted partner in car retail. We specialize in providing high-quality vehicles to suit a wide range of customer needs, from daily drivers to luxury models. 
-                Our dedicated team works hard to ensure that every vehicle meets our customers' expectations for quality, performance, and value. 
-                With years of experience in the car retail industry, we’ve earned a reputation for honesty, reliability, and excellent customer service.
-                Whether you're looking for a sedan, SUV, truck, or a sports car, we have the perfect options for you. We provide full transparency, no hidden fees, and a seamless buying experience. 
-                Your satisfaction is our top priority.
-            </p>
-        </div>
-    </section>
+    <!-- Main landmark -->
+    <main>
+        <!-- Page-level heading -->
+        <h1 class="visually-hidden">About PEAK Car Rental</h1>
 
-    <!-- Why Choose Us Section -->
-    <section class="container my-5 why-choose-us">
-        <h2 class="text-center mb-4">Why Choose Us?</h2>
-        <section class="policy-container" style="font-size: 0.85rem;">
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <!-- Image added above the text -->
-                    <img src="images/why-knowledge.png" alt="Expert Knowledge">
-                    <h3>Expert Knowledge</h3>
-                    <hr>
-                    <p>Our team of experts has extensive knowledge of the automotive industry and is here to guide you in choosing the best car for your needs.</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <!-- Image added above the text -->
-                    <img src="images/why-selection.png" alt="Wide Selection">
-                    <h3>Wide Selection</h3>
-                    <hr>
-                    <p>We offer a broad range of cars, from affordable models to luxury vehicles, ensuring that there is something for everyone.</p>
-                </div>
-                <div class="col-md-4 text-center">
-                    <!-- Image added above the text -->
-                    <img src="images/why-service.png" alt="Exceptional Service">
-                    <h3>Exceptional Service</h3>
-                    <hr>
-                    <p>Our customer service is second to none. We strive to provide a hassle-free and enjoyable car buying experience, from start to finish.</p>
-                </div>
+        <!-- About Us Section -->
+        <section class="container my-5 about-section" aria-labelledby="about-heading">
+            <h2 id="about-heading" class="text-center mb-4">About Us</h2>
+            <div class="policy-container" style="font-size: 0.85rem;">
+                <img src="images/logo.png" alt="PEAK Logo" class="logo-img">
+                <p>
+                    Welcome to PEAK, your trusted partner in car retail. We specialize in providing high-quality vehicles to suit a wide range of customer needs, from daily drivers to luxury models.
+                    Our dedicated team works hard to ensure that every vehicle meets our customers' expectations for quality, performance, and value.
+                    With years of experience in the car retail industry, we’ve earned a reputation for honesty, reliability, and excellent customer service.
+                    Whether you're looking for a sedan, SUV, truck, or a sports car, we have the perfect options for you. We provide full transparency, no hidden fees, and a seamless buying experience.
+                    Your satisfaction is our top priority.
+                </p>
             </div>
-    </section>
-    </section>
+        </section>
 
-    <!-- Our Services Section -->
-    <section class="container mt-0 mb-5 our-services">
-        <h2 class="text-center mb-4">Our Services</h2>
-        <section class="policy-container" style="font-size: 0.85rem;">
-            <div class="row">
-                <div class="col-md-4 text-center">
-                    <div class="service-box" style="background-image: url('images/service-sales.jpg');">
-                        <h3>Vehicle Sales</h3>
+        <!-- Why Choose Us Section -->
+        <section class="container my-5 why-choose-us" aria-labelledby="why-heading">
+            <h2 id="why-heading" class="text-center mb-4">Why Choose Us?</h2>
+            <div class="policy-container" style="font-size: 0.85rem;">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <img src="images/why-knowledge.png" alt="Expert Knowledge">
+                        <h3>Expert Knowledge</h3>
                         <hr>
-                        <p>Browse our wide selection of vehicles, and find the one that fits your needs. We offer both new and pre-owned options to fit every budget.</p>
+                        <p>Our team of experts has extensive knowledge of the automotive industry and is here to guide you in choosing the best car for your needs.</p>
                     </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="service-box" style="background-image: url('images/service-finance.jpg');">
-                        <h3>Financing Assistance</h3>
+                    <div class="col-md-4 text-center">
+                        <img src="images/why-selection.png" alt="Wide Selection">
+                        <h3>Wide Selection</h3>
                         <hr>
-                        <p>We work with multiple financial institutions to offer competitive financing options. Let us help you find the best financing plan for your car purchase.</p>
+                        <p>We offer a broad range of cars, from affordable models to luxury vehicles, ensuring that there is something for everyone.</p>
                     </div>
-                </div>
-                <div class="col-md-4 text-center">
-                    <div class="service-box" style="background-image: url('images/service-repair.jpg');">
-                        <h3>Vehicle Servicing</h3>
-                        <hr>    
-                        <p>We offer comprehensive car servicing to ensure your vehicle remains in top condition. From routine maintenance to major repairs, our certified technicians are here to help.</p>
+                    <div class="col-md-4 text-center">
+                        <img src="images/why-service.png" alt="Exceptional Service">
+                        <h3>Exceptional Service</h3>
+                        <hr>
+                        <p>Our customer service is second to none. We strive to provide a hassle-free and enjoyable car buying experience, from start to finish.</p>
                     </div>
                 </div>
             </div>
-    </section>
-    </section>
+        </section>
 
-    <!-- Footer -->
+        <!-- Our Services Section -->
+        <section class="container mt-0 mb-5 our-services" aria-labelledby="services-heading">
+            <h2 id="services-heading" class="text-center mb-4">Our Services</h2>
+            <div class="policy-container" style="font-size: 0.85rem;">
+                <div class="row">
+                    <div class="col-md-4 text-center">
+                        <div class="service-box" style="background-image: url('images/service-sales.jpg');">
+                            <h3>Vehicle Sales</h3>
+                            <hr>
+                            <p>Browse our wide selection of vehicles, and find the one that fits your needs. We offer both new and pre-owned options to fit every budget.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="service-box" style="background-image: url('images/service-finance.jpg');">
+                            <h3>Financing Assistance</h3>
+                            <hr>
+                            <p>We work with multiple financial institutions to offer competitive financing options. Let us help you find the best financing plan for your car purchase.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 text-center">
+                        <div class="service-box" style="background-image: url('images/service-repair.jpg');">
+                            <h3>Vehicle Servicing</h3>
+                            <hr>
+                            <p>We offer comprehensive car servicing to ensure your vehicle remains in top condition. From routine maintenance to major repairs, our certified technicians are here to help.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
     <?php include "inc/footer.inc.php" ?>
-
 </body>
-
 </html>

@@ -27,7 +27,6 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             justify-content: center;
             align-items: center;
             height: 70vh;
-            /* Full viewport height */
             padding: 20px;
         }
 
@@ -37,10 +36,8 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             width: 100%;
             max-width: 1100px;
             background-color: #fff;
-            /* White background for the table */
             box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
             border-radius: 15px;
-            /* Rounded corners for the container */
         }
 
         /* Left Column: Login Form */
@@ -50,9 +47,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             flex: 1;
             box-sizing: border-box;
             border-top-left-radius: 15px;
-            /* Rounded top left corner */
             border-bottom-left-radius: 15px;
-            /* Rounded bottom left corner */
         }
 
         .login-form h1 {
@@ -79,15 +74,12 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             margin-bottom: 15px;
             display: flex;
             align-items: center;
-            /* Vertically center the icon and input */
         }
 
         .login-form .form-group i {
             font-size: 18px;
             color: #aaa;
-            /* Grey color for the icon */
             margin-right: 10px;
-            /* Add space between icon and input */
         }
 
         .login-form .form-control {
@@ -97,22 +89,22 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             box-sizing: border-box;
             width: 100%;
             font-size: 16px;
-            /* Adjust input font size */
         }
 
+        /* Submit button */
         .login-form .btn {
             width: 100%;
             padding: 12px;
             font-size: 18px;
             border-radius: 8px;
-            background-color: #007bff;
+            background-color: #0056b3; /* Higher contrast blue */
             color: #fff;
             border: none;
             cursor: pointer;
         }
 
         .login-form .btn:hover {
-            background-color: #0056b3;
+            background-color: #004494;
         }
 
         /* Right Column: Signup Info */
@@ -122,18 +114,12 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             padding: 30px;
             flex: 1;
             display: flex;
-            /* Flexbox to center content */
             flex-direction: column;
-            /* Arrange elements vertically */
             justify-content: center;
-            /* Vertically center content */
             align-items: center;
-            /* Horizontally center content */
             box-sizing: border-box;
             border-top-right-radius: 15px;
-            /* Rounded top right corner */
             border-bottom-right-radius: 15px;
-            /* Rounded bottom right corner */
         }
 
         .signup-info h2 {
@@ -159,6 +145,18 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             text-decoration: underline;
         }
 
+        /* "Login as Admin" button */
+        .btn-outline-secondary {
+            background-color: #0056b3 !important;
+            color: #fff !important;
+            border-color: #0056b3 !important;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #004494 !important;
+            border-color: #004494 !important;
+        }
+
         /* Responsiveness */
         @media (max-width: 768px) {
             .login-table {
@@ -171,9 +169,7 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             .signup-info {
                 margin-right: 0;
                 width: 100%;
-                /* Ensure both sections take full width */
                 border-radius: 0;
-                /* Remove rounding for mobile view */
             }
 
             .login-form h1,
@@ -194,17 +190,14 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                 <!-- Left Column: Login Form -->
                 <div class="login-form">
                     <h1>Member Login</h1>
-                    <!-- Registration form -->
                     <form action="process_login.php" method="post">
                         <div class="form-group">
-                            <i class="fa fa-envelope"></i> <!-- Email Icon -->
-                            <input required maxlength="45" type="email" id="email" name="email" class="form-control"
-                                placeholder="Enter email">
+                            <i class="fa fa-envelope"></i>
+                            <input required maxlength="45" type="email" id="email" name="email" class="form-control" placeholder="Enter email">
                         </div>
                         <div class="form-group">
-                            <i class="fa fa-lock"></i> <!-- Lock Icon -->
-                            <input required type="password" id="pwd" name="pwd" class="form-control"
-                                placeholder="Enter password">
+                            <i class="fa fa-lock"></i>
+                            <input required type="password" id="pwd" name="pwd" class="form-control" placeholder="Enter password">
                         </div>
                         <div class="mb-3">
                             <button type="submit" class="btn">Submit</button>

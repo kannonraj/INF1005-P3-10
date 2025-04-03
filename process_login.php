@@ -15,7 +15,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $conn = connectToDatabase(); 
 
-
     $stmt = $conn->prepare("SELECT fname, lname, email, password FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -29,6 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION["loggedin"] = true;
             $_SESSION["user_email"] = $db_email;
             $_SESSION["user_name"] = $fname . " " . $lname;
+            $_SESSION["fname"] = $fname;
 
             $stmt->close();
             $conn->close();
@@ -50,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     exit();
 }
 
-// Show error if login fails
+// Show login failure page
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,24 +58,46 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <?php include "inc/head.inc.php"; ?>
     <title>Login Failed | PEAK</title>
     <link rel="stylesheet" href="css/main.css">
-    <style>        
+    <style>
         .btn-danger {
-            background-color: red;
+            background-color: #b30000;
             color: white;
             padding: 10px 20px;
             text-decoration: none;
             border-radius: 5px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .btn-danger:hover {
+            background-color: #990000;
+        }
+
+        .main-content {
+            padding: 30px;
+        }
+
+        .visually-hidden {
+            position: absolute;
+            height: 1px;
+            width: 1px;
+            overflow: hidden;
+            clip: rect(1px, 1px, 1px, 1px);
+            white-space: nowrap;
         }
     </style>
 </head>
 <body>
     <?php include "inc/nav.inc.php"; ?>
     <div class="main-content">
-    <main class="container" style="padding: 30px;">
-        <h2>Login Failed</h2>
-        <p><?= htmlspecialchars($errorMsg) ?></p>
-        <a href="login.php" class="btn-danger">Return to Login</a>
-    </main>
+        <main class="container">
+            <!-- Add accessible level-one heading -->
+            <h1 class="visually-hidden">Login Error - PEAK</h1>
+
+            <h2>Login Failed</h2>
+            <p><?= htmlspecialchars($errorMsg) ?></p>
+            <a href="login.php" class="btn-danger">Return to Login</a>
+        </main>
     </div>
     <?php include "inc/footer.inc.php"; ?>
 </body>
@@ -86,4 +108,3 @@ function sanitize_input($data) {
     return htmlspecialchars(stripslashes(trim($data)));
 }
 ?>
-

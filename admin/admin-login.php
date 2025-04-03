@@ -35,14 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <?php include "../inc/head.inc.php"; ?>
     <title>Admin Login | PEAK</title>
     <link rel="stylesheet" href="../css/main.css">
     <style>
-        html,
-        body {
+        html, body {
             height: 100%;
             margin: 0;
             padding: 0;
@@ -72,10 +70,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
         }
 
+        .login-wrapper h1 {
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 26px;
+        }
+
         .login-wrapper h2 {
             text-align: center;
             margin-bottom: 25px;
-            font-size: 24px;
+            font-size: 22px;
         }
 
         .form-control {
@@ -102,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .back-link a {
-            color: #007bff;
+            color: #0056b3; /* Higher contrast than #007bff */
             text-decoration: none;
         }
 
@@ -117,6 +121,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <main>
         <div class="login-wrapper">
+            <!-- Added h1 for accessibility -->
+            <h1 class="visually-hidden">Admin Portal Login</h1>
             <h2>Admin Login</h2>
 
             <?php if ($error): ?>
@@ -137,5 +143,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     <?php include "../inc/footer.inc.php"; ?>
 </body>
-
 </html>
