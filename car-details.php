@@ -182,7 +182,7 @@ $isAvailable = $activeBooking == 0;
 <body>
     <?php include "inc/nav.inc.php"; ?>
 
-    <main class="main-content" role="main">
+    <main class="main-content">
         <!-- Hidden H1 for screen readers -->
         <h1 class="visually-hidden"><?= htmlspecialchars($car['brand']) . " " . htmlspecialchars($car['model']) ?>
             Details</h1>
