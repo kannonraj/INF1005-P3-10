@@ -412,7 +412,7 @@ ini_set('display_errors', 1);
             <div class="popup-overlay"></div>
 
             <!-- WRAP the popup content inside a landmark -->
-            <section id="subscriptionFormWrapper" role="region" aria-labelledby="subscriptionHeading">
+            <article id="subscriptionFormWrapper" role="region" aria-labelledby="subscriptionHeading">
 
                 <!-- Initial subscription form -->
                 <div id="subscriptionForm">
@@ -432,7 +432,7 @@ ini_set('display_errors', 1);
                     <button type="button" class="submit-button" id="keepBrowsingBtn">Keep Browsing</button>
                 </div>
 
-            </section>
+</article>
 
         </div>
     </div>
