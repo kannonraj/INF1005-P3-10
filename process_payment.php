@@ -12,7 +12,7 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit();
 }
 
-// ✅ Basic input check
+//  Basic input check
 if ($_SERVER["REQUEST_METHOD"] !== "POST" || !isset($_POST["payment_id"]) || !isset($_POST["method"])) {
     echo "Invalid access.";
     exit();
@@ -23,7 +23,7 @@ $method = htmlspecialchars($_POST["method"]);
 
 $conn = connectToDatabase();
 
-// ✅ Confirm payment record exists and belongs to this user
+//  Confirm payment record exists and belongs to this user
 $stmt = $conn->prepare("
     SELECT p.id, p.status, b.user_id
     FROM payments p

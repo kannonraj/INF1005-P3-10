@@ -108,13 +108,13 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
             white-space: nowrap;
         }
 
-        /* ✅ FIXED CONTRAST: Submit button */
+
         .register-form .btn {
             width: 100%;
             padding: 12px;
             font-size: 18px;
             border-radius: 8px;
-            background-color: #0056b3; /* Fixed for better contrast */
+            background-color: #0056b3;
             color: #fff;
             border: none;
             cursor: pointer;
@@ -215,23 +215,28 @@ if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
                     <form action="process_register.php" method="post">
                         <div class="form-group">
                             <label for="fname">First Name:</label>
-                            <input maxlength="45" type="text" id="fname" name="fname" class="form-control" placeholder="Enter first name">
+                            <input maxlength="45" type="text" id="fname" name="fname" class="form-control"
+                                placeholder="Enter first name">
                         </div>
                         <div class="form-group">
                             <label for="lname">Last Name:</label>
-                            <input required maxlength="45" type="text" id="lname" name="lname" class="form-control" placeholder="Enter last name">
+                            <input required maxlength="45" type="text" id="lname" name="lname" class="form-control"
+                                placeholder="Enter last name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input required maxlength="45" type="email" id="email" name="email" class="form-control" placeholder="Enter email">
+                            <input required maxlength="45" type="email" id="email" name="email" class="form-control"
+                                placeholder="Enter email">
                         </div>
                         <div class="form-group">
                             <label for="pwd">Password:</label>
-                            <input required type="password" id="pwd" name="pwd" class="form-control" placeholder="Enter password">
+                            <input required type="password" id="pwd" name="pwd" class="form-control"
+                                placeholder="Enter password">
                         </div>
                         <div class="form-group">
                             <label for="pwd_confirm">Confirm Password:</label>
-                            <input required type="password" id="pwd_confirm" name="pwd_confirm" class="form-control" placeholder="Confirm password">
+                            <input required type="password" id="pwd_confirm" name="pwd_confirm" class="form-control"
+                                placeholder="Confirm password">
                         </div>
                         <div class="form-check">
                             <input required type="checkbox" name="agree" id="agree" class="form-check-input">

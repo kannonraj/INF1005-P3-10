@@ -72,7 +72,7 @@ if ($overlap_count > 0) {
     exit();
 }
 
-// ✅ Get car details using correct column names
+//  Get car details using correct column names
 $stmt = $conn->prepare("SELECT brand, model, price_per_day FROM cars WHERE id = ?");
 $stmt->bind_param("i", $car_id);
 $stmt->execute();
@@ -99,10 +99,10 @@ if ($stmt->execute()) {
     $stmt_payment->execute();
     $stmt_payment->close();
 
-    // ✅ Generate booking confirmation PDF
+    //  Generate booking confirmation PDF
     $pdfPath = generateBookingPDF($fname, $car_display_name, $start_date, $end_date, $booking_id);
 
-    // ✅ Send email with PDF
+    //  Send email with PDF
     $subject = "Booking Confirmation - PEAK Car Rental";
     $body = "
         <h2>Hi $fname,</h2>

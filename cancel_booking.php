@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
         $stmt->fetch();
         $stmt->close();
 
-        // ✅ Get car brand + model
+        // Get car brand + model
         $stmt_car = $conn->prepare("SELECT brand, model FROM cars WHERE id = ?");
         $stmt_car->bind_param("i", $car_id);
         $stmt_car->execute();
@@ -58,10 +58,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["booking_id"])) {
         $update_payment->execute();
         $update_payment->close();
 
-        // ✅ Generate PDF
+        // Generate PDF
         $pdfPath = generateCancellationPDF($fname, $car_display_name, $start_date, $end_date, $booking_id);
 
-        // ✅ Send Email
+        // Send Email
         $subject = "Cancellation Confirmation - PEAK Car Rental";
         $body = "
             <h2>Hi $fname,</h2>

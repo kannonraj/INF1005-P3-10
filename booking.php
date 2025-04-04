@@ -2,13 +2,13 @@
 session_start();
 require_once "db/db.php";
 
-// ✅ Redirect if not logged in
+// Redirect if not logged in
 if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     header("Location: login.php");
     exit();
 }
 
-// ✅ Check if car_id is passed
+// Check if car_id is passed
 if (!isset($_GET["car_id"])) {
     echo "No car selected.";
     exit();
@@ -18,7 +18,7 @@ $car_id = intval($_GET["car_id"]);
 
 $conn = connectToDatabase();
 
-// ✅ Fetch the car details (no longer use cars.status)
+// Fetch the car details (no longer use cars.status)
 $stmt = $conn->prepare("SELECT * FROM cars WHERE id = ?");
 $stmt->bind_param("i", $car_id);
 $stmt->execute();
@@ -32,7 +32,7 @@ if ($result->num_rows === 0) {
 $car = $result->fetch_assoc();
 $stmt->close();
 
-// ✅ Check if the car is currently booked
+// Check if the car is currently booked
 $check = $conn->prepare("SELECT COUNT(*) FROM bookings WHERE car_id = ? AND status = 'active'");
 $check->bind_param("i", $car_id);
 $check->execute();

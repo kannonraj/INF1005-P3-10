@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     ?>
 
     <div class="container my-5 text-center">
-        <h1 class="mb-4">✅ Booking Confirmed</h1>
+        <h1 class="mb-4"> Booking Confirmed</h1>
         <p class="fs-5">You have successfully booked:</p>
         <h3 class="mb-3"><?= $car ?></h3>
         <p><strong>Start Date:</strong> <?= $startDate ?></p>

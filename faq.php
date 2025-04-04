@@ -1,5 +1,5 @@
 <?php
-session_start();  
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +30,7 @@ session_start();
     </style>
 </head>
 
-<!-- ✅ Add flex column layout to stretch to bottom -->
+<!--  Add flex column layout to stretch to bottom -->
 
 <body class="d-flex flex-column min-vh-100">
 

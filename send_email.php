@@ -6,7 +6,8 @@ require 'vendor/autoload.php';
 
 $config = parse_ini_file('/var/www/private/mail-config.ini', true)['mail'];
 
-function sendEmail($to, $subject, $body, $attachmentPath = null) {
+function sendEmail($to, $subject, $body, $attachmentPath = null)
+{
     global $config;
 
     $mail = new PHPMailer(true);
@@ -23,9 +24,9 @@ function sendEmail($to, $subject, $body, $attachmentPath = null) {
         $mail->addAddress($to);
         $mail->isHTML(true);
         $mail->Subject = $subject;
-        $mail->Body    = $body;
+        $mail->Body = $body;
 
-        // ✅ Attach PDF if provided
+        //  Attach PDF if provided
         if ($attachmentPath && file_exists($attachmentPath)) {
             $mail->addAttachment($attachmentPath);
         }
