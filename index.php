@@ -404,34 +404,41 @@ ini_set('display_errors', 1);
   <!-- Footer -->
   <?php include "inc/footer.inc.php"; ?>
 
-  <!-- START: Email Popup HTML -->
-  <div class="popup-container" id="emailPopup">
+<!-- START: Email Popup HTML -->
+<div class="popup-container" id="emailPopup">
     <div class="popup">
         <button class="popup-close" id="closePopup">×</button>
         <div class="popup-content">
             <div class="popup-overlay"></div>
-            
-            <!-- Initial subscription form -->
-            <div id="subscriptionForm">
-                <h2>10% OFF</h2>
-                <p>YOUR FIRST CAR RENTAL</p>
-                <form class="email-form" id="subscribeForm">
-                    <input type="email" placeholder="Email Address" class="email-input" required>
-                    <button type="submit" class="submit-button">Continue</button>
-                </form>
-            </div>
-            
-            <!-- Confirmation message (initially hidden) -->
-            <div id="confirmationMessage" style="display: none;">
-                <h2>Thank You!</h2>
-                <p>Your 10% discount code has been sent to:</p>
-                <p id="confirmedEmail" style="font-weight: bold; margin-bottom: 30px;"></p>
-                <button type="button" class="submit-button" id="keepBrowsingBtn">Keep Browsing</button>
-            </div>
+
+            <!-- WRAP the popup content inside a landmark -->
+            <section id="subscriptionFormWrapper" role="region" aria-labelledby="subscriptionHeading">
+
+                <!-- Initial subscription form -->
+                <div id="subscriptionForm">
+                    <h2 id="subscriptionHeading">10% OFF</h2>
+                    <p>YOUR FIRST CAR RENTAL</p>
+                    <form class="email-form" id="subscribeForm">
+                        <input type="email" placeholder="Email Address" class="email-input" required>
+                        <button type="submit" class="submit-button">Continue</button>
+                    </form>
+                </div>
+
+                <!-- Confirmation message (initially hidden) -->
+                <div id="confirmationMessage" style="display: none;">
+                    <h2>Thank You!</h2>
+                    <p>Your 10% discount code has been sent to:</p>
+                    <p id="confirmedEmail" style="font-weight: bold; margin-bottom: 30px;"></p>
+                    <button type="button" class="submit-button" id="keepBrowsingBtn">Keep Browsing</button>
+                </div>
+
+            </section>
+
         </div>
     </div>
-  </div>
-  <!-- END: Email Popup HTML -->
+</div>
+<!-- END: Email Popup HTML -->
+
 
   <script>
     // JavaScript to change the image at interval
