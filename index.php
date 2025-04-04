@@ -361,10 +361,10 @@ ini_set('display_errors', 1);
         <!-- Background Image 1 -->
         <div style="background: url('images/index1.jpg') no-repeat center center;"></div>
         <div class="section-content">
-          <h2 class="tx-black tx-spacing-3">Rent a car in the day or at night</h2>
-          <h2 class="tx-brand-03 mg-b-40">With 24/7 availability</h2>
+          <h2 class="tx-black tx-spacing-3">Flexible Car Rentals, Anytime You Need</h2>
+          <h2 class="tx-brand-03 mg-b-40">Available 24/7 for Your Convenience</h2>
           <div class="tx-black-7 tx-24">
-            You can rent at your own pace for a minimum of 15 mins. On weekends or weekdays, at any time of the day.
+          Rent a car at your own convenience. Whether it's a weekday or weekend, day or night, we've got you covered.
           </div>
         </div>
       </div>
@@ -375,11 +375,10 @@ ini_set('display_errors', 1);
         <!-- Background Image 2 -->
         <div style="background: url('images/index2.jpg') no-repeat top center;"></div>
         <div class="section-content">
-          <h2 class="tx-white tx-spacing-3 tx-brand-03">Wide Selection of Car Models</h2>
-          <h2 class="tx-white mg-b-40">For Any Occasion Any Need</h2>
+          <h2 class="tx-white tx-spacing-3 tx-brand-03">Explore Our Extensive Car Range</h2>
+          <h2 class="tx-white mg-b-40">Perfect for Every Event and Purpose</h2>
           <div class="tx-white tx-24">
-            Whether you're going out with friends, family or need it for business or a date, we've got a right model for
-            you.
+            Whether you're planning a fun outing, a business trip, or a special occasion, we have the right car for every need.
           </div>
         </div>
       </div>
@@ -390,11 +389,10 @@ ini_set('display_errors', 1);
         <!-- Background Image 3 -->
         <div style="background: url('images/index3.jpg') no-repeat center center;"></div>
         <div class="section-content">
-          <h2 class="tx-black tx-spacing-3">Cars Near The MRT Stations</h2>
-          <h2 class="tx-brand-03 mg-b-40">Across The Island</h2>
+          <h2 class="tx-black tx-spacing-3">Convenient Delivery Service to Your Doorstep</h2>
+          <h2 class="tx-brand-03 mg-b-40">We Bring the Car to You, Anytime</h2>
           <div class="tx-black-7 tx-24">
-            Rent without ranting. <br>Most of our cars are located near the MRT stations. So now you can spend more
-            time for things that matter in your life.
+          Enjoy the convenience of having your rental car delivered straight to your location. Whether at home, work, or elsewhere, we’ll bring it to you.
           </div>
         </div>
       </div>
