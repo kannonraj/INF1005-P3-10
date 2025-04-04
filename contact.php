@@ -64,7 +64,7 @@ session_start();
 
         #ContactForm button {
             padding: 10px 20px;
-            background-color: #2e7d32; /* Darker for contrast */
+            background-color: #0275d8; 
             color: white;
             border: none;
             border-radius: 5px;
@@ -109,6 +109,7 @@ session_start();
 
             <!-- Contact Form -->
             <section id="ContactForm" aria-labelledby="contact-form-heading">
+                <h2 id="contact-form-heading" class="visually-hidden">Contact Us Form</h2>
                 <form action="process_contact.php" method="POST" onsubmit="return validateForm()">
                     <div class="row">
                         <div style="width: 48%; float: left; margin-right: 4%;">
